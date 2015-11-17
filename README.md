@@ -1,11 +1,11 @@
 Instruktioner för körning:
 En .options-fil måste skapas i CBRNSensors-mappen, denna kan användas (CoREdebug.options):
 
-<?xml version="1.0" encoding="utf-8"?>
-<settings>
-	<setting name="BinarySearchPath" value="<er sökväg här>\Output\Win32\VS100\Debug" />
-	<setting name="DebugInterfaceActiveStartup" value="True" />
-</settings>
+	<?xml version="1.0" encoding="utf-8"?>
+	<settings>
+		<setting name="BinarySearchPath" value="<er sökväg här>\Output\Win32\VS100\Debug" />
+		<setting name="DebugInterfaceActiveStartup" value="True" />
+	</settings>
 
 Därefter kanske ni måste ställa in så att visual studio försöker köra rätt projekt. Högerklicka på 'Solution Saab.CBRN' sedan 'Properties'. I dropdown menyn väljer ni 'Saab.CBRNSensors'.
 
