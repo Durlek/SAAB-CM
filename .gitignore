@@ -1,3 +1,8 @@
+*.options
+*.dll
+*.pdb
+Drivers\Saab\Saab.CBRNSensors\obj\Debug\*
+
 #################
 ## Eclipse
 #################
