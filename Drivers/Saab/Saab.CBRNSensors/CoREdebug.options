@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+	<setting name="BinarySearchPath" value="C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Output\Win32\VS100\Debug" />
+	<setting name="DebugInterfaceActiveStartup" value="True" />
+	<setting name="RecordingFormat" value="Saab.SQLiteLogger" />
+	<setting name="LogDebugLevel" value="-1" />
+	<setting name="LogFileDebug" value="True" />
+	<setting name="LogFileDebugLevel" value="3" />
+	<setting name="DebugInterfacePort" value="2000" />
+	<setting name="AdminInterfacePort" value="0" />
+	<setting name="DebugInterfacePassword" value="" />
+	<setting name="DebugInterfaceKey" value="C:\Program Files (x86)\Saab\WISE Connectivity 4.2\Certificates\\Certificates\STS.SSL_server.pem" />
+</settings>

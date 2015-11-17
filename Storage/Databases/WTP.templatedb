@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<templatedatabase>
+
+  <info author="Unknown" copyright="" description="Template Database for Saab i-ATS Trainer." modified="2015-10-16T08:55:24.630Z" version="1.0.4713.1"/>
+
+  <datatypes>
+    <integers>
+      <integer defaultvalue="0" endian="big" format="" keytype="none" maxvalue="255" minvalue="0" name="Boolean" sign="unsigned" size="int8" usemax="false" usemin="false" wisetype="byte"/>
+      <integer defaultvalue="0" endian="big" format="" keytype="none" maxvalue="255" minvalue="0" name="Byte" sign="unsigned" size="int8" usemax="false" usemin="false" wisetype="byte"/>
+      <integer defaultvalue="0" endian="big" format="" keytype="none" maxvalue="9223372036854775807" minvalue="-9223372036854775808" name="Handle" sign="signed" size="int32" usemax="false" usemin="false" wisetype="handle"/>
+      <integer defaultvalue="0" endian="big" format="" keytype="none" maxvalue="9223372036854775807" minvalue="-9223372036854775808" name="Int32" sign="signed" size="int32" usemax="false" usemin="false" wisetype="long"/>
+    </integers>
+    <floats>
+      <float defaultvalue="0.000000" endian="big" format="" maxvalue="179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.000000" minvalue="-179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.000000" name="AngleInRadians" size="float64" usemax="false" usemin="false" wisetype="double"/>
+      <float defaultvalue="0.000000" endian="big" format="" maxvalue="179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.000000" minvalue="-179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.000000" name="Double" size="float64" usemax="false" usemin="false" wisetype="double"/>
+    </floats>
+    <strings>
+      <string chartype="Byte" defaultvalue="1970-01-01T01:00:00+00:00" format="ISO-8601" keytype="none" maxlength="0" name="DateTimeString" type="NULL" wisetype="string"/>
+      <string chartype="Byte" defaultvalue="" format="" keytype="none" maxlength="0" name="GuidAsString" type="NULL" wisetype="string"/>
+      <string chartype="Byte" defaultvalue="" format="" keytype="none" maxlength="0" name="NullString" type="NULL" wisetype="string"/>
+    </strings>
+    <enums>
+      <enum datatype="Byte" defaultvalue="0" name="AircraftPerformance">
+        <enumerator name="Absolute" value="0"/>
+        <enumerator name="Max" value="1"/>
+        <enumerator name="Min" value="3"/>
+        <enumerator name="Normal" value="2"/>
+        <enumerator name="emergency" value="5"/>
+        <enumerator name="expeditfart" value="4"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="AviationRules">
+        <enumerator name="IFR" value="1"/>
+        <enumerator name="Unknown" value="0"/>
+        <enumerator name="VFR" value="2"/>
+        <enumerator name="Y" value="3"/>
+        <enumerator name="Z" value="4"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="BreakLandingType">
+        <enumerator name="CONTINUE" value="4"/>
+        <enumerator name="EARLY" value="0"/>
+        <enumerator name="LATE" value="3"/>
+        <enumerator name="LOWAPPROACH" value="5"/>
+        <enumerator name="MID" value="2"/>
+        <enumerator name="NORMAL" value="1"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNDetectionLibrary">
+        <enumerator description="Chemical warfare agent (CWA)" name="CWA" value="0"/>
+        <enumerator description="Toxic industrial chemical (TIC)" name="TIC" value="1"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNDetectionMode">
+        <enumerator description="Chemical warfare agent (CWA)" name="CWA" value="0"/>
+        <enumerator description="Chemical warfare agent (CWA) continous" name="CWAcont" value="2"/>
+        <enumerator description="Toxic industrial chemical (TIC)" name="TIC" value="1"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNParticleModel">
+        <enumerator description="CFD" name="CFD" value="2"/>
+        <enumerator description="Particle" name="Particle" value="1"/>
+        <enumerator description="Puff" name="Puff" value="0"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNRAIDState">
+        <enumerator description="Analytic checking. Internal state is analytic test. NOT USED" name="analytictest" value="5"/>
+        <enumerator description="Cleaning. Internal state is Standby" name="cleaning" value="2"/>
+        <enumerator description="Off. Internal state is error. NOT USED" name="off" value="6"/>
+        <enumerator description="Started. Internal state is Measuring" name="started" value="1"/>
+        <enumerator description="Starting. Internal state is Self test. NOT USED" name="startingselftest" value="4"/>
+        <enumerator description="Starting. Internal state is Warm Up. NOT USED" name="startingwarmup" value="3"/>
+        <enumerator description="Stopped. Internal state is Standby" name="stopped" value="0"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNRapidCalibrationStatus">
+        <enumerator name="coldreference" value="2"/>
+        <enumerator name="done" value="6"/>
+        <enumerator name="failed" value="5"/>
+        <enumerator name="heating" value="3"/>
+        <enumerator name="notcalibrating" value="0"/>
+        <enumerator name="starting" value="1"/>
+        <enumerator name="warmreference" value="4"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNRapidLibrary">
+        <enumerator name="CWA" value="2"/>
+        <enumerator name="SIM" value="0"/>
+        <enumerator name="TIC" value="1"/>
+        <enumerator name="TST" value="3"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNRapidSamplingMode">
+        <enumerator name="fixeddirection" value="1"/>
+        <enumerator name="fullscan" value="2"/>
+        <enumerator description="Stopped" name="notsampling" value="0"/>
+        <enumerator name="scansector1" value="3"/>
+        <enumerator name="scansector2" value="4"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNRapidStatus">
+        <enumerator name="calibrating" value="4"/>
+        <enumerator name="cooling" value="1"/>
+        <enumerator name="initialising" value="2"/>
+        <enumerator name="sampling" value="5"/>
+        <enumerator name="starting" value="3"/>
+        <enumerator description="Stopped" name="stopped" value="0"/>
+        <enumerator name="stopping" value="6"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="CBRNSensorMode">
+        <enumerator name="Blister" value="1"/>
+        <enumerator name="Nerve" value="2"/>
+        <enumerator name="Off" value="0"/>
+        <enumerator name="Unknown" value="0"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="ControlledBy">
+        <enumerator name="External" value="2"/>
+        <enumerator name="Pilot" value="1"/>
+        <enumerator name="Unknown" value="0"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="EntityModeType">
+        <enumerator name="LANDING" value="3"/>
+        <enumerator name="PILOT" value="0"/>
+        <enumerator name="ROUTE" value="1"/>
+        <enumerator name="TAKEOFF" value="2"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="HighMediumLowType">
+        <enumerator name="High" value="0"/>
+        <enumerator name="Low" value="2"/>
+        <enumerator name="Medium" value="1"/>
+        <enumerator name="None" value="3"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="LandingType">
+        <enumerator name="ARC" value="0"/>
+        <enumerator name="AUTO" value="9"/>
+        <enumerator name="Helicopter" value="8"/>
+        <enumerator name="ILS" value="3"/>
+        <enumerator name="TILS" value="4"/>
+        <enumerator name="TILSLB2" value="13"/>
+        <enumerator name="TILSLBIPH" value="10"/>
+        <enumerator name="TILSLBIPL" value="11"/>
+        <enumerator name="TILSLBIPR" value="12"/>
+        <enumerator name="VAL" value="7"/>
+        <enumerator name="VAN" value="6"/>
+        <enumerator name="VAS" value="5"/>
+        <enumerator name="VOR" value="14"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="MapSymbolType">
+        <enumerator name="NO_SYMBOL" value="0"/>
+        <enumerator name="ONLY_CONTROLLED" value="3"/>
+        <enumerator name="SYMBOL" value="1"/>
+        <enumerator name="SYMBOL_AND_LABEL" value="2"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="MovedBy">
+        <enumerator name="External" value="2"/>
+        <enumerator name="MoveServer" value="1"/>
+        <enumerator name="Unknown" value="0"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="PositionKind">
+        <enumerator name="Air" value="2"/>
+        <enumerator name="Ground" value="0"/>
+        <enumerator name="Landing" value="4"/>
+        <enumerator name="LandingAir" value="5"/>
+        <enumerator name="Sea" value="1"/>
+        <enumerator name="TakeOff" value="3"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="SpeedType">
+        <enumerator description="Indicated Air Speed" name="IAS" value="2"/>
+        <enumerator description="True Air Speed" name="TAS" value="1"/>
+        <enumerator name="Unknown" value="0"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="TurnDirection">
+        <enumerator name="Closest" value="0"/>
+        <enumerator name="Left" value="2"/>
+        <enumerator name="Right" value="1"/>
+      </enum>
+      <enum datatype="Byte" defaultvalue="0" name="UnitType">
+        <enumerator name="METRIC" value="1"/>
+        <enumerator name="NAUTIC" value="0"/>
+      </enum>
+    </enums>
+    <arrays>
+      <array elementtype="AircraftConflict" keytype="none" name="AircraftConflictList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+      <array elementtype="CBRNSensorAP2CeData" keytype="none" name="CBRNSensorAP2CeDataList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+      <array elementtype="CBRNSensorLCDData" keytype="none" name="CBRNSensorLCDDataList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+      <array elementtype="CBRNSensorRAIDData" keytype="none" name="CBRNSensorRAIDDataList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+      <array elementtype="CBRNSensorRapidData" keytype="none" name="CBRNSensorRapidDataList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+      <array elementtype="CBRNSensorRawData" keytype="none" name="CBRNSensorRawDataList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+      <array elementtype="LayerDependentGroup" keytype="none" name="LayerDependentParametersList" netformat="" type="Dynamic">
+        <dimension index="0" lowbound="0" size="0"/>
+      </array>
+    </arrays>
+    <composites>
+      <composite name="AircraftConflict" netformat="">
+        <field datatype="Handle" defaultvalue="0" index="0" name="Aircraft"/>
+        <field datatype="Boolean" defaultvalue="0" index="1" name="SeverityHigh"/>
+      </composite>
+      <composite name="CBRNSensorAP2CeData" netformat="">
+        <field datatype="Byte" defaultvalue="" index="0" name="BarCount"/>
+        <field datatype="NullString" defaultvalue="" description="For debug purposes only" index="1" name="Substance"/>
+        <field datatype="NullString" defaultvalue="" description="G or H" index="2" name="SubstanceCategory"/>
+        <field datatype="Double" defaultvalue="" index="3" name="VolumeConcentration"/>
+      </composite>
+      <composite name="CBRNSensorAP2CeState" netformat="">
+        <field datatype="Boolean" defaultvalue="0" description="true if hydrogen tank is empty" index="0" name="HydrogenTankEmpty"/>
+        <field datatype="Boolean" defaultvalue="0" index="1" name="DeviceFault"/>
+        <field datatype="Boolean" defaultvalue="0" index="2" name="DetectorReady"/>
+        <field datatype="Boolean" defaultvalue="0" index="3" name="Purge"/>
+        <field datatype="Boolean" defaultvalue="0" index="4" name="BatteryLow"/>
+      </composite>
+      <composite name="CBRNSensorI27Data" netformat="">
+        <field datatype="Int32" defaultvalue="0" description="Left probe dose rate" index="0" name="LeftProbeDoseRate"/>
+        <field datatype="Int32" defaultvalue="0" description="Internal dose rate" index="1" name="InternalDoseRate"/>
+        <field datatype="Int32" defaultvalue="0" description="Right probe dose rate" index="2" name="RightProbeDoseRate"/>
+        <field datatype="Int32" defaultvalue="0" description="Accumulated dose" index="3" name="AccumulatedDose"/>
+        <field datatype="DateTimeString" defaultvalue="" description="Time when accumulated dose was last reset" index="4" name="TimeOfLastReset"/>
+      </composite>
+      <composite name="CBRNSensorI27State" netformat="">
+        <field datatype="Boolean" defaultvalue="0" description="1 = battery low" index="0" name="BatteryLow"/>
+        <field datatype="Boolean" defaultvalue="0" description="1 = temperature error" index="1" name="TemperatureError"/>
+      </composite>
+      <composite name="CBRNSensorI28Data" netformat="">
+        <field datatype="Int32" defaultvalue="0" description="Current dose rate" index="0" name="CurrentDoseRate"/>
+        <field datatype="Int32" defaultvalue="0" description="Peak dose rate" index="1" name="PeakDoseRate"/>
+        <field datatype="Int32" defaultvalue="0" description="Accumulated dose rate" index="2" name="AccumulatedDoseRate"/>
+      </composite>
+      <composite name="CBRNSensorI28State" netformat="">
+        <field datatype="Int32" defaultvalue="0" description="Currently not in use" index="1" name="Errorcode"/>
+      </composite>
+      <composite name="CBRNSensorLCDData" netformat="">
+        <field datatype="Byte" defaultvalue="" description="0-6 bars." index="0" name="BarCount"/>
+        <field datatype="Int32" defaultvalue="" description="See LCD3.2e data protocol for definitions. (e.g.: For G agents: 1=GA, 2=GB, 3=GD...)" index="1" name="SubstanceIndex"/>
+        <field datatype="NullString" defaultvalue="" description="G or H. Should be maximum one of each detected." index="2" name="SubstanceCategory"/>
+        <field datatype="Double" defaultvalue="" description="For debug purposes only" index="3" name="VolumeConcentration"/>
+        <field datatype="NullString" defaultvalue="" description="Clear text of substance. For debug purposes." index="4" name="Substance"/>
+      </composite>
+      <composite name="CBRNSensorLCDState" netformat="">
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 0" index="0" name="GAlert"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 1" index="1" name="HAlert"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 2" index="2" name="TICAlert"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 3 0=TIC, 1=CWA" index="3" name="TICMode"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 4" index="4" name="LowSieve"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 5" index="5" name="ChangeSievePack"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 6" index="6" name="LowBattery"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 7" index="7" name="ChangeBattery"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 8" index="8" name="GHighDoseAlert"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 9" index="9" name="GMediumDoseAlert"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 13 Bit 10" index="10" name="HHighDoseAlert"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 0" index="11" name="InitialSelfTest"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 1" index="12" name="CoronaBurnOff"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 2" index="13" name="PTOutOfRange"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 3" index="14" name="AudioFault"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 8" index="15" name="FatalError"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 9" index="16" name="CRAboveLimit"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 10" index="17" name="FanCAboveLimit"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 11" index="18" name="InitialSelfTestFailure"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 12" index="19" name="HealthCheckFailure"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 13" index="20" name="CodeChecksumError"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 14" index="21" name="EEPROMChecksumError"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 14 Bit 15" index="22" name="HTOutSideLimits"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 3 Bit 11" index="23" name="NVG"/>
+        <field datatype="Boolean" defaultvalue="0" description="Byte 3 Bit 9" index="24" name="AudibleAlarm"/>
+      </composite>
+      <composite name="CBRNSensorRAIDData" netformat="">
+        <field datatype="NullString" defaultvalue="" description="Substance name." index="0" name="Substance"/>
+        <field datatype="Byte" defaultvalue="" description="Number of concentration bars" index="1" name="BarCount"/>
+        <field datatype="Byte" defaultvalue="" description="Substance class. 0=No agent, 1=Nerve, 2= Blister, 3=Blood, 4=TIC" index="2" name="SubstanceClass"/>
+        <field datatype="Byte" defaultvalue="1" description="Concentration unit. 0=microg/m3, 1=millig/m3, 2=ppb, 3=ppm" index="3" name="ConcentrationUnit"/>
+        <field datatype="Double" defaultvalue="" description="Concentration" index="4" name="Concentration"/>
+      </composite>
+      <composite name="CBRNSensorRAIDState" netformat="">
+        <field datatype="Byte" defaultvalue="0" description="0=CWA, 1=TIC/ITOX" index="0" name="SubstanceLibrary"/>
+        <field datatype="Int32" defaultvalue="0" description="0=Standby, 1=Measuring, 2=Warmup, 3=Selftest, 4=AnalyticTest, 5=DeviceError" index="1" name="DeviceState"/>
+        <field datatype="Int32" defaultvalue="0" description="Error code." index="2" name="DeviceError"/>
+        <field datatype="CBRNRAIDState" defaultvalue="0" description="Internal state for UI simulation. For SLB integration use DeviceState." index="3" name="InternalState"/>
+      </composite>
+      <composite name="CBRNSensorRapidData" netformat="">
+        <field datatype="NullString" defaultvalue="" description="Substance name." index="0" name="Substance"/>
+        <field datatype="Double" defaultvalue="" description="Concentration. Unit = ppm*m*K" index="1" name="Concentration"/>
+        <field datatype="Double" defaultvalue="" description="Inclination bottom" index="2" name="incbottom"/>
+        <field datatype="Double" defaultvalue="" description="Inclination top" index="3" name="inctop"/>
+        <field datatype="Double" defaultvalue="" description="Azimuth bottom" index="4" name="azibottom"/>
+        <field datatype="Double" defaultvalue="" description="Azimuth top" index="5" name="azitop"/>
+        <field datatype="Byte" defaultvalue="" description="Substance class. NOT IN USE" index="6" name="SubstanceClass"/>
+        <field datatype="Byte" defaultvalue="" description="Trend. NOT IN USE" index="7" name="Trend"/>
+        <field datatype="DateTimeString" defaultvalue="" description="Time of detection" index="8" name="DetectionTime"/>
+      </composite>
+      <composite name="CBRNSensorRapidState" netformat="">
+        <field datatype="CBRNRapidCalibrationStatus" defaultvalue="0" index="0" name="CalibrationStatus"/>
+        <field datatype="CBRNRapidLibrary" defaultvalue="0" description="Currently used substance library" index="1" name="SubstanceLibrary"/>
+        <field datatype="CBRNRapidSamplingMode" defaultvalue="0" index="2" name="SamplingMode"/>
+        <field datatype="CBRNRapidStatus" defaultvalue="0" index="3" name="Status"/>
+      </composite>
+      <composite name="CBRNSensorRawData" netformat="">
+        <field datatype="NullString" defaultvalue="" index="0" name="Substance"/>
+        <field datatype="Double" defaultvalue="" index="1" name="VolumeConcentration"/>
+      </composite>
+      <composite name="LayerDependentGroup" netformat="">
+        <field datatype="Double" defaultvalue="" description="Upperlimit of this airspace in meters." index="0" name="UpperLimit"/>
+        <field datatype="Double" defaultvalue="" description="m/s2" index="1" name="Acceleration"/>
+        <field datatype="Double" defaultvalue="" description="Slowdownretardation m/s2" index="2" name="Retardation"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="3" name="SpeedNormal"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="4" name="SpeedMax"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="5" name="SpeedMin"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="6" name="ClimbMax"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="7" name="ClimbNormal"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="8" name="DescentMax"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="9" name="DescentNormal"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="10" name="ClimbSpeed"/>
+        <field datatype="Double" defaultvalue="" description="m/s" index="11" name="DescentSpeed"/>
+      </composite>
+    </composites>
+    <unions/>
+  </datatypes>
+
+  <objects>
+    <object description="Representation of a ground-based vehicle." xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Entity" scemanta:Category="Entities" scemanta:HumanReadableName="Entity Ground Vehicle" scemanta:IsHumanlyVisible="true" scemanta:RepresentativeSymbol="D72414FE-63DA-4B57-8C05-C99B8E44CCCC" type="Entity.GroundVehicle">
+      <attribute datatype="Boolean" defaultvalue="0" description="Set by the simulator to indicate if the entity is active (or dismissed)" name="Active" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" name="Airline" scemanta:Category="Affiliation" scemanta:HumanReadableName="Airline" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0.000000" description="Set by the simulator to indicate the altitude to resume after lock" name="AltitudeLockResumeAltitude" scemanta:Category="Simulation Parameters" scemanta:HumanReadableName="Altitude Lock resume Altitude" scemanta:IsHumanlyVisible="false" scemanta:Unit="m" scemanta:ValueQuantityUnit="Altitude" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="AltitudeLockStatus" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="" description="Set by simplan" name="AltitudeRequested" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="0.000000" name="AngleSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="10000.000000" name="ApproachDist" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Approach Distance" scemanta:IsHumanlyVisible="false" scemanta:Unit="m" scemanta:ValueQuantityUnit="Distance" wisetype="double"/>
+      <attribute defaultvalue="100.000000" name="ApproachSpeed" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Approach Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="AssignedIAS" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="AssignedSpeedMach" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" name="AsternLineCurrDist" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0" name="AsternLineMaster" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0.000000" name="AsternLineReqDist" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0" name="AsternLineSlave" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute datatype="AviationRules" defaultvalue="0" name="AviantionRules" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="ClearedToContinue" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="AircraftPerformance" defaultvalue="0" name="ClimbPerformance" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" description="Set by the conflict detection in the order service" name="ConflictAlert" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="AircraftConflictList" defaultvalue="" name="Conflicts" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="ControlledBy" defaultvalue="0" name="Controller" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="" description="ex. BAE123 " name="CorrelatedCallsign" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="CurrentGroundSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="" name="CurrentOperation" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="0" description="Airport" name="Departure" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute datatype="AircraftPerformance" defaultvalue="0" name="DescentPerformance" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="-1.000000" description="User setting, set value &lt;0 if not used" name="DescentSpeedRatio" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0" name="DestFix" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0" description="Airport" name="Destination" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="" description="Updated by service upon request by Sim.Request.Updated by service upon request by Sim.Request.UpdateGPDestEstimatedTimeString" name="DestinationETA" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="DismissRequested" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="engine" name="EngineName" scemanta:Category="3D Display" scemanta:HumanReadableName="Engine Name" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="EngineOn" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="EntityModeType" defaultvalue="0" name="EntityMode" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" description="Reference to Object related to state in 'EntityMode', ex a reference to a route if 'EntityMode' is ROUTE, or landing_order" name="EntityModeArgs" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="1.1.0.0.0.0.99" description="String uniquely identifying the type of entity." name="EntityType" scemanta:Category="Entity information" scemanta:HumanReadableName="Entity Type Code" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" wisetype="string"/>
+      <attribute defaultvalue="0.000000" description="This parameter is used by the anti-collision rule set. Defines the radius of a cylinder cantered on the gamepiece into which other gamepieces cannot enter." name="Extension" scemanta:Category="Anti-collision" scemanta:HumanReadableName="Extension" scemanta:IsHumanlyVisible="true" scemanta:Unit="m" scemanta:ValueQuantityUnit="Length" wisetype="double"/>
+      <attribute defaultvalue="8000.000000" name="FinalApproachDist" scemanta:Category="Airborne Parameters" scemanta:HumanReadableName="Final Approach Distance" scemanta:IsHumanlyVisible="false" scemanta:Unit="m" scemanta:ValueQuantityUnit="Distance" wisetype="double"/>
+      <attribute defaultvalue="80.000000" name="FinalApproachSpeed" scemanta:Category="Airborne Parameters" scemanta:HumanReadableName="Final Approach Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute datatype="AngleInRadians" defaultvalue="-1.000000" name="FixedTurnRadius" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0" description="The formation that the game piece is part of" name="Formation" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0" name="FormationMaster" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0" description="The position in the formation" name="FormationPosition" scemanta:IsHumanlyVisible="false" wisetype="long"/>
+      <attribute defaultvalue="0.000000" name="Frequency" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0" name="GPID" scemanta:IsHumanlyVisible="false" wisetype="long"/>
+      <attribute defaultvalue="6.000000" description="User setting. StartAcc" name="GroundAcceleration" scemanta:Category="Performance - Ground" scemanta:HumanReadableName="Ground acceleration" scemanta:IsHumanlyVisible="true" scemanta:Unit="m/s^2" scemanta:ValueQuantityUnit="Acceleration" wisetype="double"/>
+      <attribute defaultvalue="6.000000" description="User setting. LandRet (LandingRetardation)" name="GroundRetardation" scemanta:Category="Performance - Ground" scemanta:HumanReadableName="Ground retardation" scemanta:IsHumanlyVisible="true" scemanta:Unit="m/s^2" scemanta:ValueQuantityUnit="Acceleration" wisetype="double"/>
+      <attribute defaultvalue="99999.900000" description="MaxSpeed" name="GroundSpeed" scemanta:Category="Performance - Ground" scemanta:HumanReadableName="Ground speed: Max" scemanta:IsHumanlyVisible="true" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute defaultvalue="" description="Set by simplan" name="HeadingRequested" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="100.000000" description="Entity health 0-100%" name="Health" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="HorizontalAcceleration" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="HorizontalSpeed" scemanta:Category="Entity information" scemanta:HumanReadableName="Speed" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="double"/>
+      <attribute defaultvalue="" name="ICAOCallsign" scemanta:Category="Identification" scemanta:HumanReadableName="ICAO Callsign" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" name="ICAOTelephoneCallsign" scemanta:Category="Identification" scemanta:HumanReadableName="ICAO Telephone Callsign" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="GuidAsString" defaultvalue="" name="Id" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Id" wisetype="string"/>
+      <attribute defaultvalue="" name="Infotext" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="IsGarbage" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Boolean" defaultvalue="0" description="If the aircraft is a helicopter" name="IsHelicopter" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="IsOnGround" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="20000.000000" description="User setting" name="LandingDist" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Landing Distance" scemanta:IsHumanlyVisible="false" scemanta:ValueQuantityUnit="Distance" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="LandingGearDist" scemanta:Category="Airborne Parameters" scemanta:HumanReadableName="Landing Gear Distance" scemanta:IsHumanlyVisible="false" scemanta:Unit="m" scemanta:ValueQuantityUnit="Distance" wisetype="double"/>
+      <attribute defaultvalue="pgear;ngear;sgear" name="LandingGearName" scemanta:Category="3D Display" scemanta:HumanReadableName="Landing Gear Name" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="LandingGearOut" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="llight" name="LandingLightName" scemanta:Category="3D Display" scemanta:HumanReadableName="Landing Lights Name" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="LandingLightsOn" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="50.000000" description="User setting" name="LandingSpeed" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Landing Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute datatype="LandingType" defaultvalue="0" name="LandingType" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="LayerDependentParametersList" defaultvalue="" name="LayerDependentParameters" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute defaultvalue="0.000000" description="Length of the airplane, in meters" name="Length" scemanta:Category="Entity information" scemanta:HumanReadableName="Length" scemanta:IsHumanlyVisible="true" scemanta:Unit="m" scemanta:ValueQuantityUnit="Length" wisetype="double"/>
+      <attribute datatype="MapSymbolType" defaultvalue="0" description="Which information shall be shown on the map" name="MapSymbol" scemanta:Category="2D Display" scemanta:HumanReadableName="Map Symbol" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Byte" defaultvalue="0" name="March" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="User setting" name="MaxAcceleration" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Acceleration" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s^2" scemanta:ValueQuantityUnit="Acceleration" wisetype="double"/>
+      <attribute defaultvalue="99999.900000" description="MaxHeight" name="MaxAltitude" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Altitude" scemanta:IsHumanlyVisible="false" scemanta:Unit="m" scemanta:ValueQuantityUnit="Altitude" wisetype="double"/>
+      <attribute datatype="AngleInRadians" defaultvalue="0.000000" name="MaxBankAngle" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Bank Angle" scemanta:IsHumanlyVisible="false" scemanta:Unit="rad" scemanta:ValueQuantityUnit="Angle" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service to represent the current aircraft performance" name="MaxClimbSpeed" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Climb Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="User setting" name="MaxDeceleration" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Retardation" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s^2" scemanta:ValueQuantityUnit="Acceleration" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service to represent the current aircraft performance" name="MaxDescentSpeed" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Descent Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute defaultvalue="99999.900000" name="MaxHorizontalSpeed" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Max Horizontal Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute datatype="AngleInRadians" defaultvalue="0.000000" description="User setting, orig MaxSpeedHeading in DATS" name="MaxTurnSpeed" scemanta:Category="Performance - Ground" scemanta:HumanReadableName="Max turn speed" scemanta:IsHumanlyVisible="true" scemanta:Unit="rad/s" scemanta:ValueQuantityUnit="AngleVelocity" wisetype="double"/>
+      <attribute defaultvalue="0" name="MilitaryAffiliation" scemanta:Category="Affiliation" scemanta:HumanReadableName="Affiliation" scemanta:IsHumanlyVisible="false" scemanta:PossibleBaseTypes="Party" scemanta:PossibleTypes="Country" scemanta:ReferenceStrength="StrongChild" scemanta:SystemProperty="Party" scemanta:UniqueContext="Country" wisetype="handle"/>
+      <attribute defaultvalue="0.000000" name="MinimumApproachSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="MinimumCleanSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0" name="MissedRoute" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute datatype="Boolean" defaultvalue="0" description="if Mode C is set to false the trainee sees no height information" name="ModeC" scemanta:Category="General" scemanta:HumanReadableName="Mode C" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" description="The currently used 3DModel" name="Model3D" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute datatype="MovedBy" defaultvalue="0" name="Mover" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="BreakLandingType" defaultvalue="0" description="Set by the simulator to indicate which the current break type is selected for the NATO procedures" name="NPBreakType" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Boolean" defaultvalue="0" description="Set by the simulator to indicate if the &quot;Close&quot; option is enabled for NATO procedures" name="NPClose" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="" name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="Vehicle{counter:000}" scemanta:Category="Identification" scemanta:HumanReadableName="Name" scemanta:IsHumanlyVisible="true" scemanta:PropertyOrder="1" scemanta:SystemProperty="Name" scemanta:Unique="true" wisetype="string"/>
+      <attribute defaultvalue="nlight" name="NavLightName" scemanta:Category="3D Display" scemanta:HumanReadableName="Navigation Lights Name" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="NavigationalLightsOn" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="Updated by service to represent the current aircraft performance" name="NormalClimbSpeed" scemanta:Category="Airborn Parameters" scemanta:HumanReadableName="Normal Climb Speed" scemanta:IsHumanlyVisible="false" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service to represent the current aircraft performance" name="NormalDescentSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="" name="OrbitStatus" scemanta:Category="Simulation Parameters" scemanta:HumanReadableName="Orbit Status" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Updated by service  v1 heading v2 pitch v3 roll(bankangle)" name="Orientation" scemanta:Category="Entity information" scemanta:HumanReadableName="Orientation" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Angle" wisetype="vec3"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="OverridedClimbSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="OverridedClimbSpeedFactor" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="OverridedDescentSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="OverridedDescentSpeedFactor" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="Overshoot" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" name="Parent" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0.000000" name="PlaneIndication" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Updated by service lon/lat/alt WGS 84" name="Position" scemanta:Category="Entity information" scemanta:HumanReadableName="Position" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Position" wisetype="vec3"/>
+      <attribute datatype="PositionKind" defaultvalue="0" name="PositionKind" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Current orientation as displayed in visualization. May be delayed with relation to the real orientation. v1=Heading in radians, v2=Pitch in radians, v3=Roll in radians." name="PresentedOrientation" scemanta:IsHumanlyVisible="false" wisetype="vec3"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Current position as displayed in visualization. May be delayed with relation to the real position. Geodetic WGS84 v1=Longitude in radians, v2=Latitude in radians, v3=Altitude in meters." name="PresentedPosition" scemanta:IsHumanlyVisible="false" wisetype="vec3"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Velocity vector for entity associated with the presented position and orientation. v1=Speed in entity heading - positive forward (m/s), v2=Lateral speed (unused), v3=Vertical speed - positive up (m/s)." name="PresentedVelocity" scemanta:IsHumanlyVisible="false" wisetype="vec3"/>
+      <attribute defaultvalue="-1000.000000" description="Overriding QNH, -1000 to disable" name="QNH" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="20.000000" name="RadarCrossSection" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="" description="ex. Speedbird" name="RadioCallname" scemanta:Category="Identification" scemanta:HumanReadableName="Radio Callsign" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="AngleInRadians" defaultvalue="0.000000" description="User setting" name="Radius" scemanta:Category="General" scemanta:HumanReadableName="Radius" scemanta:IsHumanlyVisible="false" scemanta:Unit="rad" scemanta:ValueQuantityUnit="Angle" wisetype="double"/>
+      <attribute defaultvalue="0" name="ReferencePoint" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute datatype="Boolean" defaultvalue="0" description="User setting, set to true(1) then recover from spinn" name="ResetSpinn" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="Reversed" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" name="RolePilot" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="0" name="RoleTrainee" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute defaultvalue="" name="RouteName" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" name="Routes" scemanta:IsHumanlyVisible="false" wisetype="handlelist"/>
+      <attribute defaultvalue="0" name="Runway" scemanta:IsHumanlyVisible="false" wisetype="handle"/>
+      <attribute datatype="Boolean" defaultvalue="0" description="Is entity visible on sensors (radar)?" name="SensorVisible" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" name="Setting_Bottom_Layer_Climb_Speed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="Setting_Lift_Off_Height" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="Setting_Lift_Off_Speed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="AngleInRadians" defaultvalue="0.000000" description="Aircrafts maximum banking angle" name="Setting_MaxBankingAngle" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="Setting_Max_ClimbSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="Setting_Max_DescentSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="AngleInRadians" defaultvalue="0.000000" description="Aircrafts normal maximum banking angle " name="Setting_NormalBankingAngle" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="Setting_Normal_ClimbSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="Setting_Normal_DescentSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="NormalSpeed" name="Setting_Normal_Speed_Ground" scemanta:Category="Performance - Ground" scemanta:HumanReadableName="Ground speed: Normal" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Velocity" wisetype="double"/>
+      <attribute defaultvalue="gshadow" name="ShadowName" scemanta:Category="3D Display" scemanta:HumanReadableName="Shadow Name" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="0" name="SlaveIndex" scemanta:IsHumanlyVisible="false" wisetype="long"/>
+      <attribute defaultvalue="0.000000" description="User setting, Retardation" name="SlowDownRetardation" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" name="SlowDownSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="Smoke" scemanta:Category="3D Display" scemanta:HumanReadableName="Display smoke" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="AircraftPerformance" defaultvalue="0" name="SpeedPerformance" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="User setting" name="SpinAngleSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="SquawkActive" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="User setting" name="TakeoffSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Target value" name="TargetAltitude" scemanta:Category="Entity information" scemanta:HumanReadableName="Target altitude" scemanta:IsHumanlyVisible="false" scemanta:ReadOnly="true" scemanta:Unit="m" scemanta:ValueQuantityUnit="Altitude" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="double"/>
+      <attribute defaultvalue="-1.000000" description="If set this climb speed is used, target altitude ignorred" name="TargetClimbSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="-1.000000" description="If set this decent speed is used, target altitude ignorred" name="TargetDescendSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="AngleInRadians" defaultvalue="0.000000" description="Target value" name="TargetHeading" scemanta:Category="Entity information" scemanta:HumanReadableName="Target heading" scemanta:IsHumanlyVisible="false" scemanta:ReadOnly="true" scemanta:Unit="rad" scemanta:ValueQuantityUnit="Angle" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Target value either in IAS or TAS m/s" name="TargetHorizontalSpeed" scemanta:Category="Entity information" scemanta:HumanReadableName="Target speed" scemanta:IsHumanlyVisible="false" scemanta:ReadOnly="true" scemanta:Unit="m/s" scemanta:ValueQuantityUnit="Velocity" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="double"/>
+      <attribute datatype="SpeedType" defaultvalue="0" description="Is TargetHorizontalSpeed set to TAS or IAS" name="TargetHorizontalSpeedType" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="" name="Template3DModels" scemanta:IsHumanlyVisible="false" wisetype="handlelist"/>
+      <attribute datatype="GuidAsString" defaultvalue="" name="TemplatedObject" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="0.000000" name="TemporaryMaxSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="TouchAndGo" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" name="TransponderCode" scemanta:Category="Identification" scemanta:HumanReadableName="Transponder Code" scemanta:IsHumanlyVisible="false" wisetype="long"/>
+      <attribute datatype="Boolean" defaultvalue="0" description="Transponder On/Off" name="TransponderState" scemanta:Category="Identification" scemanta:HumanReadableName="Transponder State" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="HighMediumLowType" defaultvalue="0" name="TurbulenceCategory" scemanta:Category="General" scemanta:HumanReadableName="Turbulance Category" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="TurnDirection" defaultvalue="0" description="Target value" name="TurnDirection" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="TurnRadius" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="" name="TypeDescription" scemanta:Category="Identification" scemanta:HumanReadableName="Type Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="UnitType" defaultvalue="0" name="Unit" scemanta:Category="General" scemanta:HumanReadableName="Unit" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="Update rate in Hertz (0 means use default value for specific entity)" name="UpdateRate" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="1" description="User setting. Potentially used with code named UseCollisionDetect" name="UseAnticollision" scemanta:Category="Anti-collision" scemanta:HumanReadableName="Use anti-collision" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="UseCorrelated" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="VerticalAcceleration" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute defaultvalue="0.000000" description="Updated by service" name="VerticalSpeed" scemanta:IsHumanlyVisible="false" wisetype="double"/>
+      <attribute datatype="Boolean" defaultvalue="0" name="VirtualPilot" scemanta:Category="Simulation Parameters" scemanta:HumanReadableName="Virtual Pilot" scemanta:IsHumanlyVisible="false" wisetype="byte"/>
+      <attribute defaultvalue="0" description="Updated by service" name="timestamp" scemanta:IsHumanlyVisible="false" wisetype="longlong"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN Sensor" scemanta:IsHumanlyVisible="false" type="EntityEquipment.Sensor.CBRN">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="CBRN{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) AP2Ce sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN AP2Ce Sensor" scemanta:IsHumanlyVisible="true" type="EntityEquipment.Sensor.CBRN.AP2Ce">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="AP2Ce{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorAP2CeDataList" defaultvalue="" name="SensorData" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorAP2CeState" defaultvalue="" name="SensorState" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) I27 a.k.a. Svg2 sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN I27 Sensor" scemanta:IsHumanlyVisible="true" type="EntityEquipment.Sensor.CBRN.I27">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="I27_{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorI27Data" defaultvalue="" name="SensorData" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorI27State" defaultvalue="" name="SensorState" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) I28 a.k.a. Udr14 sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN I28 Sensor" scemanta:IsHumanlyVisible="true" type="EntityEquipment.Sensor.CBRN.I28">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="I28_{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorI28Data" defaultvalue="" name="SensorData" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorI28State" defaultvalue="" name="SensorState" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) Light Chemical Detector (LCD) sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN LCD Sensor" scemanta:IsHumanlyVisible="true" type="EntityEquipment.Sensor.CBRN.LCD">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute datatype="CBRNDetectionMode" defaultvalue="0" name="DetectionMode" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Visible" scemanta:VisibilityLiveMode="Visible" scemanta:VisibilityTemplateMode="Visible" wisetype="byte"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="LCD{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorLCDDataList" defaultvalue="" name="SensorData" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorLCDState" defaultvalue="" name="SensorState" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) RAID sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN RAID Sensor" scemanta:IsHumanlyVisible="true" type="EntityEquipment.Sensor.CBRN.RAID">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="RAID{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorRAIDDataList" defaultvalue="" name="SensorData" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorRAIDState" defaultvalue="" name="SensorState" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+    </object>
+    <object description="Chemical Biological Radioactive Nuclear (CBRN) Rapid sensor equipment" xmlns:scemanta="http://www.saabgroup.com/WISE/Scemanta" scemanta:BaseType="Equipment" scemanta:Category="Equipment" scemanta:HumanReadableName="CBRN Rapid Sensor" scemanta:IsHumanlyVisible="true" type="EntityEquipment.Sensor.CBRN.Rapid">
+      <attribute defaultvalue="" description="Free text description for equipment." name="Description" scemanta:IsHumanlyVisible="false" wisetype="string"/>
+      <attribute defaultvalue="" description="String identifying the type of equipment" name="EquipmentType" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Equipment Type" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="ObjectType" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="string"/>
+      <attribute defaultvalue="" description="External ID to use for integrated systems." name="ExternalId" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" wisetype="string"/>
+      <attribute defaultvalue="" description="Name of equipment instance." name="Name" scemanta:AutoGenerate="true" scemanta:AutoGenerateFormat="Rapid{counter:000}" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:SystemProperty="Name" wisetype="string"/>
+      <attribute defaultvalue="0" description="Required. Reference to object that owns this equipment." name="Parent" scemanta:Category="Equipment Parameters" scemanta:IsHumanlyVisible="true" scemanta:ReadOnly="true" scemanta:ReferenceStrength="StrongParent" scemanta:SystemProperty="Parent" wisetype="handle"/>
+      <attribute defaultvalue="0.000000 0.000000 0.000000" description="Location of the equipment relative to the reference point of the owning object." name="RelativeLocation" scemanta:Category="Equipment Parameters" scemanta:HumanReadableName="Relative location|X|Y|Z" scemanta:IsHumanlyVisible="true" scemanta:ValueQuantityUnit="Length" wisetype="vec3"/>
+      <attribute datatype="CBRNSensorRapidDataList" defaultvalue="" name="SensorData" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorRawDataList" defaultvalue="" name="SensorRawData" scemanta:IsHumanlyVisible="false" wisetype="grouplist"/>
+      <attribute datatype="CBRNSensorRapidState" defaultvalue="" name="SensorState" scemanta:IsHumanlyVisible="true" scemanta:VisibilityEditMode="Hidden" scemanta:VisibilityLiveMode="Hidden" scemanta:VisibilityTemplateMode="Hidden" wisetype="group"/>
+    </object>
+  </objects>
+
+  <events>
+    <event type="CBRN.I27Control">
+      <attribute defaultvalue="0" description="String commands to the sensor. See interface spec for exact format." name="Command" wisetype="string"/>
+      <attribute defaultvalue="0" description="Handle to the sensor that should receive the event." name="ExternalId" wisetype="handle"/>
+    </event>
+    <event type="CBRN.I28Control">
+      <attribute defaultvalue="0" description="String commands to the sensor. See interface spec for exact format." name="Command" wisetype="string"/>
+      <attribute defaultvalue="0" description="Handle to the sensor that should receive the event." name="ExternalId" wisetype="handle"/>
+    </event>
+    <event type="CBRN.LCDControl">
+      <attribute defaultvalue="0" description="Bytevector with commands to the sensor. See interface spec for LCD32 for exact format." name="Command" wisetype="long"/>
+      <attribute defaultvalue="0" description="Handle to the sensor that should receive the event." name="ExternalId" wisetype="handle"/>
+    </event>
+    <event type="CBRN.RAIDControl">
+      <attribute defaultvalue="0" description="String commands to the sensor. See interface spec for exact format." name="Command" wisetype="string"/>
+      <attribute defaultvalue="0" description="ID of the sensor that should receive the event." name="ExternalId" wisetype="handle"/>
+    </event>
+  </events>
+
+  <notes>
+    <note content="text/plain" encoding="None" item="Weather.Wind" subitem="WindDirectionVariation"><![CDATA[Variation is specified as a sector with the current Wind direction as center ???]]></note>
+  </notes>
+
+</templatedatabase>

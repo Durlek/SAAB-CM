@@ -1,0 +1,20 @@
+C:\Users\acr\Documents\WISE\Output\Win32\VS100\Debug\Saab.CBRNSensors.dll
+C:\Users\acr\Documents\WISE\Output\Win32\VS100\Debug\Saab.CBRNSensors.pdb
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.csprojResolveAssemblyReference.cache
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.pdb
+C:\Temp\Output\Win32\VS100\Debug\Saab.CBRNSensors.dll
+C:\Temp\Output\Win32\VS100\Debug\Saab.CBRNSensors.pdb
+C:\Temp\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.csprojResolveAssemblyReference.cache
+C:\Temp\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.dll
+C:\Temp\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.pdb
+D:\Projects\Student2\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.csprojResolveAssemblyReference.cache
+D:\Projects\Student2\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.dll
+D:\Projects\Student2\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.pdb
+D:\Projects\Student2\Output\Win32\VS100\Debug\Saab.CBRNSensors.dll
+D:\Projects\Student2\Output\Win32\VS100\Debug\Saab.CBRNSensors.pdb
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Output\Win32\VS100\Debug\Saab.CBRNSensors.dll
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Output\Win32\VS100\Debug\Saab.CBRNSensors.pdb
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.csprojResolveAssemblyReference.cache
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.dll
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRNSensors\obj\Debug\Saab.CBRNSensors.pdb

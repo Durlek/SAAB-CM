@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Saab.CBRNSensors</RootNamespace>
+    <AssemblyName>Saab.CBRNSensors</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ReferencePath>C:\Program Files (x86)\Saab\WISE Connectivity 4.2\Bin\</ReferencePath>
+    <ProjectGuid>{947546A1-1A6C-43B2-A597-3F7A0FF39B40}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Output\Win32\VS100\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Output\Win32\VS100\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="STS.WISE.DataTypes, Version=4.0.0.0, Culture=neutral, PublicKeyToken=55dea24cdb6a20b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>$(WISECore42)\Bin\STS.WISE.DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="STS.WISE.Drivers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=55dea24cdb6a20b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>$(WISECore42)\Bin\STS.WISE.Drivers.dll</HintPath>
+    </Reference>
+    <Reference Include="STS.WISE.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=55dea24cdb6a20b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+      <HintPath>$(WISECore42)\Bin\STS.WISE.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CBRNSensorsDriver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Storage\CBRNSensorsDriver.connectivity">
+      <Link>CBRNSensorsDriver.connectivity</Link>
+    </None>
+    <None Include="..\..\..\Storage\Connections\WTP_CBRNSensors.connection">
+      <Link>WTP_CBRNSensors.connection</Link>
+    </None>
+    <None Include="..\..\..\Storage\Databases\CBRNSensors.templatedb">
+      <Link>CBRNSensors.templatedb</Link>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\..\Storage\Drivers\Saab.CBRNSensors.driver">
+      <Link>Saab.CBRNSensors.driver</Link>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="CoREdebug.options" />
+    <None Include="CoRErelease.options" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Saab.CBRN.Wcf\Saab.CBRN.Wcf.csproj">
+      <Project>{d9c57ced-7cb1-47e1-a0f2-fd6fc35a8591}</Project>
+      <Name>Saab.CBRN.Wcf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

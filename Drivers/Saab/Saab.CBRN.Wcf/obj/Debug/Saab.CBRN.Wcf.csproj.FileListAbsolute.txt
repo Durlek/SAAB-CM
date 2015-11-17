@@ -1,0 +1,27 @@
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\bin\Debug\Saab.CBRN.Wcf.dll.config
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\bin\Debug\Saab.CBRN.Wcf.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\bin\Debug\Saab.CBRN.Wcf.pdb
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\obj\Debug\Saab.CBRN.Wcf.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\obj\Debug\Saab.CBRN.Wcf.pdb
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\bin\Debug\STS.WISE.DataTypes.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRNSensors\Saab.CBRN.WCF\obj\Debug\Saab.CBRN.Wcf.csprojResolveAssemblyReference.cache
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.csprojResolveAssemblyReference.cache
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.dll.config
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.pdb
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\STS.WISE.DataTypes.dll
+C:\Users\acr\Documents\WISE\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.pdb
+D:\Projects\Student2\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.csprojResolveAssemblyReference.cache
+D:\Projects\Student2\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.dll
+D:\Projects\Student2\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.pdb
+D:\Projects\Student2\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.dll.config
+D:\Projects\Student2\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.dll
+D:\Projects\Student2\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.pdb
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.dll.config
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.dll
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\Saab.CBRN.Wcf.pdb
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\bin\Debug\STS.WISE.DataTypes.dll
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.csprojResolveAssemblyReference.cache
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.dll
+C:\Users\24\Desktop\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRN.Wcf\obj\Debug\Saab.CBRN.Wcf.pdb

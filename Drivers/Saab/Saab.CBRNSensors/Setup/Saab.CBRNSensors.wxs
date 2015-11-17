@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+        <DirectoryRef Id="BaselineBinFolder">
+            <Component Id="CBRNSensorsDriver" Guid="*" >
+                <File Id="Saab.CBRNSensors.dll" Name="Saab.CBRNSensors.dll" Checksum="yes" Compressed="default"
+                      Source="!(wix.OutputFolder)Saab.CBRNSensors.dll" ReadOnly="yes" />
+            </Component>
+        </DirectoryRef>
+
+        <DirectoryRef Id="BaselineStorageFolder">
+            <Directory Id="StorageDriversFolder" Name="Drivers">
+                <Component Id="CBRNSensorsDriverDef" Guid="*" >
+                    <File Id="Saab.CBRNSensors.driver" Name="Saab.CBRNSensors.driver" Checksum="yes" Compressed="default"
+                          Source="!(wix.StorageFolder)Drivers\Saab.CBRNSensors.driver" ReadOnly="yes" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+
+        <Feature Id="FeatureCBRNSensorsDriver" Title="Saab CBRNSensors Driver" Description="Saab CBRNSensors communication driver." Level="1" >
+            <ComponentRef Id="CBRNSensorsDriver"/>
+            <ComponentRef Id="CBRNSensorsDriverDef"/>
+        </Feature>
+    </Fragment>
+</Wix>

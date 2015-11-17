@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<connectivity>
+
+  <info author="" copyright="" description="" modified="2015-09-28T10:29:47.896Z" version="1.0.0.0"/>
+
+  <variables/>
+
+  <drivers>
+    <driver description="" id="CBRNBackboneDriver" name="STS.NULL"/>
+    <driver description="" id="CBRNSensorsDriver" name="Saab.CBRNSensors">
+      <setting name="Assembly" value="Saab.CBRNSensors"/>
+      <setting name="BaseAddress" value="http://localhost"/>
+      <setting name="Port" value="8732"/>
+    </driver>
+  </drivers>
+
+  <policies>
+    <ownership/>
+  </policies>
+
+  <connections>
+    <connection destADBName="ApplicationDB000" destDriver="CBRNSensorsDriver" destTDB="CBRNSensors" destTDBName="TemplateDB000" direction="inout" id="WTP_CBRNSensors" srcADBName="BackboneDatabase" srcDriver="CBRNBackboneDriver" srcTDB="WTP" srcTDBName="BackboneModel" url="WTP_CBRNSensors.connection"/>
+  </connections>
+
+  <notes/>
+
+</connectivity>

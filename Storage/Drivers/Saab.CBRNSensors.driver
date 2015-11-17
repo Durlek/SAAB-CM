@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<driver xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        name="Saab.CBRNSensors" 
+        binary="STS.DotNet.dll"
+        description="Driver for communicating with mobile CBRN sensors.">
+    <dependencies>
+        <!-- 
+        TODO: 
+            List supported object models by adding them as driver dependencies here. 
+            For generic drivers: Remove dependency and set FixedTDB capability to false.
+        -->
+        <dependency type="TemplateDB" name="CBRNSensors.templatedb" />
+    </dependencies>
+    <capabilities>
+        <capability name="MultipleDatabases" enabled="true" />
+        <capability name="MultipleInstances" enabled="true" />
+        <capability name="RequiresMetaData" enabled="false" />
+        <capability name="DataPublisher" enabled="true" />
+        <capability name="DataSubscriber" enabled="true" />
+        <capability name="FixedTDB" enabled="true" />
+        <capability name="ByteSupport" enabled="true" />
+        <capability name="LongSupport" enabled="true" />
+        <capability name="DoubleSupport" enabled="true" />
+        <capability name="StringSupport" enabled="true" />
+        <capability name="Vec3Support" enabled="true" />
+        <capability name="ObjectReferenceSupport" enabled="true" />
+        <capability name="AttributeGroupSupport" enabled="true" />
+        <capability name="ByteListSupport" enabled="true" />
+        <capability name="LongListSupport" enabled="true" />
+        <capability name="DoubleListSupport" enabled="true" />
+        <capability name="StringListSupport" enabled="true" />
+        <capability name="Vec3ListSupport" enabled="true" />
+        <capability name="ObjectReferenceListSupport" enabled="true" />
+        <capability name="AttributeGroupListSupport" enabled="true" />
+    </capabilities>
+    <settings>
+        <setting name="Assembly" datatype="string" required="true" default="Saab.CBRNSensors" description="Specifies the name of the assembly containing the .NET driver to load (filename without extension)."/>
+        <setting name="DriverClass" datatype="string" required="false" default="" description="Optional. Specifies the name of the driver class defined in the .NET assembly to be loaded. If left empty, the first class implementing the IWISENETDriver interface will be loaded."/>
+        <setting name="RunInAppDomain" datatype="byte" required="false" validvalues="0-1" default="0" description="Specifies whether the driver shall execute isolated in its own .NET AppDomain. 0 = Run in host process domain, 1 = Run in separate AppDomain."/>
+        <setting name="BaseAddress" datatype="string" required="true" default="http://localhost" description="The base address of the service"/>
+        <setting name="Port" datatype="long" required="true" default="8732" description="The service port."/>
+        <!--
+        
+        TODO: Add driver specific settings.
+        
+        <setting name="SettingName" datatype="string" required="true" default="" validvalues="" description="Setting description." />
+        
+        -->
+    </settings>
+</driver>

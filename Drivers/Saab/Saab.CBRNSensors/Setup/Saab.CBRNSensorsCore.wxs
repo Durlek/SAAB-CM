@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define BaselineName="WISE Connectivity 4.2" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+    <Product Id="*" Name="Saab.CBRNSensors driver for WISE Connectivity" Language="1033" Version="1.0.0.0" Manufacturer="Saab" UpgradeCode="{DAC20C0F-B5C6-4F56-977B-A59800B412DB}">
+        <Package InstallerVersion="300" Compressed="yes" InstallPrivileges="limited" Manufacturer="Saab" InstallScope="perMachine" />
+
+        <Media Id="1" Cabinet="Saab.CBRNSensors.cab" EmbedCab="yes" CompressionLevel="high" />
+
+        <!-- Global variables -->
+        <WixVariable Id="CompanyName" Value="Saab" Overridable="yes" />
+        <WixVariable Id="OutputFolder" Value="$(var.ProjectDir)..\..\..\..\Output\Win32\VS100\$(var.Configuration)\" Overridable="yes" />
+        <WixVariable Id="StorageFolder" Value="$(var.ProjectDir)..\..\..\..\Storage\" Overridable="yes" />
+
+        <!-- Setup icon in Control Panel -->
+        <Icon Id="WISEDriver.ico" SourceFile="WISEDriver.ico"/>
+        <Property Id="ARPPRODUCTICON" Value="WISEDriver.ico" />
+
+        <!-- We require .NET Framework 4.0 -->
+        <PropertyRef Id="NETFRAMEWORK40FULL" />
+        
+        <!-- 
+        Setup installation folder structure 
+        These folders are referred to by the fragments using the DirectoryRef element.
+        Reserved names are;
+            - BaselineBinFolder
+            - BaselineStorageFolder
+        These directory IDs can safely be used in a DirectoryRef element when authoring fragments.
+        -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="CompanyFolder" Name="Saab">
+                    <Directory Id="INSTALLLOCATION" Name="$(var.BaselineName)">
+                        <Directory Id="BaselineBinFolder" Name="Bin">
+                        </Directory>
+                        <Directory Id="BaselineStorageFolder" Name="Storage">
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+
+        <!-- Make sure WISE core is properly installed -->
+        <Property Id='WISECORE'>
+            <RegistrySearch Id='WISECoreRegSearch'
+                            Root='HKLM'
+                            Key='Software\Saab\WISE\$(var.BaselineName)\WISECore'
+                            Name='Installed'
+                            Type='raw' />
+        </Property>
+        <Property Id='WISECOREPATH'>
+            <RegistrySearch Id='WISECorePathRegSearch'
+                            Root='HKLM'
+                            Key='Software\Saab\WISE\$(var.BaselineName)'
+                            Name='InstallPath'
+                            Type='raw' />
+        </Property>
+
+        <Condition Message="WISECore must be installed before installing this driver.">
+            <![CDATA[Installed OR WISECORE]]>
+        </Condition>
+
+        <!-- Set default installation directory to the same as the WISE runtime. -->
+        <SetDirectory Id="INSTALLLOCATION" Value="[WISECOREPATH]" />
+
+        <!-- Include features from fragments -->
+        <FeatureRef Id="FeatureCBRNSensorsDriver" />
+
+        <!-- Initialize user interface -->
+        <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+        <UIRef Id="WixUI_Minimal" />
+    </Product>
+</Wix>
