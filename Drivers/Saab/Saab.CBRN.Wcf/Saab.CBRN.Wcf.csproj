@@ -77,9 +77,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Generated.csproj">
+    <ProjectReference Include="..\Saab.CBRN.Generated\Saab.CBRN.Generated.csproj">
       <Project>{70f13814-bd70-488d-9657-e21d4cfc76e3}</Project>
-      <Name>Generated</Name>
+      <Name>Saab.CBRN.Generated</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

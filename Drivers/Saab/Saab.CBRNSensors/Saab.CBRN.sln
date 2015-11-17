@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saab.CBRNSensors", "Saab.CB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saab.CBRN.Wcf", "..\Saab.CBRN.Wcf\Saab.CBRN.Wcf.csproj", "{D9C57CED-7CB1-47E1-A0F2-FD6FC35A8591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generated", "..\ClassLibrary1\Generated.csproj", "{70F13814-BD70-488D-9657-E21D4CFC76E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saab.CBRN.Generated", "..\Saab.CBRN.Generated\Saab.CBRN.Generated.csproj", "{70F13814-BD70-488D-9657-E21D4CFC76E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
