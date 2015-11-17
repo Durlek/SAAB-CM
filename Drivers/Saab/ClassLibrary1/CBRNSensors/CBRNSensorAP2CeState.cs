@@ -4,16 +4,19 @@ using System.Text;
 using STS.WISE;
 using WISE_RESULT = System.UInt32;
 
-namespace CBRNSensors
+namespace Saab.CBRN.Generated
 {
-    public class CBRNSensorRawData
+    public class CBRNSensorAP2CeState
     {
         #region Types
         public enum Fields
         {
             Unknown,
-            Substance,
-            VolumeConcentration,
+            HydrogenTankEmpty,
+            DeviceFault,
+            DetectorReady,
+            Purge,
+            BatteryLow,
         }
         #endregion
 
@@ -29,7 +32,7 @@ namespace CBRNSensors
         #endregion
 
         #region Constructors
-        public CBRNSensorRawData(string parentAttribute, INETWISEStringCache cache, AttributeGroup data)
+        public CBRNSensorAP2CeState(string parentAttribute, INETWISEStringCache cache, AttributeGroup data)
         {
             if (string.IsNullOrEmpty(parentAttribute))
             {
@@ -50,7 +53,7 @@ namespace CBRNSensors
             Initialize(this.StringCache, this.ParentAttribute);
         }
 
-        public CBRNSensorRawData(AttributeHandle parentAttribute, INETWISEStringCache cache, AttributeGroup data)
+        public CBRNSensorAP2CeState(AttributeHandle parentAttribute, INETWISEStringCache cache, AttributeGroup data)
         {
             if (parentAttribute == WISEConstants.WISE_INVALID_HANDLE)
             {
@@ -103,8 +106,11 @@ namespace CBRNSensors
                     {
                         _nameIdIndex.Add(hAttribute, new BiDirectionalIndex<string, Fields>());
 
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".Substance", Fields.Substance);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".VolumeConcentration", Fields.VolumeConcentration);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".HydrogenTankEmpty", Fields.HydrogenTankEmpty);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".DeviceFault", Fields.DeviceFault);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".DetectorReady", Fields.DetectorReady);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".Purge", Fields.Purge);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".BatteryLow", Fields.BatteryLow);
                     }
 
                     lock (_idHandleIndex)
@@ -158,54 +164,132 @@ namespace CBRNSensors
 
         #region Field properties
 
-        public string Substance
+        public byte HydrogenTankEmpty
         {
             get
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.Substance, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.HydrogenTankEmpty, this.ParentAttribute);
 
                 lock (this.Data)
                 {
-                    if (this.Data.Strings.ContainsKey(hAttribute))
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
                     {
-                        return this.Data.Strings[hAttribute];
+                        return this.Data.Bytes[hAttribute];
                     }
                 }
-                return string.Empty;
+                return 0;
             }
             set
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.Substance, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.HydrogenTankEmpty, this.ParentAttribute);
 
                 lock (this.Data)
                 {
-                    this.Data.Strings[hAttribute] = value;
+                    this.Data.Bytes[hAttribute] = value;
                 }
             }
         }
 
-        public double VolumeConcentration
+        public byte DeviceFault
         {
             get
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.VolumeConcentration, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.DeviceFault, this.ParentAttribute);
 
                 lock (this.Data)
                 {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
                     {
-                        return this.Data.Doubles[hAttribute];
+                        return this.Data.Bytes[hAttribute];
                     }
                 }
-                return 0.0;
+                return 0;
             }
             set
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.VolumeConcentration, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.DeviceFault, this.ParentAttribute);
 
                 lock (this.Data)
                 {
-                    this.Data.Doubles[hAttribute] = value;
+                    this.Data.Bytes[hAttribute] = value;
+                }
+            }
+        }
+
+        public byte DetectorReady
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.DetectorReady, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Bytes[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.DetectorReady, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Bytes[hAttribute] = value;
+                }
+            }
+        }
+
+        public byte Purge
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.Purge, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Bytes[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.Purge, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Bytes[hAttribute] = value;
+                }
+            }
+        }
+
+        public byte BatteryLow
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.BatteryLow, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Bytes[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.BatteryLow, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Bytes[hAttribute] = value;
                 }
             }
         }

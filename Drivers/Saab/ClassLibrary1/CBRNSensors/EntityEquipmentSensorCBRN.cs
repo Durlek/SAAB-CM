@@ -4,36 +4,33 @@ using System.Text;
 using STS.WISE;
 using WISE_RESULT = System.UInt32;
 
-namespace CBRNSensors
+namespace Saab.CBRN.Generated
 {
-    public class EntityEquipmentSensorCBRNLCD
+    public class EntityEquipmentSensorCBRN
     {
         #region Type definitions
 
         /// <summary>
-        /// Enumeration of attributes in EntityEquipmentSensorCBRNLCD objects.
+        /// Enumeration of attributes in EntityEquipmentSensorCBRN objects.
         /// </summary>
         public enum Attributes
         {
             Unknown,
             Description,
-            DetectionMode,
             EquipmentType,
             ExternalId,
             Name,
             Parent,
             RelativeLocation,
-            SensorData,
             SensorRawData,
-            SensorState,
         } ;
 
         #endregion
 
         #region Static Members
 
-        protected static BiDirectionalIndex<string, EntityEquipmentSensorCBRNLCD.Attributes> _nameIdIndex = new BiDirectionalIndex<string, Attributes>();
-        protected static BiDirectionalIndex<EntityEquipmentSensorCBRNLCD.Attributes, AttributeHandle> _idHandleIndex = new BiDirectionalIndex<Attributes, AttributeHandle>();
+        protected static BiDirectionalIndex<string, EntityEquipmentSensorCBRN.Attributes> _nameIdIndex = new BiDirectionalIndex<string, Attributes>();
+        protected static BiDirectionalIndex<EntityEquipmentSensorCBRN.Attributes, AttributeHandle> _idHandleIndex = new BiDirectionalIndex<Attributes, AttributeHandle>();
 
         #endregion
 
@@ -41,7 +38,7 @@ namespace CBRNSensors
 
         static public string ClassName
         {
-            get { return "EntityEquipment.Sensor.CBRN.LCD"; }
+            get { return "EntityEquipment.Sensor.CBRN"; }
         }
 
         public string ObjectName
@@ -76,14 +73,14 @@ namespace CBRNSensors
 
         #region Constructors
 
-        public EntityEquipmentSensorCBRNLCD()
+        public EntityEquipmentSensorCBRN()
         {
             this.WISESink = null;
             this.Database = WISEConstants.WISE_TRANSITION_CACHE_DATABASE;
             this.Handle = WISEConstants.WISE_INVALID_HANDLE;
         }
 
-        public EntityEquipmentSensorCBRNLCD(INETWISEDriverSink sink, DatabaseHandle databaseHandle, ObjectHandle objectHandle)
+        public EntityEquipmentSensorCBRN(INETWISEDriverSink sink, DatabaseHandle databaseHandle, ObjectHandle objectHandle)
         {
             this.WISESink = sink;
             this.Database = databaseHandle;
@@ -113,15 +110,12 @@ namespace CBRNSensors
                 lock (_nameIdIndex)
                 {
                     _nameIdIndex.Add("Description", Attributes.Description);
-                    _nameIdIndex.Add("DetectionMode", Attributes.DetectionMode);
                     _nameIdIndex.Add("EquipmentType", Attributes.EquipmentType);
                     _nameIdIndex.Add("ExternalId", Attributes.ExternalId);
                     _nameIdIndex.Add("Name", Attributes.Name);
                     _nameIdIndex.Add("Parent", Attributes.Parent);
                     _nameIdIndex.Add("RelativeLocation", Attributes.RelativeLocation);
-                    _nameIdIndex.Add("SensorData", Attributes.SensorData);
                     _nameIdIndex.Add("SensorRawData", Attributes.SensorRawData);
-                    _nameIdIndex.Add("SensorState", Attributes.SensorState);
 
                     lock (_idHandleIndex)
                     {
@@ -249,7 +243,7 @@ namespace CBRNSensors
 
         static public bool IsTypeOf(string className)
         {
-            return (className == EntityEquipmentSensorCBRNLCD.ClassName);
+            return (className == EntityEquipmentSensorCBRN.ClassName);
         }
 
         #endregion
@@ -278,7 +272,7 @@ namespace CBRNSensors
             {
                 // Create object from template, if none exist.
                 Dictionary<string, AttributeHandle> attributes = null; // it's set from Template
-                wResult = sink.CreateObjectFromTemplate(hDatabase, objectName, EntityEquipmentSensorCBRNLCD.ClassName, ref objectHandle, ref attributes);
+                wResult = sink.CreateObjectFromTemplate(hDatabase, objectName, EntityEquipmentSensorCBRN.ClassName, ref objectHandle, ref attributes);
             }
 
             if (WISEError.CheckCallSucceeded(wResult))
@@ -343,48 +337,6 @@ namespace CBRNSensors
             set
             {
                 AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.Description);
-                
-                if (this.WISESink != null)
-                {
-                    // Initialize handle cache
-                    Initialize(this.StringCache);
-
-                    this.WISESink.SetAttributeValue(this.Database, this.Handle, attributeHandle, value, DateTime.Now, 0);
-                }
-            }
-        }
-
-        public byte DetectionMode
-        {
-            get
-            {
-                WISE_RESULT wResult = WISEError.WISE_OK;
-                byte value = 0;
-                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
-                
-                lock (_idHandleIndex)
-                {
-                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.DetectionMode);
-                }
-
-                if (this.WISESink != null)
-                {
-                    // Initialize handle cache
-                    Initialize(this.StringCache);
-
-                    wResult = this.WISESink.GetAttributeValue(this.Database, this.Handle, attributeHandle, ref value);
-
-                    if (WISEError.CheckCallSucceeded(wResult))
-                    {
-                        return value;
-                    }
-                }
-                return 0;
-            }
-            
-            set
-            {
-                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.DetectionMode);
                 
                 if (this.WISESink != null)
                 {
@@ -606,48 +558,6 @@ namespace CBRNSensors
             }
         }
 
-        public STS.WISE.GroupList SensorData
-        {
-            get
-            {
-                WISE_RESULT wResult = WISEError.WISE_OK;
-                STS.WISE.GroupList value = null;
-                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
-                
-                lock (_idHandleIndex)
-                {
-                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.SensorData);
-                }
-
-                if (this.WISESink != null)
-                {
-                    // Initialize handle cache
-                    Initialize(this.StringCache);
-
-                    wResult = this.WISESink.GetAttributeValue(this.Database, this.Handle, attributeHandle, ref value);
-
-                    if (WISEError.CheckCallSucceeded(wResult))
-                    {
-                        return value;
-                    }
-                }
-                return null;
-            }
-            
-            set
-            {
-                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.SensorData);
-                
-                if (this.WISESink != null)
-                {
-                    // Initialize handle cache
-                    Initialize(this.StringCache);
-
-                    this.WISESink.SetAttributeValue(this.Database, this.Handle, attributeHandle, value, DateTime.Now, 0);
-                }
-            }
-        }
-
         public STS.WISE.GroupList SensorRawData
         {
             get
@@ -687,68 +597,6 @@ namespace CBRNSensors
 
                     this.WISESink.SetAttributeValue(this.Database, this.Handle, attributeHandle, value, DateTime.Now, 0);
                 }
-            }
-        }
-
-        public CBRNSensorLCDState SensorState
-        {
-            get
-            {
-                AttributeGroup value = null;
-                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
-                
-                lock (_idHandleIndex)
-                {
-                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.SensorState);
-                }
-
-                if (this.WISESink != null)
-                {
-                    // Initialize handle cache
-                    Initialize(this.StringCache);
-
-                    this.WISESink.GetAttributeValue(this.Database, this.Handle, attributeHandle, ref value);
-                }
-                return new CBRNSensorLCDState(attributeHandle, this.StringCache, value);
-            }
-            
-            set
-            {
-                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.SensorState);
-                AttributeGroup newValue = new AttributeGroup();
-                
-                if (value == null)
-                {
-                    throw new NullReferenceException(string.Format(
-                        "Attribute '{0}' cannot be set to null.",
-                        GetAttributeNameFromId(Attributes.SensorState)));
-                }
-
-                // Initialize handle cache
-                CBRNSensorLCDState.Initialize(this.StringCache, attributeHandle);
-
-                if (value.ParentAttribute == attributeHandle)
-                {
-                    newValue = value.Data;
-                }
-                else if (value.ParentAttribute != attributeHandle)
-                {
-                    // Copy attribute values
-                    // Since the parent attributes differ we need to convert 
-                    // the handles of the incoming group to the corresponding 
-                    // handle values for this group
-                    // This occurs when a composite is used in multiple groups/attributes
-                    // for instance two attributes named "A" and "B" are defined on the same object.
-                    // These attributes are composites of type "Composite1" which has the fields
-                    // "Field1" and "Field2".
-                    // The fields in attribute "A" will be named "A.Field1" and "A.Field2"
-                    // The fields in attribute "B" will be named "B.Field1" and "B.Field2"
-                    // Using this property setter we can now to A = B
-                    CBRNSensorLCDState.ChangeParent(value.ParentAttribute, value.Data, attributeHandle, newValue);
-                }
-
-                // Write attribute...
-                this.WISESink.SetAttributeValue(this.Database, this.Handle, attributeHandle, newValue, DateTime.Now, 0);
             }
         }
 

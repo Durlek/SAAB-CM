@@ -4,26 +4,19 @@ using System.Text;
 using STS.WISE;
 using WISE_RESULT = System.UInt32;
 
-namespace CBRNSensors
+namespace Saab.CBRN.Generated
 {
-    public class LayerDependentGroup
+    public class CBRNSensorLCDData
     {
         #region Types
         public enum Fields
         {
             Unknown,
-            UpperLimit,
-            Acceleration,
-            Retardation,
-            SpeedNormal,
-            SpeedMax,
-            SpeedMin,
-            ClimbMax,
-            ClimbNormal,
-            DescentMax,
-            DescentNormal,
-            ClimbSpeed,
-            DescentSpeed,
+            BarCount,
+            SubstanceIndex,
+            SubstanceCategory,
+            VolumeConcentration,
+            Substance,
         }
         #endregion
 
@@ -39,7 +32,7 @@ namespace CBRNSensors
         #endregion
 
         #region Constructors
-        public LayerDependentGroup(string parentAttribute, INETWISEStringCache cache, AttributeGroup data)
+        public CBRNSensorLCDData(string parentAttribute, INETWISEStringCache cache, AttributeGroup data)
         {
             if (string.IsNullOrEmpty(parentAttribute))
             {
@@ -60,7 +53,7 @@ namespace CBRNSensors
             Initialize(this.StringCache, this.ParentAttribute);
         }
 
-        public LayerDependentGroup(AttributeHandle parentAttribute, INETWISEStringCache cache, AttributeGroup data)
+        public CBRNSensorLCDData(AttributeHandle parentAttribute, INETWISEStringCache cache, AttributeGroup data)
         {
             if (parentAttribute == WISEConstants.WISE_INVALID_HANDLE)
             {
@@ -113,18 +106,11 @@ namespace CBRNSensors
                     {
                         _nameIdIndex.Add(hAttribute, new BiDirectionalIndex<string, Fields>());
 
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".UpperLimit", Fields.UpperLimit);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".Acceleration", Fields.Acceleration);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".Retardation", Fields.Retardation);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".SpeedNormal", Fields.SpeedNormal);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".SpeedMax", Fields.SpeedMax);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".SpeedMin", Fields.SpeedMin);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".ClimbMax", Fields.ClimbMax);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".ClimbNormal", Fields.ClimbNormal);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".DescentMax", Fields.DescentMax);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".DescentNormal", Fields.DescentNormal);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".ClimbSpeed", Fields.ClimbSpeed);
-                        _nameIdIndex[hAttribute].Add(strAttributeName + ".DescentSpeed", Fields.DescentSpeed);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".BarCount", Fields.BarCount);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".SubstanceIndex", Fields.SubstanceIndex);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".SubstanceCategory", Fields.SubstanceCategory);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".VolumeConcentration", Fields.VolumeConcentration);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".Substance", Fields.Substance);
                     }
 
                     lock (_idHandleIndex)
@@ -178,11 +164,89 @@ namespace CBRNSensors
 
         #region Field properties
 
-        public double UpperLimit
+        public byte BarCount
         {
             get
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.UpperLimit, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.BarCount, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Bytes[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.BarCount, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Bytes[hAttribute] = value;
+                }
+            }
+        }
+
+        public int SubstanceIndex
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.SubstanceIndex, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Ints.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Ints[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.SubstanceIndex, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Ints[hAttribute] = value;
+                }
+            }
+        }
+
+        public string SubstanceCategory
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.SubstanceCategory, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Strings.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Strings[hAttribute];
+                    }
+                }
+                return string.Empty;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.SubstanceCategory, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Strings[hAttribute] = value;
+                }
+            }
+        }
+
+        public double VolumeConcentration
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.VolumeConcentration, this.ParentAttribute);
 
                 lock (this.Data)
                 {
@@ -195,7 +259,7 @@ namespace CBRNSensors
             }
             set
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.UpperLimit, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.VolumeConcentration, this.ParentAttribute);
 
                 lock (this.Data)
                 {
@@ -204,288 +268,28 @@ namespace CBRNSensors
             }
         }
 
-        public double Acceleration
+        public string Substance
         {
             get
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.Acceleration, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.Substance, this.ParentAttribute);
 
                 lock (this.Data)
                 {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
+                    if (this.Data.Strings.ContainsKey(hAttribute))
                     {
-                        return this.Data.Doubles[hAttribute];
+                        return this.Data.Strings[hAttribute];
                     }
                 }
-                return 0.0;
+                return string.Empty;
             }
             set
             {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.Acceleration, this.ParentAttribute);
+                AttributeHandle hAttribute = GetFieldHandle(Fields.Substance, this.ParentAttribute);
 
                 lock (this.Data)
                 {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double Retardation
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.Retardation, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.Retardation, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double SpeedNormal
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.SpeedNormal, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.SpeedNormal, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double SpeedMax
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.SpeedMax, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.SpeedMax, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double SpeedMin
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.SpeedMin, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.SpeedMin, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double ClimbMax
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.ClimbMax, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.ClimbMax, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double ClimbNormal
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.ClimbNormal, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.ClimbNormal, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double DescentMax
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.DescentMax, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.DescentMax, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double DescentNormal
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.DescentNormal, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.DescentNormal, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double ClimbSpeed
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.ClimbSpeed, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.ClimbSpeed, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
-                }
-            }
-        }
-
-        public double DescentSpeed
-        {
-            get
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.DescentSpeed, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    if (this.Data.Doubles.ContainsKey(hAttribute))
-                    {
-                        return this.Data.Doubles[hAttribute];
-                    }
-                }
-                return 0.0;
-            }
-            set
-            {
-                AttributeHandle hAttribute = GetFieldHandle(Fields.DescentSpeed, this.ParentAttribute);
-
-                lock (this.Data)
-                {
-                    this.Data.Doubles[hAttribute] = value;
+                    this.Data.Strings[hAttribute] = value;
                 }
             }
         }

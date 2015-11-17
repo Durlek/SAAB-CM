@@ -1,4 +1,4 @@
-﻿using CBRNSensors;
+﻿using Saab.CBRN.Generated;
 using Saab.CBRN.Wcf.DataContracts;
 using Saab.CBRN.Wcf.ServiceContracts;
 using STS.WISE;

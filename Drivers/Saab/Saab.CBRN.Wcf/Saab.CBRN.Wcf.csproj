@@ -61,22 +61,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CBRNSensors\AircraftConflict.cs" />
-    <Compile Include="CBRNSensors\BiDirectionalIndex.cs" />
-    <Compile Include="CBRNSensors\CBRNLCDControl.cs" />
-    <Compile Include="CBRNSensors\CBRNSensorAP2CeData.cs" />
-    <Compile Include="CBRNSensors\CBRNSensorAP2CeState.cs" />
-    <Compile Include="CBRNSensors\CBRNSensorLCDData.cs" />
-    <Compile Include="CBRNSensors\CBRNSensorLCDState.cs" />
-    <Compile Include="CBRNSensors\CBRNSensorRawData.cs" />
-    <Compile Include="CBRNSensors\Entity.cs" />
-    <Compile Include="CBRNSensors\EntityEquipment.cs" />
-    <Compile Include="CBRNSensors\EntityEquipmentSensor.cs" />
-    <Compile Include="CBRNSensors\EntityEquipmentSensorCBRN.cs" />
-    <Compile Include="CBRNSensors\EntityEquipmentSensorCBRNAP2Ce.cs" />
-    <Compile Include="CBRNSensors\EntityEquipmentSensorCBRNLCD.cs" />
-    <Compile Include="CBRNSensors\EntityGroundVehicle.cs" />
-    <Compile Include="CBRNSensors\LayerDependentGroup.cs" />
     <Compile Include="Converter\Converter.cs" />
     <Compile Include="DataContracts\LCD.cs" />
     <Compile Include="DataContracts\LCDData.cs" />
@@ -92,7 +76,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Generated.csproj">
+      <Project>{70f13814-bd70-488d-9657-e21d4cfc76e3}</Project>
+      <Name>Generated</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -12,7 +12,7 @@ using System.ServiceModel.Description;
 using Saab.CBRN.Wcf.ServiceContracts;
 using System.ServiceModel.Web;
 
-namespace Saab.CBRNSensors
+namespace Saab.CBRN.Sensors
 {
     public class CBRNSensorsDriver : WISEDriverBase
     {
