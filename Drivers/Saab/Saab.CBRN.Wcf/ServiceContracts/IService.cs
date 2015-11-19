@@ -12,5 +12,8 @@ namespace Saab.CBRN.Wcf.ServiceContracts
     [ServiceContract]
     public partial interface IService
     {
+        [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "check", ResponseFormat = WebMessageFormat.Json)]
+        int MagicNumber();
     }
 }
