@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Saab.CBRN.Wcf.DataContracts
 {
-    class AP2CeState
+    public class AP2CeState
     {
         private bool _hydrogenTankEmpty;
         private bool _deviceFault;

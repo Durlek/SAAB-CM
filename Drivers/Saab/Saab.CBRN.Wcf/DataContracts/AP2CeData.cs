@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Saab.CBRN.Wcf.DataContracts
 {
-    class AP2CeData
+    public class AP2CeData
     {
         private int _barCount;
         private double _volumeConcentration;

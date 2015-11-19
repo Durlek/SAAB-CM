@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Saab.CBRN.Wcf.DataContracts
 {
-    class AP2Ce : SensorBase
+    public class AP2Ce : SensorBase
     {
         private IEnumerable<AP2CeData> _data;
         private AP2CeState _state;
