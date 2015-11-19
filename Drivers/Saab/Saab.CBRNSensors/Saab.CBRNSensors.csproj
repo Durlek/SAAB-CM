@@ -70,7 +70,6 @@
     <None Include="..\..\..\Storage\Drivers\Saab.CBRNSensors.driver">
       <Link>Saab.CBRNSensors.driver</Link>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="CoREdebug.options" />
     <None Include="CoRErelease.options" />
   </ItemGroup>
