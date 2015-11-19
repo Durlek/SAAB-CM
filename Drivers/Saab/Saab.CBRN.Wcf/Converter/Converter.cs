@@ -47,29 +47,29 @@ namespace Saab.CBRN.Wcf
             //       I have no idea if this is intentional, and since we don't have any real data
             //       it's hard to know what the bytes represent (are they really only bools in disguise?)
             //       I'm 30% sure that bools don't exist in wise, so it seems likely.
-            state.GAlert = wstate.GAlert == 0 ? false : true;
-            state.HAlert = wstate.HAlert == 0 ? false : true;
-            state.TicAlert = wstate.TICAlert == 0 ? false : true;
-            state.TicMode = wstate.TICMode == 0 ? false : true;
-            state.LowSieve = wstate.LowSieve == 0 ? false : true;
-            state.ChangeSievePack = wstate.ChangeSievePack == 0 ? false : true;
-            state.LowBattery = wstate.LowBattery == 0 ? false : true;
-            state.ChangeBattery = wstate.ChangeBattery == 0 ? false : true;
-            state.GHighDoseAlert = wstate.GHighDoseAlert == 0 ? false : true;
-            state.GMediumDoseAlert = wstate.GMediumDoseAlert == 0 ? false : true;
-            state.HHighDoseAlert = wstate.HHighDoseAlert == 0 ? false : true;
-            state.InitialSelfTest = wstate.InitialSelfTest == 0 ? false : true;
-            state.CoronaBurnOff = wstate.CoronaBurnOff == 0 ? false : true;
-            state.PTOutOfRange = wstate.PTOutOfRange == 0 ? false : true;
-            state.AudioFault = wstate.AudioFault == 0 ? false : true;
-            state.FatalError = wstate.FatalError == 0 ? false : true;
-            state.CRAboveLimit = wstate.CRAboveLimit == 0 ? false : true;
-            state.FanCAboveLimit = wstate.FanCAboveLimit == 0 ? false : true;
-            state.InitialSeltTestFailed = wstate.InitialSelfTestFailure == 0 ? false : true;
-            state.HealthCheckFailur = wstate.HealthCheckFailure == 0 ? false : true;
-            state.CodeChecksumError = wstate.CodeChecksumError == 0 ? false : true;
-            state.EEPROMChecksumError = wstate.EEPROMChecksumError == 0 ? false : true;
-            state.HTOutSideLimits = wstate.HTOutSideLimits == 0 ? false : true;
+            state.GAlert = wstate.GAlertValue == 0 ? false : true;
+            state.HAlert = wstate.HAlertValue == 0 ? false : true;
+            state.TicAlert = wstate.TICAlertValue == 0 ? false : true;
+            state.TicMode = wstate.TICModeValue == 0 ? false : true;
+            state.LowSieve = wstate.LowSieveValue == 0 ? false : true;
+            state.ChangeSievePack = wstate.ChangeSievePackValue == 0 ? false : true;
+            state.LowBattery = wstate.LowBatteryValue == 0 ? false : true;
+            state.ChangeBattery = wstate.ChangeBatteryValue == 0 ? false : true;
+            state.GHighDoseAlert = wstate.GHighDoseAlertValue == 0 ? false : true;
+            state.GMediumDoseAlert = wstate.GMediumDoseAlertValue == 0 ? false : true;
+            state.HHighDoseAlert = wstate.HHighDoseAlertValue == 0 ? false : true;
+            state.InitialSelfTest = wstate.InitialSelfTestValue == 0 ? false : true;
+            state.CoronaBurnOff = wstate.CoronaBurnOffValue == 0 ? false : true;
+            state.PTOutOfRange = wstate.PTOutOfRangeValue == 0 ? false : true;
+            state.AudioFault = wstate.AudioFaultValue == 0 ? false : true;
+            state.FatalError = wstate.FatalErrorValue == 0 ? false : true;
+            state.CRAboveLimit = wstate.CRAboveLimitValue == 0 ? false : true;
+            state.FanCAboveLimit = wstate.FanCAboveLimitValue == 0 ? false : true;
+            state.InitialSeltTestFailed = wstate.InitialSelfTestFailureValue == 0 ? false : true;
+            state.HealthCheckFailur = wstate.HealthCheckFailureValue == 0 ? false : true;
+            state.CodeChecksumError = wstate.CodeChecksumErrorValue == 0 ? false : true;
+            state.EEPROMChecksumError = wstate.EEPROMChecksumErrorValue == 0 ? false : true;
+            state.HTOutSideLimits = wstate.HTOutSideLimitsValue == 0 ? false : true;
 
 
             return state;

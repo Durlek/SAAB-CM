@@ -85,6 +85,10 @@
       <Project>{70f13814-bd70-488d-9657-e21d4cfc76e3}</Project>
       <Name>Saab.CBRN.Generated</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Saab.CBRNSensors.Models\Saab.CBRNSensors.Models.csproj">
+      <Project>{2b239150-c0d6-4428-85d0-47f3c84a8443}</Project>
+      <Name>Saab.CBRNSensors.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
