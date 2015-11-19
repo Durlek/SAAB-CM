@@ -78,6 +78,10 @@
       <Project>{d9c57ced-7cb1-47e1-a0f2-fd6fc35a8591}</Project>
       <Name>Saab.CBRN.Wcf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Saab.CBRNSensors.Models\Saab.CBRNSensors.Models.csproj">
+      <Project>{2b239150-c0d6-4428-85d0-47f3c84a8443}</Project>
+      <Name>Saab.CBRNSensors.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
