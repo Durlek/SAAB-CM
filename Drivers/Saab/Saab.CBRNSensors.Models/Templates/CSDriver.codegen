@@ -1,0 +1,14 @@
+<codegenerator>
+  
+  <file name="ModelWrapperCommon.cs" outFileFormat="[FileName]Common.cs"	context="Global" language="Auto" />
+
+  <file name="WISEEventTemplate.cs" outFileFormat="Events\[EntityClass].cs" context="Events" language="Auto" />
+  <file name="WISEObjectTemplate.cs" outFileFormat="Objects\[EntityClass].cs" context="Objects" language="Auto" />
+  
+  <file name="BiDirectionalIndex.cs" outFileFormat="BiDirectionalIndex.cs"	context="Global" language="Auto" />
+  
+  <file name="WISECompositeTemplate.cs"	outFileFormat="Composites\[CompositeName].cs" context="CompositeTypes" language="Auto" />
+
+  <file name="Enumerations.cs" outFileFormat="Enumerations.cs" context="Global" language="Auto" />
+  
+</codegenerator>

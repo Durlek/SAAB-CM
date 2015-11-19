@@ -1,4 +1,4 @@
-﻿using Saab.CBRN.Generated;
+﻿using Saab.CBRNSensors.Models;
 using Saab.CBRN.Wcf.DataContracts;
 using Saab.CBRN.Wcf.ServiceContracts;
 using STS.WISE;
@@ -93,7 +93,12 @@ namespace Saab.CBRN.Wcf
 
         #region AP2Ce
 
-        public void CreateAP2Ce(AP2Ce ap2ce){}
+        public void CreateAP2Ce(AP2Ce ap2ce)
+        {
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = Converter.Convert(ap2ce);
+            wap2ce.CreateInstance(_sink, _hDatabase); // TODO: how do we choose the id? maybe leave it out and let the class handle it?
+            wap2ce.AddToDatabase(_hDatabase);
+        }
         public void DeleteAP2Ce(string id)  {}
         public void UpdateAP2Ce(AP2Ce ap2ce) {}
 

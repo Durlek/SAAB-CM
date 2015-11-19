@@ -1,9 +1,11 @@
-﻿using Saab.CBRN.Generated;
+﻿using Saab.CBRNSensors.Models;
 using Saab.CBRN.Wcf.DataContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+// TODO: lots of duplicated code
 
 namespace Saab.CBRN.Wcf
 {
@@ -106,6 +108,16 @@ namespace Saab.CBRN.Wcf
             //output.DetectionMode = (LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString());
             //output.State = Convert(input.SensorState);
 
+            return output;
+        }
+
+        internal static EntityEquipmentSensorCBRNAP2Ce Convert(AP2Ce input)
+        {
+            EntityEquipmentSensorCBRNAP2Ce output = new EntityEquipmentSensorCBRNAP2Ce();
+            output.ExternalId  = input.Id;
+            output.Name        = input.Name;
+            output.Description = input.Description;
+            //output.SensorData = Convert(input.Data);
             return output;
         }
 
