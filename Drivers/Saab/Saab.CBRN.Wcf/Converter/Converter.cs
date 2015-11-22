@@ -28,15 +28,12 @@ namespace Saab.CBRN.Wcf
             return output;
         }
 
-        internal static EntityEquipmentSensorCBRNLCD Convert(LCD input)
+        internal static void Convert(LCD input, ref EntityEquipmentSensorCBRNLCD output)
         {
-
-            EntityEquipmentSensorCBRNLCD output = new EntityEquipmentSensorCBRNLCD();
             output.ExternalId = input.Id;
             output.Name = input.Name;
             output.Description = input.Description;
             output.SensorData = Convert(input.Data);
-            return output;
         }
 
         private static LCDState Convert(CBRNSensorLCDState wstate)
@@ -111,14 +108,12 @@ namespace Saab.CBRN.Wcf
             return output;
         }
 
-        internal static EntityEquipmentSensorCBRNAP2Ce Convert(AP2Ce input)
+        internal static void Convert(AP2Ce input, ref EntityEquipmentSensorCBRNAP2Ce output)
         {
-            EntityEquipmentSensorCBRNAP2Ce output = new EntityEquipmentSensorCBRNAP2Ce();
             output.ExternalId  = input.Id;
             output.Name        = input.Name;
             output.Description = input.Description;
             //output.SensorData = Convert(input.Data);
-            return output;
         }
 
         #endregion

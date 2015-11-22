@@ -10,6 +10,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using WISE_RESULT = System.UInt32;
+using System.Net;
 
 // TODO: Lots of duplicated code in this class
 
@@ -40,25 +41,18 @@ namespace Saab.CBRN.Wcf
 
         public void CreateLCD(LCD lcd)
         {
-            EntityEquipmentSensorCBRNLCD wlcd = Converter.Convert(lcd);
-            wlcd.CreateInstance(_sink, _hDatabase); // TODO: how do we choose the id? maybe leave it out and let the class handle it?
-            wlcd.AddToDatabase(_hDatabase);
+            Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD w, string objectName)
+            {
+                lcd.Id = objectName;
+                Converter.Convert(lcd, ref w);
+                return w;
+            });
         }
 
         public LCD GetLCDById(string id)
         {
-            ObjectHandle hObject = ObjectHandle.Invalid;
-
-            // Find WISE object in db.
-            _sink.GetObjectHandle(_hDatabase, id, ref hObject);
+            ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
-
-            // If it wasn't found then 404
-            if (hObject == ObjectHandle.Invalid)
-            {
-                throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
-            }
-
             return Converter.Convert(wlcd);
         }
 
@@ -95,20 +89,34 @@ namespace Saab.CBRN.Wcf
 
         public void CreateAP2Ce(AP2Ce ap2ce)
         {
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = Converter.Convert(ap2ce);
-            wap2ce.CreateInstance(_sink, _hDatabase); // TODO: how do we choose the id? maybe leave it out and let the class handle it?
-            wap2ce.AddToDatabase(_hDatabase);
+            Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce w, string objectName)
+            {
+                ap2ce.Id = objectName;
+                Converter.Convert(ap2ce, ref w);
+                return w;
+            });
         }
+
         public void DeleteAP2Ce(string id)  {}
         public void UpdateAP2Ce(AP2Ce ap2ce) {}
 
         public AP2Ce GetAP2CeById(string id)
         {
+            ObjectHandle hObject = GetHandleFromId(id);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+            return Converter.Convert(wap2ce);
+        }
+
+        #endregion
+
+        #region helpers
+        
+        private ObjectHandle GetHandleFromId(string id)
+        {
             ObjectHandle hObject = ObjectHandle.Invalid;
 
             // Find WISE object in db.
             _sink.GetObjectHandle(_hDatabase, id, ref hObject);
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
 
             // If it wasn't found then 404
             if (hObject == ObjectHandle.Invalid)
@@ -116,7 +124,32 @@ namespace Saab.CBRN.Wcf
                 throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
             }
 
-            return Converter.Convert(wap2ce);
+            return hObject;
+        }
+        
+        private void Create<T>(Func<T, string, T> convert) where T : WISEObject, new() {
+
+            WISE_RESULT result = WISEError.WISE_OK;
+            try
+            {
+                string objectName = Guid.NewGuid().ToString();
+                T wiseObj = new T();
+                result = wiseObj.CreateInstance(_sink, _hDatabase, objectName);
+                WISEError.CheckCallFailedEx(result);
+
+                wiseObj = convert(wiseObj, objectName);
+
+                result = wiseObj.AddToDatabase(_hDatabase);
+                WISEError.CheckCallFailedEx(result);
+
+                // Notify creator of object id.
+                WebOperationContext.Current.OutgoingResponse.Headers.Add(HttpResponseHeader.Location, objectName);
+                WebOperationContext.Current.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.Created;
+            }
+            catch (WISEException ex)
+            {
+                throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
+            }
         }
 
         #endregion
