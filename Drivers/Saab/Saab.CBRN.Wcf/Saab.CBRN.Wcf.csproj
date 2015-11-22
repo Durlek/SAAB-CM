@@ -49,7 +49,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="STS.WISE.DataTypes">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Saab\WISE Connectivity 4.2\Bin\STS.WISE.DataTypes.dll</HintPath>
+      <HintPath>$(WISECore42)Bin\STS.WISE.DataTypes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
