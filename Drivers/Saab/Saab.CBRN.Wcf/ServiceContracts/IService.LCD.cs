@@ -11,23 +11,19 @@ namespace Saab.CBRN.Wcf.ServiceContracts
     public partial interface IService
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "sensors/lcd")]
+        [WebInvoke(Method = "POST", UriTemplate = "sensors/lcd", ResponseFormat = WebMessageFormat.Json)]
         void CreateLCD(LCD lcd);
 
         [OperationContract]
-        [WebGet(UriTemplate = "sensors/lcd")]
-        IEnumerable<LCD> GetLCD();
+        [WebInvoke(Method = "GET", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]
+        LCD GetLCDById(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "sensors/lcd/{id}")]
-        Position GetLCDById(string id);
-
-        [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "sensors/lcd")]
+        [WebInvoke(Method = "PUT", UriTemplate = "sensors/lcd", ResponseFormat = WebMessageFormat.Json)]
         void UpdateLCD(LCD lcd);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", UriTemplate = "sensors/lcd/{id}")]
+        [WebInvoke(Method = "DELETE", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]
         void DeleteLCD(string id);
     }
 }

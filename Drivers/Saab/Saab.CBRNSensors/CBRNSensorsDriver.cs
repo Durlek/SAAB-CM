@@ -11,6 +11,7 @@ using Saab.CBRN.Wcf;
 using System.ServiceModel.Description;
 using Saab.CBRN.Wcf.ServiceContracts;
 using System.ServiceModel.Web;
+using Saab.CBRNSensors.Models;
 
 namespace Saab.CBRN.Sensors
 {
@@ -144,6 +145,10 @@ namespace Saab.CBRN.Sensors
 
 
                 //_serviceHost.AddServiceEndpoint(typeof(IService), webHttpBinding, "");
+
+                // Initialize generated code.
+                // TODO: handle error code
+                Model.InitializeModel(this.WISE);
 
                 _serviceHost.Open();
             }
