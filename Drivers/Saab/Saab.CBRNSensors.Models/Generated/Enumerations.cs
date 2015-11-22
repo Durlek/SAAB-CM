@@ -138,6 +138,186 @@ namespace Saab.CBRNSensors.Models
     /// 
     /// Default value: _<#EnumDefaultvalue#>
     /// </summary>
+    public enum CBRNParticleModel
+    {
+        /// <summary>
+        /// CFD
+        /// </summary>
+        eCFD = 2,
+        /// <summary>
+        /// Particle
+        /// </summary>
+        eParticle = 1,
+        /// <summary>
+        /// Puff
+        /// </summary>
+        ePuff = 0,
+    }
+
+    /// <summary>
+    /// 
+    /// Default value: _<#EnumDefaultvalue#>
+    /// </summary>
+    public enum CBRNRAIDState
+    {
+        /// <summary>
+        /// Analytic checking. Internal state is analytic test. NOT USED
+        /// </summary>
+        eanalytictest = 5,
+        /// <summary>
+        /// Cleaning. Internal state is Standby
+        /// </summary>
+        ecleaning = 2,
+        /// <summary>
+        /// Off. Internal state is error. NOT USED
+        /// </summary>
+        eoff = 6,
+        /// <summary>
+        /// Started. Internal state is Measuring
+        /// </summary>
+        estarted = 1,
+        /// <summary>
+        /// Starting. Internal state is Self test. NOT USED
+        /// </summary>
+        estartingselftest = 4,
+        /// <summary>
+        /// Starting. Internal state is Warm Up. NOT USED
+        /// </summary>
+        estartingwarmup = 3,
+        /// <summary>
+        /// Stopped. Internal state is Standby
+        /// </summary>
+        estopped = 0,
+    }
+
+    /// <summary>
+    /// 
+    /// Default value: _<#EnumDefaultvalue#>
+    /// </summary>
+    public enum CBRNRapidCalibrationStatus
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        ecoldreference = 2,
+        /// <summary>
+        /// 
+        /// </summary>
+        edone = 6,
+        /// <summary>
+        /// 
+        /// </summary>
+        efailed = 5,
+        /// <summary>
+        /// 
+        /// </summary>
+        eheating = 3,
+        /// <summary>
+        /// 
+        /// </summary>
+        enotcalibrating = 0,
+        /// <summary>
+        /// 
+        /// </summary>
+        estarting = 1,
+        /// <summary>
+        /// 
+        /// </summary>
+        ewarmreference = 4,
+    }
+
+    /// <summary>
+    /// 
+    /// Default value: _<#EnumDefaultvalue#>
+    /// </summary>
+    public enum CBRNRapidLibrary
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        eCWA = 2,
+        /// <summary>
+        /// 
+        /// </summary>
+        eSIM = 0,
+        /// <summary>
+        /// 
+        /// </summary>
+        eTIC = 1,
+        /// <summary>
+        /// 
+        /// </summary>
+        eTST = 3,
+    }
+
+    /// <summary>
+    /// 
+    /// Default value: _<#EnumDefaultvalue#>
+    /// </summary>
+    public enum CBRNRapidSamplingMode
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        efixeddirection = 1,
+        /// <summary>
+        /// 
+        /// </summary>
+        efullscan = 2,
+        /// <summary>
+        /// Stopped
+        /// </summary>
+        enotsampling = 0,
+        /// <summary>
+        /// 
+        /// </summary>
+        escansector1 = 3,
+        /// <summary>
+        /// 
+        /// </summary>
+        escansector2 = 4,
+    }
+
+    /// <summary>
+    /// 
+    /// Default value: _<#EnumDefaultvalue#>
+    /// </summary>
+    public enum CBRNRapidStatus
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        ecalibrating = 4,
+        /// <summary>
+        /// 
+        /// </summary>
+        ecooling = 1,
+        /// <summary>
+        /// 
+        /// </summary>
+        einitialising = 2,
+        /// <summary>
+        /// 
+        /// </summary>
+        esampling = 5,
+        /// <summary>
+        /// 
+        /// </summary>
+        estarting = 3,
+        /// <summary>
+        /// Stopped
+        /// </summary>
+        estopped = 0,
+        /// <summary>
+        /// 
+        /// </summary>
+        estopping = 6,
+    }
+
+    /// <summary>
+    /// 
+    /// Default value: _<#EnumDefaultvalue#>
+    /// </summary>
     public enum CBRNSensorMode
     {
         /// <summary>
@@ -156,114 +336,6 @@ namespace Saab.CBRNSensors.Models
         /// 
         /// </summary>
         eUnknown = 0,
-    }
-
-    /// <summary>
-    /// 
-    /// Default value: _<#EnumDefaultvalue#>
-    /// </summary>
-    public enum CBRNStateMode
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        eDraining = 3,
-        /// <summary>
-        /// 
-        /// </summary>
-        eInternalError = 4,
-        /// <summary>
-        /// 
-        /// </summary>
-        eNotReady = 2,
-        /// <summary>
-        /// 
-        /// </summary>
-        eReady = 1,
-        /// <summary>
-        /// 
-        /// </summary>
-        eUnknown = 0,
-    }
-
-    /// <summary>
-    /// 
-    /// Default value: _<#EnumDefaultvalue#>
-    /// </summary>
-    public enum CBRNWeatherClouds
-    {
-        /// <summary>
-        /// no cloud cover
-        /// </summary>
-        eClear = 0,
-        /// <summary>
-        /// 8/8 cloud cover
-        /// </summary>
-        eEight = 8,
-        /// <summary>
-        /// 5/8 cloud cover
-        /// </summary>
-        eFive = 5,
-        /// <summary>
-        /// 4/8 cloud cover
-        /// </summary>
-        eFour = 4,
-        /// <summary>
-        /// 1/8 cloud cover
-        /// </summary>
-        eOne = 1,
-        /// <summary>
-        /// 7/8 cloud cover
-        /// </summary>
-        eSeven = 7,
-        /// <summary>
-        /// 6/8 cloud cover
-        /// </summary>
-        eSix = 6,
-        /// <summary>
-        /// 3/8 cloud cover
-        /// </summary>
-        eThree = 3,
-        /// <summary>
-        /// 2/8 cloud cover
-        /// </summary>
-        eTwo = 2,
-    }
-
-    /// <summary>
-    /// 
-    /// Default value: _<#EnumDefaultvalue#>
-    /// </summary>
-    public enum CBRNWeatherMeandering
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        eOff = 0,
-        /// <summary>
-        /// 
-        /// </summary>
-        eOn = 1,
-    }
-
-    /// <summary>
-    /// 
-    /// Default value: _<#EnumDefaultvalue#>
-    /// </summary>
-    public enum CBRNWeatherSnow
-    {
-        /// <summary>
-        /// Complete snow cover
-        /// </summary>
-        eComplete = 2,
-        /// <summary>
-        /// No snow
-        /// </summary>
-        eNone = 0,
-        /// <summary>
-        /// Partial snow
-        /// </summary>
-        ePartial = 1,
     }
 
     /// <summary>

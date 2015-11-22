@@ -6,12 +6,12 @@ using WISE_RESULT = System.UInt32;
 
 namespace Saab.CBRNSensors.Models
 {
-    public partial class CBRNLCDControl
+    public partial class CBRNI28Control
     {
         #region Type definitions
 
         /// <summary>
-        /// Enumeration of attributes in CBRNLCDControl events.
+        /// Enumeration of attributes in CBRNI28Control events.
         /// </summary>
         public enum Attributes
         {
@@ -24,8 +24,8 @@ namespace Saab.CBRNSensors.Models
 
         #region Static Members
 
-        protected static BiDirectionalIndex<string, CBRNLCDControl.Attributes> _nameIdIndex = new BiDirectionalIndex<string, Attributes>();
-        protected static BiDirectionalIndex<CBRNLCDControl.Attributes, AttributeHandle> _idHandleIndex = new BiDirectionalIndex<Attributes, AttributeHandle>();
+        protected static BiDirectionalIndex<string, CBRNI28Control.Attributes> _nameIdIndex = new BiDirectionalIndex<string, Attributes>();
+        protected static BiDirectionalIndex<CBRNI28Control.Attributes, AttributeHandle> _idHandleIndex = new BiDirectionalIndex<Attributes, AttributeHandle>();
         protected static ClassHandle _classHandle = WISEConstants.WISE_INVALID_HANDLE;
 
         #endregion
@@ -39,7 +39,7 @@ namespace Saab.CBRNSensors.Models
 
         static public string ClassName
         {
-            get { return "CBRN.LCDControl"; }
+            get { return "CBRN.I28Control"; }
         }
 
         static public ClassHandle Class
@@ -62,14 +62,14 @@ namespace Saab.CBRNSensors.Models
 
         #region Constructors
 
-        public CBRNLCDControl()
+        public CBRNI28Control()
         {
             this.WISE = null;
             this.Database = WISEConstants.WISE_TRANSITION_CACHE_DATABASE;
             this.Handle = WISEConstants.WISE_INVALID_HANDLE;
         }
 
-        public CBRNLCDControl(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, EventHandle eventHandle)
+        public CBRNI28Control(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, EventHandle eventHandle)
         {
             this.WISE = WISE;
             this.Database = databaseHandle;
@@ -235,12 +235,12 @@ namespace Saab.CBRNSensors.Models
 
         static public bool IsTypeOf(string className)
         {
-            return (className == CBRNLCDControl.ClassName);
+            return (className == CBRNI28Control.ClassName);
         }
 
         static public bool IsTypeOf(ClassHandle hClass)
         {
-            return (hClass == CBRNLCDControl.Class);
+            return (hClass == CBRNI28Control.Class);
         }
 
         #endregion
@@ -262,7 +262,7 @@ namespace Saab.CBRNSensors.Models
             {
                 // Create event from template, if none exist.
                 Dictionary<string, AttributeHandle> attributes = new Dictionary<string, AttributeHandle>();
-                result = WISE.CreateEventFromTemplate(hDatabase, CBRNLCDControl.ClassName, ref eventHandle, ref attributes);
+                result = WISE.CreateEventFromTemplate(hDatabase, CBRNI28Control.ClassName, ref eventHandle, ref attributes);
             }
 
             if (WISEError.CheckCallSucceeded(result))
@@ -298,13 +298,13 @@ namespace Saab.CBRNSensors.Models
 
         #region Attribute value properties
 
-// EVENTIMPL: Long
-        public int Command
+// EVENTIMPL: String
+        public string Command
         {
             get
             {
                 uint result = WISEError.WISE_ERROR;
-                int value = 0;
+                string value = string.Empty;
                 AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
                 
                 lock (_idHandleIndex)
@@ -321,7 +321,7 @@ namespace Saab.CBRNSensors.Models
                         return value;
                     }
                 }
-                return 0;
+                return string.Empty;
             }
             
             set

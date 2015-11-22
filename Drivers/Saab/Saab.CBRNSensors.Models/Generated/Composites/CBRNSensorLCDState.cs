@@ -35,6 +35,8 @@ namespace Saab.CBRNSensors.Models
             CodeChecksumError,
             EEPROMChecksumError,
             HTOutSideLimits,
+            NVG,
+            AudibleAlarm,
         }
         #endregion
 
@@ -147,6 +149,8 @@ namespace Saab.CBRNSensors.Models
                         _nameIdIndex[hAttribute].Add(strAttributeName + ".CodeChecksumError", Fields.CodeChecksumError);
                         _nameIdIndex[hAttribute].Add(strAttributeName + ".EEPROMChecksumError", Fields.EEPROMChecksumError);
                         _nameIdIndex[hAttribute].Add(strAttributeName + ".HTOutSideLimits", Fields.HTOutSideLimits);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".NVG", Fields.NVG);
+                        _nameIdIndex[hAttribute].Add(strAttributeName + ".AudibleAlarm", Fields.AudibleAlarm);
                     }
 
                     lock (_idHandleIndex)
@@ -790,6 +794,58 @@ namespace Saab.CBRNSensors.Models
             set
             {
                 AttributeHandle hAttribute = GetFieldHandle(Fields.HTOutSideLimits, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Bytes[hAttribute] = value;
+                }
+            }
+        }
+
+        public byte NVGValue
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.NVG, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Bytes[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.NVG, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    this.Data.Bytes[hAttribute] = value;
+                }
+            }
+        }
+
+        public byte AudibleAlarmValue
+        {
+            get
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.AudibleAlarm, this.ParentAttribute);
+
+                lock (this.Data)
+                {
+                    if (this.Data.Bytes.ContainsKey(hAttribute))
+                    {
+                        return this.Data.Bytes[hAttribute];
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                AttributeHandle hAttribute = GetFieldHandle(Fields.AudibleAlarm, this.ParentAttribute);
 
                 lock (this.Data)
                 {

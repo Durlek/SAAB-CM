@@ -6,7 +6,7 @@ using WISE_RESULT = System.UInt32;
 
 namespace <#CompanyName#>.<#FileName#>.Models
 {
-    public partial class <#EntityClassMerged#>
+    public partial class <#EntityClassMerged#> : WISEObject
     {
         #region Type definitions
 

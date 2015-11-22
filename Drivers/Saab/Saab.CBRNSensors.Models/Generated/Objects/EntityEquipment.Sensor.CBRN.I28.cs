@@ -6,29 +6,33 @@ using WISE_RESULT = System.UInt32;
 
 namespace Saab.CBRNSensors.Models
 {
-    public partial class EntityEquipmentSensor
+    public partial class EntityEquipmentSensorCBRNI28 : WISEObject
     {
         #region Type definitions
 
         /// <summary>
-        /// Enumeration of attributes in EntityEquipmentSensor objects.
+        /// Enumeration of attributes in EntityEquipmentSensorCBRNI28 objects.
         /// </summary>
         public enum Attributes
         {
             Unknown,
             Description,
             EquipmentType,
+            ExternalId,
             Name,
             Parent,
             RelativeLocation,
+            SensorData,
+            SensorRawData,
+            SensorState,
         } ;
 
         #endregion
 
         #region Static Members
 
-        protected static BiDirectionalIndex<string, EntityEquipmentSensor.Attributes> _nameIdIndex = new BiDirectionalIndex<string, Attributes>();
-        protected static BiDirectionalIndex<EntityEquipmentSensor.Attributes, AttributeHandle> _idHandleIndex = new BiDirectionalIndex<Attributes, AttributeHandle>();
+        protected static BiDirectionalIndex<string, EntityEquipmentSensorCBRNI28.Attributes> _nameIdIndex = new BiDirectionalIndex<string, Attributes>();
+        protected static BiDirectionalIndex<EntityEquipmentSensorCBRNI28.Attributes, AttributeHandle> _idHandleIndex = new BiDirectionalIndex<Attributes, AttributeHandle>();
         protected static ClassHandle _classHandle = WISEConstants.WISE_INVALID_HANDLE;
 
         #endregion
@@ -37,7 +41,7 @@ namespace Saab.CBRNSensors.Models
 
         static public string ClassName
         {
-            get { return "EntityEquipment.Sensor"; }
+            get { return "EntityEquipment.Sensor.CBRN.I28"; }
         }
 
         static public ClassHandle Class
@@ -61,7 +65,7 @@ namespace Saab.CBRNSensors.Models
 
         public CBRNSensorsEntityTypes ClassEntityType
         {
-            get { return CBRNSensorsEntityTypes.EntityEquipmentSensor; }
+            get { return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNI28; }
         }
 
         public INETWISEDriverSink2 WISE { get; private set; }
@@ -81,7 +85,7 @@ namespace Saab.CBRNSensors.Models
 
         #region Constructors
 
-        public EntityEquipmentSensor()
+        public EntityEquipmentSensorCBRNI28()
         {
             this.WISE = null;
             this.Database = WISEConstants.WISE_TRANSITION_CACHE_DATABASE;
@@ -89,7 +93,7 @@ namespace Saab.CBRNSensors.Models
             this.Transaction = TransactionHandle.None;            
         }
 
-        public EntityEquipmentSensor(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, ObjectHandle objectHandle)
+        public EntityEquipmentSensorCBRNI28(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, ObjectHandle objectHandle)
         {
             this.WISE = WISE;
             this.Database = databaseHandle;
@@ -97,7 +101,7 @@ namespace Saab.CBRNSensors.Models
             this.Transaction = TransactionHandle.None;
         }
 
-        public EntityEquipmentSensor(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, ObjectHandle objectHandle, TransactionHandle transactionHandle)
+        public EntityEquipmentSensorCBRNI28(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, ObjectHandle objectHandle, TransactionHandle transactionHandle)
         {
             this.WISE = WISE;
             this.Database = databaseHandle;
@@ -129,9 +133,13 @@ namespace Saab.CBRNSensors.Models
                 {
                     _nameIdIndex.Add("Description", Attributes.Description);
                     _nameIdIndex.Add("EquipmentType", Attributes.EquipmentType);
+                    _nameIdIndex.Add("ExternalId", Attributes.ExternalId);
                     _nameIdIndex.Add("Name", Attributes.Name);
                     _nameIdIndex.Add("Parent", Attributes.Parent);
                     _nameIdIndex.Add("RelativeLocation", Attributes.RelativeLocation);
+                    _nameIdIndex.Add("SensorData", Attributes.SensorData);
+                    _nameIdIndex.Add("SensorRawData", Attributes.SensorRawData);
+                    _nameIdIndex.Add("SensorState", Attributes.SensorState);
 
                     lock (_idHandleIndex)
                     {
@@ -270,12 +278,12 @@ namespace Saab.CBRNSensors.Models
 
         static public bool IsTypeOf(string className)
         {
-            return (className == EntityEquipmentSensor.ClassName);
+            return (className == EntityEquipmentSensorCBRNI28.ClassName);
         }
 
         static public bool IsTypeOf(ClassHandle hClass)
         {
-            return (hClass == EntityEquipmentSensor.Class);
+            return (hClass == EntityEquipmentSensorCBRNI28.Class);
         }
 
         #endregion
@@ -302,7 +310,7 @@ namespace Saab.CBRNSensors.Models
             {
                 // Create object from template, if none exist.
                 Dictionary<string, AttributeHandle> attributes = new Dictionary<string, AttributeHandle>(); // it's set from Template
-                result = WISE.CreateObjectFromTemplate(hDatabase, objectName, EntityEquipmentSensor.ClassName, ref objectHandle, ref attributes);
+                result = WISE.CreateObjectFromTemplate(hDatabase, objectName, EntityEquipmentSensorCBRNI28.ClassName, ref objectHandle, ref attributes);
             }
 
             if (WISEError.CheckCallSucceeded(result))
@@ -405,6 +413,42 @@ namespace Saab.CBRNSensors.Models
             set
             {
                 AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.EquipmentType);
+                
+                if (this.WISE != null)
+                {
+                    this.WISE.SetAttributeValue(this.Database, this.Object, attributeHandle, value, DateTime.Now, 0, AttributeQuality.Good);
+                }
+            }
+        }
+// OBJECTIMPL: String
+        public string ExternalId
+        {
+            get
+            {
+                uint result = WISEError.WISE_ERROR;
+                string value = string.Empty;
+                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
+                
+                lock (_idHandleIndex)
+                {
+                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.ExternalId);
+                }
+
+                if (this.WISE != null)
+                {
+                    result = this.WISE.GetAttributeValue(this.Database, this.Object, attributeHandle, out value, this.Transaction);
+
+                    if (WISEError.CheckCallSucceeded(result))
+                    {
+                        return value;
+                    }
+                }
+                return string.Empty;
+            }
+            
+            set
+            {
+                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.ExternalId);
                 
                 if (this.WISE != null)
                 {
@@ -518,6 +562,154 @@ namespace Saab.CBRNSensors.Models
                 {
                     this.WISE.SetAttributeValue(this.Database, this.Object, attributeHandle, value, DateTime.Now, 0, AttributeQuality.Good);
                 }
+            }
+        }
+// OBJECTIMPL: AttributeGroup
+        public CBRNSensorI28Data SensorData   
+        {
+            get
+            {
+                AttributeGroup value = null;
+                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
+                
+                lock (_idHandleIndex)
+                {
+                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.SensorData);
+                }
+
+                if (this.WISE != null)
+                {   
+                    this.WISE.GetAttributeValue(this.Database, this.Object, attributeHandle, out value, this.Transaction);
+                }
+                return new CBRNSensorI28Data(attributeHandle, this.StringCache, value);
+            }
+            
+            set
+            {
+                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.SensorData);
+                AttributeGroup newValue = new AttributeGroup();
+                
+                if (value == null)
+                {
+                    throw new NullReferenceException(string.Format(
+                        "Attribute '{0}' cannot be set to null.",
+                        GetAttributeNameFromId(Attributes.SensorData)));
+                }
+
+                if (value.ParentAttribute == attributeHandle)
+                {
+                    newValue = value.Data;
+                }
+                else if (value.ParentAttribute != attributeHandle)
+                {
+                    // Copy attribute values
+                    // Since the parent attributes differ we need to convert 
+                    // the handles of the incoming group to the corresponding 
+                    // handle values for this group
+                    // This occurs when a composite is used in multiple groups/attributes
+                    // for instance two attributes named "A" and "B" are defined on the same object.
+                    // These attributes are composites of type "Composite1" which has the fields
+                    // "Field1" and "Field2".
+                    // The fields in attribute "A" will be named "A.Field1" and "A.Field2"
+                    // The fields in attribute "B" will be named "B.Field1" and "B.Field2"
+                    // Using this property setter we can now to A = B
+                    CBRNSensorI28Data.ChangeParent(value.ParentAttribute, value.Data, attributeHandle, newValue);
+                }
+
+                // Write attribute...
+                this.WISE.SetAttributeValue(this.Database, this.Object, attributeHandle, newValue, DateTime.Now, 0, AttributeQuality.Good);
+            }
+        }
+// OBJECTIMPL: AttributeGroupList
+        public STS.WISE.GroupList SensorRawData
+        {
+            get
+            {
+                uint result = WISEError.WISE_ERROR;
+                STS.WISE.GroupList value = new STS.WISE.GroupList();
+                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
+                
+                lock (_idHandleIndex)
+                {
+                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.SensorRawData);
+                }
+
+                if (this.WISE != null)
+                {
+                    result = this.WISE.GetAttributeValue(this.Database, this.Object, attributeHandle, out value, this.Transaction);
+
+                    if (WISEError.CheckCallSucceeded(result))
+                    {
+                        return value;
+                    }
+                }
+                return null;
+            }
+            
+            set
+            {
+                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.SensorRawData);
+                
+                if (this.WISE != null)
+                {
+                    this.WISE.SetAttributeValue(this.Database, this.Object, attributeHandle, value, DateTime.Now, 0, AttributeQuality.Good);
+                }
+            }
+        }
+// OBJECTIMPL: AttributeGroup
+        public CBRNSensorI28State SensorState   
+        {
+            get
+            {
+                AttributeGroup value = null;
+                AttributeHandle attributeHandle = WISEConstants.WISE_INVALID_HANDLE;
+                
+                lock (_idHandleIndex)
+                {
+                    attributeHandle = _idHandleIndex.GetByFirst(Attributes.SensorState);
+                }
+
+                if (this.WISE != null)
+                {   
+                    this.WISE.GetAttributeValue(this.Database, this.Object, attributeHandle, out value, this.Transaction);
+                }
+                return new CBRNSensorI28State(attributeHandle, this.StringCache, value);
+            }
+            
+            set
+            {
+                AttributeHandle attributeHandle = GetHandleFromAttributeId(Attributes.SensorState);
+                AttributeGroup newValue = new AttributeGroup();
+                
+                if (value == null)
+                {
+                    throw new NullReferenceException(string.Format(
+                        "Attribute '{0}' cannot be set to null.",
+                        GetAttributeNameFromId(Attributes.SensorState)));
+                }
+
+                if (value.ParentAttribute == attributeHandle)
+                {
+                    newValue = value.Data;
+                }
+                else if (value.ParentAttribute != attributeHandle)
+                {
+                    // Copy attribute values
+                    // Since the parent attributes differ we need to convert 
+                    // the handles of the incoming group to the corresponding 
+                    // handle values for this group
+                    // This occurs when a composite is used in multiple groups/attributes
+                    // for instance two attributes named "A" and "B" are defined on the same object.
+                    // These attributes are composites of type "Composite1" which has the fields
+                    // "Field1" and "Field2".
+                    // The fields in attribute "A" will be named "A.Field1" and "A.Field2"
+                    // The fields in attribute "B" will be named "B.Field1" and "B.Field2"
+                    // Using this property setter we can now to A = B
+                    CBRNSensorI28State.ChangeParent(value.ParentAttribute, value.Data, attributeHandle, newValue);
+                }
+
+                // Write attribute...
+                this.WISE.SetAttributeValue(this.Database, this.Object, attributeHandle, newValue, DateTime.Now, 0, AttributeQuality.Good);
             }
         }
 

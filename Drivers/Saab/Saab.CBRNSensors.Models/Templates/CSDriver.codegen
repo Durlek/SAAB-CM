@@ -11,4 +11,6 @@
 
   <file name="Enumerations.cs" outFileFormat="Enumerations.cs" context="Global" language="Auto" />
   
+  <file name="WISEObject.cs" outFileFormat="WISEObject.cs" context="Global" language="Auto" />
+
 </codegenerator>

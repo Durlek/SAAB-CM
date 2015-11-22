@@ -6,7 +6,7 @@ using WISE_RESULT = System.UInt32;
 
 namespace Saab.CBRNSensors.Models
 {
-    public partial class EntityEquipmentSensorCBRNLCD
+    public partial class EntityEquipmentSensorCBRNLCD : WISEObject
     {
         #region Type definitions
 

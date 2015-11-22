@@ -12,14 +12,18 @@ namespace Saab.CBRNSensors.Models
     public enum CBRNSensorsEntityTypes
     {
         Unknown,
-        Entity,
         EntityGroundVehicle,
-        EntityEquipment,
-        EntityEquipmentSensor,
         EntityEquipmentSensorCBRN,
         EntityEquipmentSensorCBRNAP2Ce,
+        EntityEquipmentSensorCBRNI27,
+        EntityEquipmentSensorCBRNI28,
         EntityEquipmentSensorCBRNLCD,
+        EntityEquipmentSensorCBRNRAID,
+        EntityEquipmentSensorCBRNRapid,
+        CBRNI27Control,
+        CBRNI28Control,
         CBRNLCDControl,
+        CBRNRAIDControl,
     }
 
     /// <summary>
@@ -34,17 +38,8 @@ namespace Saab.CBRNSensors.Models
             
             // The UnInitialize call is needed to clear string cache when WISE restarts
 
-            Entity.UnInitialize();
-            bResult = Entity.Initialize( stringCache );
-                
             EntityGroundVehicle.UnInitialize();
             bResult = EntityGroundVehicle.Initialize( stringCache );
-                
-            EntityEquipment.UnInitialize();
-            bResult = EntityEquipment.Initialize( stringCache );
-                
-            EntityEquipmentSensor.UnInitialize();
-            bResult = EntityEquipmentSensor.Initialize( stringCache );
                 
             EntityEquipmentSensorCBRN.UnInitialize();
             bResult = EntityEquipmentSensorCBRN.Initialize( stringCache );
@@ -52,11 +47,32 @@ namespace Saab.CBRNSensors.Models
             EntityEquipmentSensorCBRNAP2Ce.UnInitialize();
             bResult = EntityEquipmentSensorCBRNAP2Ce.Initialize( stringCache );
                 
+            EntityEquipmentSensorCBRNI27.UnInitialize();
+            bResult = EntityEquipmentSensorCBRNI27.Initialize( stringCache );
+                
+            EntityEquipmentSensorCBRNI28.UnInitialize();
+            bResult = EntityEquipmentSensorCBRNI28.Initialize( stringCache );
+                
             EntityEquipmentSensorCBRNLCD.UnInitialize();
             bResult = EntityEquipmentSensorCBRNLCD.Initialize( stringCache );
                 
+            EntityEquipmentSensorCBRNRAID.UnInitialize();
+            bResult = EntityEquipmentSensorCBRNRAID.Initialize( stringCache );
+                
+            EntityEquipmentSensorCBRNRapid.UnInitialize();
+            bResult = EntityEquipmentSensorCBRNRapid.Initialize( stringCache );
+                
+            CBRNI27Control.UnInitialize();
+            bResult = CBRNI27Control.Initialize( stringCache );
+                
+            CBRNI28Control.UnInitialize();
+            bResult = CBRNI28Control.Initialize( stringCache );
+                
             CBRNLCDControl.UnInitialize();
             bResult = CBRNLCDControl.Initialize( stringCache );
+                
+            CBRNRAIDControl.UnInitialize();
+            bResult = CBRNRAIDControl.Initialize( stringCache );
                 
 
             return bResult;
@@ -64,21 +80,9 @@ namespace Saab.CBRNSensors.Models
 
         public static CBRNSensorsEntityTypes GetEntityType(ClassHandle classHandle)
         {
-            if (Entity.IsTypeOf(classHandle))
-            {
-                return CBRNSensorsEntityTypes.Entity;
-            }
             if (EntityGroundVehicle.IsTypeOf(classHandle))
             {
                 return CBRNSensorsEntityTypes.EntityGroundVehicle;
-            }
-            if (EntityEquipment.IsTypeOf(classHandle))
-            {
-                return CBRNSensorsEntityTypes.EntityEquipment;
-            }
-            if (EntityEquipmentSensor.IsTypeOf(classHandle))
-            {
-                return CBRNSensorsEntityTypes.EntityEquipmentSensor;
             }
             if (EntityEquipmentSensorCBRN.IsTypeOf(classHandle))
             {
@@ -88,13 +92,41 @@ namespace Saab.CBRNSensors.Models
             {
                 return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNAP2Ce;
             }
+            if (EntityEquipmentSensorCBRNI27.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNI27;
+            }
+            if (EntityEquipmentSensorCBRNI28.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNI28;
+            }
             if (EntityEquipmentSensorCBRNLCD.IsTypeOf(classHandle))
             {
                 return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNLCD;
             }
+            if (EntityEquipmentSensorCBRNRAID.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNRAID;
+            }
+            if (EntityEquipmentSensorCBRNRapid.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNRapid;
+            }
+            if (CBRNI27Control.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.CBRNI27Control;
+            }
+            if (CBRNI28Control.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.CBRNI28Control;
+            }
             if (CBRNLCDControl.IsTypeOf(classHandle))
             {
                 return CBRNSensorsEntityTypes.CBRNLCDControl;
+            }
+            if (CBRNRAIDControl.IsTypeOf(classHandle))
+            {
+                return CBRNSensorsEntityTypes.CBRNRAIDControl;
             }
             return CBRNSensorsEntityTypes.Unknown;
         }
