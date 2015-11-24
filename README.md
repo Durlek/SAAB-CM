@@ -44,7 +44,7 @@ Statuskod: 200, 404 (om sensorn inte finns)
 Inte hanterade i nuläget, skall fixas i veckan.
 
 #### Test av uppkoppling
-GET /check
+GET /check  
 Respons body: 123 (lite overkill kanske, men men)
 
 **OBS! Pga WCF krävs att adresserna är *exakta*. Så om man lägger till ett extra '/' på slutet funkar det ej.**
