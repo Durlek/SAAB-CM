@@ -3,14 +3,20 @@ var request = require('request').defaults({baseUrl: 'http://localhost:8732/'});
 var http    = require('http');
 
 const EXAMPLE_LCD = {
-    Data: []
+    Data: [
+        {
+            BarCount: 5
+        ,   VolumeConcentration: 20
+        ,   SubstanceIndex: 0
+        }
+    ]
 ,   Description: "foobar"
 ,   DetectionMode: 0
 ,   Id: ""
 ,   Name: ""
 ,   Position: null
 ,   State: {
-        AudioFault:             false
+        AudioFault:             true
     ,   CRAboveLimit:           false
     ,   ChangeBattery:          false
     ,   ChangeSievePack:        false
@@ -25,24 +31,35 @@ const EXAMPLE_LCD = {
     ,   HAlert:                 false
     ,   HHighDoseAlert:         false
     ,   HTOutSideLimits:        false
-    ,   HealthCheckFailur:      false
+    ,   HealthCheckFailure:      false
     ,   InitialSelfTest:        false
-    ,   InitialSeltTestFailed:  false
+    ,   InitialSelfTestFailure:  false
     ,   LowBattery:             false
     ,   LowSieve:               false
     ,   PTOutOfRange:           false
-    ,   TicAlert:               false
-    ,   TicMode:                false
+    ,   TICAlert:               false
+    ,   TICMode:                false
     }
 }
 
 const EXAMPLE_AP2CE = {
-    Data: null
+    Data: [
+        {
+            BarCount: 5
+        ,   VolumeConcentration: 20
+        }
+    ]
 ,   Description: "foobar"
 ,   Id: ""
 ,   Name: ""
 ,   Position: null
-,   State: null
+,   State: {
+        BatteryLow: false
+    ,   DetectorReady: false
+    ,   DeviceFault: false
+    ,   HydrogenTankEmpty: false
+    ,   Purge: true
+    }
 }
 
 const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE};
@@ -67,13 +84,14 @@ SENSORS.forEach(function (sensor) {
                 request({
                     url: 'sensors/' + sensor
                 ,   method: 'POST'
-                ,   body: {}
+                ,   body: EXAMPLES[sensor]
                 ,   json: true
                 }, function(err, res, body) {
-                    if (err) throw err;
-                    ok(res.headers.location, 'Location header should exist');
-                    ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
-                    done();
+
+                if (err) throw err;
+                ok(res.headers.location, 'Location header should exist');
+                ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
+                done();
                 });
             });
         });
@@ -86,19 +104,21 @@ SENSORS.forEach(function (sensor) {
                 ,   body: EXAMPLES[sensor]
                 ,   json: true
                 }, function (err, res, body) {
-                    if (err) throw err;
-                    
-                    request({
-                        url: 'sensors/' + sensor + '/' + res.headers.location
-                    ,   method: 'GET'
-                    ,   json: true
-                    }, function (err, res, body) {
-                        if (err) throw err;
-                        ok(/^[0-9a-z\-_]+$/.test(body.Id), 'Wrong id format');
-                        body.Id = ""; // Can't test exact id
-                        deepEq(body, EXAMPLES[sensor]);
-                        done();
-                    });
+                
+                if (err) throw err;
+                request({
+                    url: 'sensors/' + sensor + '/' + res.headers.location
+                ,   method: 'GET'
+                ,   json: true
+                }, function (err, res, body) {
+               
+                if (err) throw err;
+                ok(/^[0-9a-z\-_]+$/.test(body.Id), 'Wrong id format');
+                body.Id = ""; // Can't test exact id
+                deepEq(body, EXAMPLES[sensor]);
+                done();
+               
+                });
                 });
             })
         });
@@ -110,21 +130,21 @@ SENSORS.forEach(function (sensor) {
                 ,   method: 'POST'
                 ,   body: EXAMPLES[sensor]
                 ,   json: true
-                }, function (err, res, body) {
+                }, function(err, res, body) {
                 
                 if (err) throw err;
                 ok(res.headers.location, 'Location header should exist');
                 request({
                     url: 'sensors/' + sensor + '/' + res.headers.location
                 ,   method: 'DELETE'
-                }, function (err, res, body) {
+                }, function(err, res, body) {
                 
                 if (err) throw err;
                 request({
                     url: 'sensors/' + sensor + '/' + res.headers.location
                 ,   method: 'GET'
                 ,   json: true
-                }, function (err, res, body) {
+                }, function(err, res, body) {
 
                 if (err) throw err;
                 eq(res.statusCode, 404, '[Get] should return 404 when deleted')
@@ -134,6 +154,21 @@ SENSORS.forEach(function (sensor) {
                 });
                 });
             });
+        });
+    });
+});
+
+describe('Connection test', function() {
+    it('should return magic number', function(done) {
+        request({
+            url: 'check'
+        ,   method: 'GET'
+        }, function(err, res, body) {
+
+        if (err) throw err;
+        eq(body, '123');
+        done();
+
         });
     });
 });

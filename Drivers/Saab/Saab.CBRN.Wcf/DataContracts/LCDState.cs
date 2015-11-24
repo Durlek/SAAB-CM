@@ -10,8 +10,8 @@ namespace Saab.CBRN.Wcf.DataContracts
     {
         private bool _gAlert;
         private bool _hAlert;
-        private bool _ticAlert;
-        private bool _ticMode;
+        private bool _tICAlert;
+        private bool _tICMode;
         private bool _lowSieve;
         private bool _changeSievePack;
         private bool _lowBattery;
@@ -26,8 +26,8 @@ namespace Saab.CBRN.Wcf.DataContracts
         private bool _fatalError;
         private bool _cRAboveLimit;
         private bool _fanCAboveLimit;
-        private bool _initialSelfTestFailed;
-        private bool _healthCheckFailur;
+        private bool _initialSelfTestFailure;
+        private bool _healthCheckFailure;
         private bool _codeChecksumError;
         private bool _eEPROMChecksumError;
         private bool _hTOutSideLimits;
@@ -47,17 +47,17 @@ namespace Saab.CBRN.Wcf.DataContracts
         }
 
         [DataMember]
-        public bool TicAlert
+        public bool TICAlert
         {
-            get { return _ticAlert; }
-            set { _ticAlert = value; }
+            get { return _tICAlert; }
+            set { _tICAlert = value; }
         }
 
         [DataMember]
-        public bool TicMode
+        public bool TICMode
         {
-            get { return _ticMode; }
-            set { _ticMode = value; }
+            get { return _tICMode; }
+            set { _tICMode = value; }
         }
 
         [DataMember]
@@ -159,17 +159,17 @@ namespace Saab.CBRN.Wcf.DataContracts
         }
 
         [DataMember]
-        public bool InitialSeltTestFailed
+        public bool InitialSelfTestFailure
         {
-            get { return _initialSelfTestFailed; }
-            set { _initialSelfTestFailed = value; }
+            get { return _initialSelfTestFailure; }
+            set { _initialSelfTestFailure = value; }
         }
 
         [DataMember]
-        public bool HealthCheckFailur
+        public bool HealthCheckFailure
         {
-            get { return _healthCheckFailur; }
-            set { _healthCheckFailur = value; }
+            get { return _healthCheckFailure; }
+            set { _healthCheckFailure = value; }
         }
 
         [DataMember]

@@ -65,7 +65,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generated\**\*.cs" />
+    <Compile Include="Generated\BiDirectionalIndex.cs" />
+    <Compile Include="Generated\CBRNSensorsCommon.cs" />
+    <Compile Include="Generated\Composites\AircraftConflict.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorAP2CeData.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorAP2CeState.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorI27Data.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorI27State.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorI28Data.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorI28State.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorLCDData.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorLCDState.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorRAIDData.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorRAIDState.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorRapidData.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorRapidState.cs" />
+    <Compile Include="Generated\Composites\CBRNSensorRawData.cs" />
+    <Compile Include="Generated\Composites\LayerDependentGroup.cs" />
+    <Compile Include="Generated\Enumerations.cs" />
+    <Compile Include="Generated\Events\CBRN.I27Control.cs" />
+    <Compile Include="Generated\Events\CBRN.I28Control.cs" />
+    <Compile Include="Generated\Events\CBRN.LCDControl.cs" />
+    <Compile Include="Generated\Events\CBRN.RAIDControl.cs" />
+    <Compile Include="Generated\Objects\Entity.GroundVehicle.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.AP2Ce.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.I27.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.I28.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.LCD.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.RAID.cs" />
+    <Compile Include="Generated\Objects\EntityEquipment.Sensor.CBRN.Rapid.cs" />
+    <Compile Include="Generated\WISEObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

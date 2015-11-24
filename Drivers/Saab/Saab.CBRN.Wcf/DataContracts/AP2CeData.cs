@@ -8,11 +8,11 @@ namespace Saab.CBRN.Wcf.DataContracts
 {
     public class AP2CeData
     {
-        private int _barCount;
+        private byte _barCount;
         private double _volumeConcentration;
 
         [DataMember]
-        public int BarCount
+        public byte BarCount
         {
             get { return _barCount; }
             set { _barCount = value; }

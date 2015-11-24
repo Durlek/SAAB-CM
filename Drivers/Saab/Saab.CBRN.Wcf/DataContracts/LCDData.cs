@@ -8,14 +8,15 @@ namespace Saab.CBRN.Wcf.DataContracts
 {
     public class LCDData
     {
-        private int _barCount;
+        private byte _barCount;
         private int _substanceIndex;
+        private double _volumeConcentration;
 
         /// <summary>
         /// 0-6 bars.
         /// </summary>
         [DataMember]
-        public int BarCount
+        public byte BarCount
         {
             get { return _barCount; }
             set { _barCount = value; }
@@ -30,6 +31,13 @@ namespace Saab.CBRN.Wcf.DataContracts
         {
             get { return _substanceIndex; }
             set { _substanceIndex = value; }
+        }
+
+        [DataMember]
+        public double VolumeConcentration
+        {
+            get { return _volumeConcentration; }
+            set { _volumeConcentration = value; }
         }
     }
 }

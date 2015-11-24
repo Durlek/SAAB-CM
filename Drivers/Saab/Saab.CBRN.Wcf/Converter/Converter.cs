@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using STS.WISE;
 
 // TODO: lots of duplicated code
 
@@ -17,77 +18,127 @@ namespace Saab.CBRN.Wcf
         internal static LCD Convert(EntityEquipmentSensorCBRNLCD input)
         {
             LCD output = new LCD();
+
             output.Id = input.ExternalId;
             output.Name = input.Name;
             output.Description = input.Description;
             output.Position = null; // TODO: Get from parent (input.Parent)
-            output.Data = Convert(input.SensorData);
-            output.DetectionMode = (LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString());
+            output.Data = ConvertLCDData(input.SensorData, input.WISE);
             output.State = Convert(input.SensorState);
+            output.DetectionMode = (LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString());
 
             return output;
         }
 
         internal static void Convert(LCD input, ref EntityEquipmentSensorCBRNLCD output)
         {
-            output.ExternalId = input.Id;
-            output.Name = input.Name;
+            output.ExternalId  = input.Id;
+            output.Name        = input.Name;
             output.Description = input.Description;
-            output.SensorData = Convert(input.Data);
+            output.SensorData  = ConvertLCDData(input.Data, output.WISE);
+            output.SensorState = Convert(input.State, output.SensorState);
         }
 
         private static LCDState Convert(CBRNSensorLCDState wstate)
         {
             LCDState state = new LCDState();
 
-            // TODO: In the example code, `state` uses booleans and `wstate` uses bytes. 
-            //       I have no idea if this is intentional, and since we don't have any real data
-            //       it's hard to know what the bytes represent (are they really only bools in disguise?)
-            //       I'm 30% sure that bools don't exist in wise, so it seems likely.
-            state.GAlert = wstate.GAlertValue == 0 ? false : true;
-            state.HAlert = wstate.HAlertValue == 0 ? false : true;
-            state.TicAlert = wstate.TICAlertValue == 0 ? false : true;
-            state.TicMode = wstate.TICModeValue == 0 ? false : true;
-            state.LowSieve = wstate.LowSieveValue == 0 ? false : true;
-            state.ChangeSievePack = wstate.ChangeSievePackValue == 0 ? false : true;
-            state.LowBattery = wstate.LowBatteryValue == 0 ? false : true;
-            state.ChangeBattery = wstate.ChangeBatteryValue == 0 ? false : true;
-            state.GHighDoseAlert = wstate.GHighDoseAlertValue == 0 ? false : true;
-            state.GMediumDoseAlert = wstate.GMediumDoseAlertValue == 0 ? false : true;
-            state.HHighDoseAlert = wstate.HHighDoseAlertValue == 0 ? false : true;
-            state.InitialSelfTest = wstate.InitialSelfTestValue == 0 ? false : true;
-            state.CoronaBurnOff = wstate.CoronaBurnOffValue == 0 ? false : true;
-            state.PTOutOfRange = wstate.PTOutOfRangeValue == 0 ? false : true;
-            state.AudioFault = wstate.AudioFaultValue == 0 ? false : true;
-            state.FatalError = wstate.FatalErrorValue == 0 ? false : true;
-            state.CRAboveLimit = wstate.CRAboveLimitValue == 0 ? false : true;
-            state.FanCAboveLimit = wstate.FanCAboveLimitValue == 0 ? false : true;
-            state.InitialSeltTestFailed = wstate.InitialSelfTestFailureValue == 0 ? false : true;
-            state.HealthCheckFailur = wstate.HealthCheckFailureValue == 0 ? false : true;
-            state.CodeChecksumError = wstate.CodeChecksumErrorValue == 0 ? false : true;
-            state.EEPROMChecksumError = wstate.EEPROMChecksumErrorValue == 0 ? false : true;
-            state.HTOutSideLimits = wstate.HTOutSideLimitsValue == 0 ? false : true;
+            state.GAlert                 = wstate.GAlertValue                 == 1;
+            state.HAlert                 = wstate.HAlertValue                 == 1;
+            state.TICAlert               = wstate.TICAlertValue               == 1;
+            state.TICMode                = wstate.TICModeValue                == 1;
+            state.LowSieve               = wstate.LowSieveValue               == 1;
+            state.ChangeSievePack        = wstate.ChangeSievePackValue        == 1;
+            state.LowBattery             = wstate.LowBatteryValue             == 1;
+            state.ChangeBattery          = wstate.ChangeBatteryValue          == 1;
+            state.GHighDoseAlert         = wstate.GHighDoseAlertValue         == 1;
+            state.GMediumDoseAlert       = wstate.GMediumDoseAlertValue       == 1;
+            state.HHighDoseAlert         = wstate.HHighDoseAlertValue         == 1;
+            state.InitialSelfTest        = wstate.InitialSelfTestValue        == 1;
+            state.CoronaBurnOff          = wstate.CoronaBurnOffValue          == 1;
+            state.PTOutOfRange           = wstate.PTOutOfRangeValue           == 1;
+            state.AudioFault             = wstate.AudioFaultValue             == 1;
+            state.FatalError             = wstate.FatalErrorValue             == 1;
+            state.CRAboveLimit           = wstate.CRAboveLimitValue           == 1;
+            state.FanCAboveLimit         = wstate.FanCAboveLimitValue         == 1;
+            state.InitialSelfTestFailure = wstate.InitialSelfTestFailureValue == 1;
+            state.HealthCheckFailure     = wstate.HealthCheckFailureValue     == 1;
+            state.CodeChecksumError      = wstate.CodeChecksumErrorValue      == 1;
+            state.EEPROMChecksumError    = wstate.EEPROMChecksumErrorValue    == 1;
+            state.HTOutSideLimits        = wstate.HTOutSideLimitsValue        == 1;
 
 
             return state;
         }
 
-        private static IEnumerable<LCDData> Convert(STS.WISE.GroupList groupList)
+        // You might be surprised by this wonky function. Why not take the `wstate` as a ref for example?
+        //
+        // Well, thats actually impossible.
+        //
+        // w.SensorState evokes a getter that fetches the attributes from the WISE-API and wrapps them in a (new) state object.
+        // This means that you are just modifying a temporary object when you do seemingly normal things
+        // like w.SensorState.PurgeValue = 1. Instead, you need to save the created state object, make your changes,
+        // then evoke the setter of w.SensorState (eg w.SensorState = wstate).
+        //
+        // Yes, this is actually how it works. No, this is not documented (none of the generated files are, you need to read them to use them).
+        private static CBRNSensorLCDState Convert(LCDState state, CBRNSensorLCDState wstate)
         {
-            //
-            // TODO: Convert
-            //
+            wstate.GAlertValue                 = (byte)(state.GAlert                 ? 1 : 0);
+            wstate.HAlertValue                 = (byte)(state.HAlert                 ? 1 : 0);
+            wstate.TICAlertValue               = (byte)(state.TICAlert               ? 1 : 0);
+            wstate.TICModeValue                = (byte)(state.TICMode                ? 1 : 0);
+            wstate.LowSieveValue               = (byte)(state.LowSieve               ? 1 : 0);
+            wstate.ChangeSievePackValue        = (byte)(state.ChangeSievePack        ? 1 : 0);
+            wstate.LowBatteryValue             = (byte)(state.LowBattery             ? 1 : 0);
+            wstate.ChangeBatteryValue          = (byte)(state.ChangeBattery          ? 1 : 0);
+            wstate.GHighDoseAlertValue         = (byte)(state.GHighDoseAlert         ? 1 : 0);
+            wstate.GMediumDoseAlertValue       = (byte)(state.GMediumDoseAlert       ? 1 : 0);
+            wstate.HHighDoseAlertValue         = (byte)(state.HHighDoseAlert         ? 1 : 0);
+            wstate.InitialSelfTestValue        = (byte)(state.InitialSelfTest        ? 1 : 0);
+            wstate.CoronaBurnOffValue          = (byte)(state.CoronaBurnOff          ? 1 : 0);
+            wstate.PTOutOfRangeValue           = (byte)(state.PTOutOfRange           ? 1 : 0);
+            wstate.AudioFaultValue             = (byte)(state.AudioFault             ? 1 : 0);
+            wstate.FatalErrorValue             = (byte)(state.FatalError             ? 1 : 0);
+            wstate.CRAboveLimitValue           = (byte)(state.CRAboveLimit           ? 1 : 0);
+            wstate.FanCAboveLimitValue         = (byte)(state.FanCAboveLimit         ? 1 : 0);
+            wstate.InitialSelfTestFailureValue = (byte)(state.InitialSelfTestFailure ? 1 : 0);
+            wstate.HealthCheckFailureValue     = (byte)(state.HealthCheckFailure     ? 1 : 0);
+            wstate.CodeChecksumErrorValue      = (byte)(state.CodeChecksumError      ? 1 : 0);
+            wstate.EEPROMChecksumErrorValue    = (byte)(state.EEPROMChecksumError    ? 1 : 0);
+            wstate.HTOutSideLimitsValue        = (byte)(state.HTOutSideLimits        ? 1 : 0);
 
-            return new List<LCDData>(3);
+            return wstate;
         }
 
-        private static STS.WISE.GroupList Convert(IEnumerable<LCDData> data)
+        private static IEnumerable<LCDData> ConvertLCDData(GroupList wDataList, INETWISEDriverSink2 sink)
         {
-            //
-            // TODO: Convert
-            //
+            List<LCDData> dataList = new List<LCDData>();
 
-            return new STS.WISE.GroupList();
+            foreach (AttributeGroup attrGroup in wDataList)
+            {
+                CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", sink as INETWISEStringCache, attrGroup);
+                LCDData data = new LCDData();
+                data.BarCount = wdata.BarCountValue;
+                data.VolumeConcentration = wdata.VolumeConcentrationValue;
+                dataList.Add(data);
+            }
+
+            return dataList;
+        }
+
+        private static GroupList ConvertLCDData(IEnumerable<LCDData> dataList, INETWISEDriverSink2 sink)
+        {
+            GroupList wDataList = new GroupList();
+
+            foreach (LCDData data in dataList)
+            {
+                CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", sink as INETWISEStringCache, new AttributeGroup());
+                wdata.BarCountValue = data.BarCount;
+                wdata.VolumeConcentrationValue = data.VolumeConcentration;
+                wDataList.Add(wdata.Data);
+            }
+
+            return wDataList;
         }
 
         #endregion
@@ -97,13 +148,12 @@ namespace Saab.CBRN.Wcf
         internal static AP2Ce Convert(EntityEquipmentSensorCBRNAP2Ce input)
         {
             AP2Ce output = new AP2Ce();
-            output.Id = input.ExternalId;
-            output.Name = input.Name;
+            output.Id          = input.ExternalId;
+            output.Name        = input.Name;
             output.Description = input.Description;
-            output.Position = null; // TODO: Get from parent (input.Parent)
-            //output.Data = Convert(input.SensorData);
-            //output.DetectionMode = (LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString());
-            //output.State = Convert(input.SensorState);
+            output.Position    = null; // TODO: Get from parent (input.Parent)
+            output.Data        = ConvertAP2CeData(input.SensorData, input.WISE);
+            output.State       = Convert(input.SensorState);
 
             return output;
         }
@@ -113,7 +163,61 @@ namespace Saab.CBRN.Wcf
             output.ExternalId  = input.Id;
             output.Name        = input.Name;
             output.Description = input.Description;
-            //output.SensorData = Convert(input.Data);
+            output.SensorState = Convert(input.State, output.SensorState);
+            output.SensorData = ConvertAP2CeData(input.Data, output.WISE);
+        }
+
+        internal static AP2CeState Convert(CBRNSensorAP2CeState wstate)
+        {
+            AP2CeState state = new AP2CeState();
+
+            state.BatteryLow        = wstate.BatteryLowValue        == 1;
+            state.DetectorReady     = wstate.DetectorReadyValue     == 1;
+            state.DeviceFault       = wstate.DeviceFaultValue       == 1;
+            state.HydrogenTankEmpty = wstate.HydrogenTankEmptyValue == 1;
+            state.Purge             = wstate.PurgeValue             == 1;
+
+            return state;
+        }
+
+        internal static CBRNSensorAP2CeState Convert(AP2CeState state, CBRNSensorAP2CeState wstate)
+        {
+            wstate.PurgeValue             = (byte)(state.Purge             ? 1 : 0);
+            wstate.BatteryLowValue        = (byte)(state.BatteryLow        ? 1 : 0);
+            wstate.DetectorReadyValue     = (byte)(state.DetectorReady     ? 1 : 0);
+            wstate.HydrogenTankEmptyValue = (byte)(state.HydrogenTankEmpty ? 1 : 0);
+            wstate.DeviceFaultValue       = (byte)(state.DeviceFault       ? 1 : 0);
+            return wstate;
+        }
+
+        private static IEnumerable<AP2CeData> ConvertAP2CeData(STS.WISE.GroupList wDataList, INETWISEDriverSink2 sink)
+        {
+            List<AP2CeData> dataList = new List<AP2CeData>();
+
+            foreach (AttributeGroup attrGroup in wDataList)
+            {
+                CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", sink as INETWISEStringCache, attrGroup);
+                AP2CeData data = new AP2CeData();
+                data.BarCount = wdata.BarCountValue;
+                data.VolumeConcentration = wdata.VolumeConcentrationValue;
+                dataList.Add(data);
+            }
+
+            return dataList;
+        }
+
+        private static GroupList ConvertAP2CeData(IEnumerable<AP2CeData> dataList, INETWISEDriverSink2 sink)
+        {
+            GroupList wDataList = new GroupList();
+
+            foreach (AP2CeData data in dataList) {
+                CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", sink as INETWISEStringCache, new AttributeGroup());
+                wdata.BarCountValue            = data.BarCount;
+                wdata.VolumeConcentrationValue = data.VolumeConcentration;
+                wDataList.Add(wdata.Data);
+            }
+
+            return wDataList;
         }
 
         #endregion

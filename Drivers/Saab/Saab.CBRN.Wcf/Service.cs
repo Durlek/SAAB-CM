@@ -63,53 +63,43 @@ namespace Saab.CBRN.Wcf
 
         public void DeleteLCD(string id)
         {
-            WISE_RESULT result = WISEError.WISE_OK;
-
-            try
-            {
-                ObjectHandle hObject = WISEConstants.WISE_INVALID_HANDLE;
-
-                // Convert from external id => internal handle
-                result = _sink.GetObjectHandle(_hDatabase, id, ref hObject);
-                WISEError.CheckCallFailedEx(result); // Converts WISE error code => exception
-
-                // Remove from db
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
-                WISEError.CheckCallFailedEx(result);
-            }
-            catch (WISEException ex)
-            {
-                throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
-            }
+            Delete(id);
         }
 
         #endregion
 
         #region AP2Ce
 
+        // TODO: handle incomplete JSON input better (currently throwing)
         public void CreateAP2Ce(AP2Ce ap2ce)
         {
-            Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce w, string objectName)
+            Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce wObj, string objectName)
             {
                 ap2ce.Id = objectName;
-                Converter.Convert(ap2ce, ref w);
-                return w;
+                Converter.Convert(ap2ce, ref wObj);
+                return wObj;
             });
         }
-
-        public void DeleteAP2Ce(string id)  {}
-        public void UpdateAP2Ce(AP2Ce ap2ce) {}
 
         public AP2Ce GetAP2CeById(string id)
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
-            return Converter.Convert(wap2ce);
+
+            AP2Ce obj = Converter.Convert(wap2ce);
+            return obj;
+        }
+
+        public void UpdateAP2Ce(AP2Ce ap2ce) {}
+
+        public void DeleteAP2Ce(string id)
+        {
+            Delete(id);
         }
 
         #endregion
 
-        #region helpers
+        #region generic methods
         
         private ObjectHandle GetHandleFromId(string id)
         {
@@ -127,7 +117,7 @@ namespace Saab.CBRN.Wcf
             return hObject;
         }
         
-        private void Create<T>(Func<T, string, T> convert) where T : WISEObject, new() {
+        private void Create<T>(Func<T, string, T> loadDataInto) where T : WISEObject, new() {
 
             WISE_RESULT result = WISEError.WISE_OK;
             try
@@ -137,7 +127,7 @@ namespace Saab.CBRN.Wcf
                 result = wiseObj.CreateInstance(_sink, _hDatabase, objectName);
                 WISEError.CheckCallFailedEx(result);
 
-                wiseObj = convert(wiseObj, objectName);
+                wiseObj = loadDataInto(wiseObj, objectName);
 
                 result = wiseObj.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
@@ -149,6 +139,28 @@ namespace Saab.CBRN.Wcf
             catch (WISEException ex)
             {
                 throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
+            }
+        }
+
+        public void Delete(string id)
+        {
+            WISE_RESULT result = WISEError.WISE_OK;
+
+            try
+            {
+                ObjectHandle hObject = WISEConstants.WISE_INVALID_HANDLE;
+
+                // Convert from external id => internal handle
+                result = _sink.GetObjectHandle(_hDatabase, id, ref hObject);
+                WISEError.CheckCallFailedEx(result); // Converts WISE error code => exception
+
+                // Remove from db
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
+                WISEError.CheckCallFailedEx(result);
+            }
+            catch (WISEException ex)
+            {
+                throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
             }
         }
 
