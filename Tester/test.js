@@ -1,5 +1,6 @@
 var assert  = require('assert');
 var request = require('request').defaults({baseUrl: 'http://localhost:8732/'});
+var http    = require('http');
 
 const EXAMPLE_LCD = {
     Data: []
@@ -70,6 +71,7 @@ SENSORS.forEach(function (sensor) {
                 ,   json: true
                 }, function(err, res, body) {
                     if (err) throw err;
+                    ok(res.headers.location, 'Location header should exist');
                     ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
                     done();
                 });
@@ -111,6 +113,7 @@ SENSORS.forEach(function (sensor) {
                 }, function (err, res, body) {
                 
                 if (err) throw err;
+                ok(res.headers.location, 'Location header should exist');
                 request({
                     url: 'sensors/' + sensor + '/' + res.headers.location
                 ,   method: 'DELETE'
