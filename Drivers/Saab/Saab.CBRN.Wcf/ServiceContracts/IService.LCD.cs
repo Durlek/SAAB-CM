@@ -19,8 +19,8 @@ namespace Saab.CBRN.Wcf.ServiceContracts
         LCD GetLCDById(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "sensors/lcd", ResponseFormat = WebMessageFormat.Json)]
-        void UpdateLCD(LCD lcd);
+        [WebInvoke(Method = "PUT", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]
+        void UpdateLCD(string id, LCD lcd);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]

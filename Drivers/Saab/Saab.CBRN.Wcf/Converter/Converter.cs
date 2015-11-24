@@ -12,7 +12,6 @@ namespace Saab.CBRN.Wcf
 {
     public class Converter
     {
-
         #region LCD
 
         internal static LCD Convert(EntityEquipmentSensorCBRNLCD input)
@@ -67,7 +66,6 @@ namespace Saab.CBRN.Wcf
             state.EEPROMChecksumError    = wstate.EEPROMChecksumErrorValue    == 1;
             state.HTOutSideLimits        = wstate.HTOutSideLimitsValue        == 1;
 
-
             return state;
         }
 
@@ -112,33 +110,25 @@ namespace Saab.CBRN.Wcf
 
         private static IEnumerable<LCDData> ConvertLCDData(GroupList wDataList, INETWISEDriverSink2 sink)
         {
-            List<LCDData> dataList = new List<LCDData>();
-
-            foreach (AttributeGroup attrGroup in wDataList)
+            return Convert<LCDData>(wDataList, delegate(AttributeGroup attrGroup)
             {
                 CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", sink as INETWISEStringCache, attrGroup);
                 LCDData data = new LCDData();
                 data.BarCount = wdata.BarCountValue;
                 data.VolumeConcentration = wdata.VolumeConcentrationValue;
-                dataList.Add(data);
-            }
-
-            return dataList;
+                return data;
+            });
         }
 
         private static GroupList ConvertLCDData(IEnumerable<LCDData> dataList, INETWISEDriverSink2 sink)
         {
-            GroupList wDataList = new GroupList();
-
-            foreach (LCDData data in dataList)
+            return Convert<LCDData>(dataList, delegate(LCDData data)
             {
                 CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", sink as INETWISEStringCache, new AttributeGroup());
                 wdata.BarCountValue = data.BarCount;
                 wdata.VolumeConcentrationValue = data.VolumeConcentration;
-                wDataList.Add(wdata.Data);
-            }
-
-            return wDataList;
+                return wdata.Data;
+            });
         }
 
         #endregion
@@ -164,7 +154,7 @@ namespace Saab.CBRN.Wcf
             output.Name        = input.Name;
             output.Description = input.Description;
             output.SensorState = Convert(input.State, output.SensorState);
-            output.SensorData = ConvertAP2CeData(input.Data, output.WISE);
+            output.SensorData  = ConvertAP2CeData(input.Data, output.WISE);
         }
 
         internal static AP2CeState Convert(CBRNSensorAP2CeState wstate)
@@ -190,34 +180,45 @@ namespace Saab.CBRN.Wcf
             return wstate;
         }
 
-        private static IEnumerable<AP2CeData> ConvertAP2CeData(STS.WISE.GroupList wDataList, INETWISEDriverSink2 sink)
+        private static IEnumerable<AP2CeData> ConvertAP2CeData(GroupList wDataList, INETWISEDriverSink2 sink)
         {
-            List<AP2CeData> dataList = new List<AP2CeData>();
-
-            foreach (AttributeGroup attrGroup in wDataList)
+            return Convert<AP2CeData>(wDataList, delegate(AttributeGroup attrGroup)
             {
                 CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", sink as INETWISEStringCache, attrGroup);
                 AP2CeData data = new AP2CeData();
                 data.BarCount = wdata.BarCountValue;
                 data.VolumeConcentration = wdata.VolumeConcentrationValue;
-                dataList.Add(data);
-            }
-
-            return dataList;
+                return data;
+            });
         }
 
         private static GroupList ConvertAP2CeData(IEnumerable<AP2CeData> dataList, INETWISEDriverSink2 sink)
         {
-            GroupList wDataList = new GroupList();
-
-            foreach (AP2CeData data in dataList) {
+            return Convert<AP2CeData>(dataList, delegate(AP2CeData data)
+            {
                 CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", sink as INETWISEStringCache, new AttributeGroup());
-                wdata.BarCountValue            = data.BarCount;
+                wdata.BarCountValue = data.BarCount;
                 wdata.VolumeConcentrationValue = data.VolumeConcentration;
-                wDataList.Add(wdata.Data);
-            }
+                return wdata.Data;
+            });
+        }
 
+        #endregion
+
+        #region generic helpers
+
+        private static GroupList Convert<DataContract>(IEnumerable<DataContract> dataList, Func<DataContract, AttributeGroup> loadDataInto)
+        {
+            GroupList wDataList = new GroupList();
+            foreach (DataContract data in dataList) wDataList.Add(loadDataInto(data));
             return wDataList;
+        }
+
+        private static IEnumerable<DataContract> Convert<DataContract>(GroupList wDataList, Func<AttributeGroup, DataContract> loadDataInto)
+        {
+            List<DataContract> dataList = new List<DataContract>();
+            foreach (AttributeGroup attrGroup in wDataList) dataList.Add(loadDataInto(attrGroup));
+            return dataList;
         }
 
         #endregion

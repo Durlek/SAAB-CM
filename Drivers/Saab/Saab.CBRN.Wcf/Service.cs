@@ -41,11 +41,11 @@ namespace Saab.CBRN.Wcf
 
         public void CreateLCD(LCD lcd)
         {
-            Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD w, string objectName)
+            Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, string objectName)
             {
                 lcd.Id = objectName;
-                Converter.Convert(lcd, ref w);
-                return w;
+                Converter.Convert(lcd, ref wlcd);
+                return wlcd;
             });
         }
 
@@ -56,9 +56,11 @@ namespace Saab.CBRN.Wcf
             return Converter.Convert(wlcd);
         }
 
-        public void UpdateLCD(LCD lcd)
+        public void UpdateLCD(string id, LCD lcd)
         {
-            throw new NotImplementedException();
+            ObjectHandle hObject = GetHandleFromId(id);
+            EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
+            Converter.Convert(lcd, ref wlcd);
         }
 
         public void DeleteLCD(string id)
@@ -85,12 +87,15 @@ namespace Saab.CBRN.Wcf
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
-
-            AP2Ce obj = Converter.Convert(wap2ce);
-            return obj;
+            return Converter.Convert(wap2ce);
         }
 
-        public void UpdateAP2Ce(AP2Ce ap2ce) {}
+        public void UpdateAP2Ce(string id, AP2Ce ap2ce)
+        {
+            ObjectHandle hObject = GetHandleFromId(id);
+            EntityEquipmentSensorCBRNAP2Ce wlcd = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+            Converter.Convert(ap2ce, ref wlcd);
+        }
 
         public void DeleteAP2Ce(string id)
         {

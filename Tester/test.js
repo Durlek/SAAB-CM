@@ -31,9 +31,9 @@ const EXAMPLE_LCD = {
     ,   HAlert:                 false
     ,   HHighDoseAlert:         false
     ,   HTOutSideLimits:        false
-    ,   HealthCheckFailure:      false
+    ,   HealthCheckFailure:     false
     ,   InitialSelfTest:        false
-    ,   InitialSelfTestFailure:  false
+    ,   InitialSelfTestFailure: false
     ,   LowBattery:             false
     ,   LowSieve:               false
     ,   PTOutOfRange:           false
@@ -121,6 +121,49 @@ SENSORS.forEach(function (sensor) {
                 });
                 });
             })
+        });
+
+        describe('#Update', function() {
+            it('should update attribute', function(done) {
+                request({
+                    url: 'sensors/' + sensor
+                ,   method: 'POST'
+                ,   body: EXAMPLES[sensor]
+                ,   json: true
+                }, function (err, res, body) {
+
+                if (err) throw err;
+                var id = res.headers.location;
+                // dirty copy, 
+                // works since we only are working with json object anyway
+                var sensorObject = JSON.parse(JSON.stringify(EXAMPLES[sensor]));
+                sensorObject.Description = "foobaz";
+                sensorObject.Data[0].BarCount = 1;
+
+                request({
+                    url: 'sensors/' + sensor + '/' + id
+                ,   method: 'PUT'
+                ,   body: sensorObject
+                ,   json: true
+                }, function (err, res, body) {
+
+                eq(res.statusCode, 200);
+
+                if (err) throw err;
+                request({
+                    url: 'sensors/' + sensor + '/' + id
+                ,   method: 'GET'
+                ,   json: true
+                }, function (err, res, body) {
+
+                eq(body.Description, sensorObject.Description);
+                eq(sensorObject.Data[0].BarCount, 1);
+                done();
+
+                });
+                });
+                });
+            });
         });
 
         describe('#Delete', function() {
