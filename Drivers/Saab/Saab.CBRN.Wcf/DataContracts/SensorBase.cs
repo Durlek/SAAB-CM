@@ -13,7 +13,7 @@ namespace Saab.CBRN.Wcf.DataContracts
         private string _name;
         private string _description;
         private object _equipmentType;
-        private object _parent;
+        private uint _parent;
         private Position _position;
 
         [DataMember]
@@ -42,6 +42,13 @@ namespace Saab.CBRN.Wcf.DataContracts
         {
             get { return _position; }
             set { _position = value; }
+        }
+
+        [DataMember]
+        public uint Parent
+        {
+            get { return _parent; }
+            set { _parent = value; }
         }
     }
 }

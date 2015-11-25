@@ -12,9 +12,8 @@ const EXAMPLE_LCD = {
     ]
 ,   Description: "foobar"
 ,   DetectionMode: 0
-,   Id: ""
 ,   Name: ""
-,   Position: null
+,   Position: {Altitude: 0, Latitude: 1, Longitude: 2}
 ,   State: {
         AudioFault:             true
     ,   CRAboveLimit:           false
@@ -50,9 +49,8 @@ const EXAMPLE_AP2CE = {
         }
     ]
 ,   Description: "foobar"
-,   Id: ""
 ,   Name: ""
-,   Position: null
+,   Position: {Altitude: 3, Latitude: 4, Longitude: 5}
 ,   State: {
         BatteryLow: false
     ,   DetectorReady: false
@@ -114,7 +112,8 @@ SENSORS.forEach(function (sensor) {
                
                 if (err) throw err;
                 ok(/^[0-9a-z\-_]+$/.test(body.Id), 'Wrong id format');
-                body.Id = ""; // Can't test exact id
+                delete body.Id; // Can't test exact id
+                delete body.Parent; // Can't test parent id either
                 deepEq(body, EXAMPLES[sensor]);
                 done();
                
