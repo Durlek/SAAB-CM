@@ -1,5 +1,4 @@
 ﻿using Saab.CBRN.Wcf.DataContracts;
-using STS.WISE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +14,9 @@ namespace Saab.CBRN.Wcf.ServiceContracts
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "check", ResponseFormat = WebMessageFormat.Json)]
         int MagicNumber();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "sensors/event", ResponseFormat = WebMessageFormat.Json)]
+        void CreateEvent(Event e);
     }
 }

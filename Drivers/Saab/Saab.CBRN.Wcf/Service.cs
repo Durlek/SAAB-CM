@@ -32,10 +32,56 @@ namespace Saab.CBRN.Wcf
 
         #endregion // Constructors
 
+        #region checker & events
+
+        // This is used to verify that the user has given a correct url.
         public int MagicNumber()
         {
             return 123;
         }
+
+        // TODO: break out code to generic function, might have to modify code generator
+        public void CreateEvent(Event ewent)
+        {
+            switch (ewent.Sensor)
+            {
+                case "LCD":
+                    CBRNLCDControl wewent = new CBRNLCDControl();
+                    wewent.CreateInstance(_sink, _hDatabase);
+
+                    ObjectHandle hObject = ObjectHandle.Invalid;
+                    _sink.GetObjectHandle(_hDatabase, ewent.Id, ref hObject);
+                    if (hObject == ObjectHandle.Invalid)  throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
+                    wewent.ExternalId = hObject;
+
+                    // NOTE: I'm 90% sure this doesn't work. I think we need to keep track
+                    // ..... of the enable/disable values, so we can construct a correct binary value.
+                    switch (ewent.Command)
+                    {
+                        case "NVG enable":
+                            wewent.Command = 2048;
+                            break;
+                        case "NVG disable":
+                            wewent.Command = 0;
+                            break;
+                        case "Audible alarm disable":
+                            wewent.Command = 512;
+                            break;
+                        case "Audible alarm enable":
+                            wewent.Command = 0;
+                            break;
+                        //default:
+                        // TODO: return a good response code, 405 maybe?
+                    }
+
+                    wewent.SendEventToDatabase(_hDatabase);
+                    break;
+                default:
+                    throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
+            }
+        }
+
+        #endregion
 
         #region LCD
 
@@ -58,7 +104,7 @@ namespace Saab.CBRN.Wcf
             });
         }
 
-        // TODO: break out code
+        // TODO: break out code to generic function
         public LCD GetLCDById(string id)
         {
             ObjectHandle hObject = GetHandleFromId(id);

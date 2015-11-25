@@ -65,6 +65,7 @@
     <Compile Include="DataContracts\AP2Ce.cs" />
     <Compile Include="DataContracts\AP2CeData.cs" />
     <Compile Include="DataContracts\AP2CeState.cs" />
+    <Compile Include="DataContracts\Event.cs" />
     <Compile Include="DataContracts\LCD.cs" />
     <Compile Include="DataContracts\LCDData.cs" />
     <Compile Include="DataContracts\LCDDetectionMode.cs" />
