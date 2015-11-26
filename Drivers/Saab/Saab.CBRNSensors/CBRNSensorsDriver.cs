@@ -119,12 +119,12 @@ namespace Saab.CBRN.Sensors
 
                 if (webHttpBehavior != null)
                 {
-                    webHttpBehavior.AutomaticFormatSelectionEnabled = true;
+                    webHttpBehavior.AutomaticFormatSelectionEnabled = false;
                 }
                 else
                 {
                     WebHttpBehavior webBehavior = new WebHttpBehavior();
-                    webBehavior.AutomaticFormatSelectionEnabled = true;
+                    webBehavior.AutomaticFormatSelectionEnabled = false;
                     serviceEndpoint.Behaviors.Add(webBehavior);
                 }
 
