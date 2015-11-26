@@ -87,6 +87,10 @@ namespace Saab.CBRN.Wcf
 
         public void CreateLCD(LCD lcd)
         {
+            lcd = new LCD();
+            lcd.State = new LCDState();
+            lcd.Data = new List<LCDData>();
+            lcd.Position = new Position();
             Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, EntityGroundVehicle parent, string objectName)
             {
                 lcd.Id = objectName;
@@ -140,6 +144,10 @@ namespace Saab.CBRN.Wcf
         // TODO: handle incomplete JSON input better (currently throwing)
         public void CreateAP2Ce(AP2Ce ap2ce)
         {
+            ap2ce = new AP2Ce();
+            ap2ce.State = new AP2CeState();
+            ap2ce.Data = new List<AP2CeData>();
+            ap2ce.Position = new Position();
             Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, EntityGroundVehicle parent, string objectName)
             {
                 ap2ce.Id = objectName;
