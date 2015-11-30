@@ -85,22 +85,13 @@ namespace Saab.CBRN.Wcf
 
         #region LCD
 
-        public void CreateLCD(LCD lcd)
+        public void CreateLCD(Position p)
         {
-            lcd = new LCD();
-            lcd.State = new LCDState();
-            lcd.Data = new List<LCDData>();
-            lcd.Position = new Position();
+            
             Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, EntityGroundVehicle parent, string objectName)
             {
-                lcd.Id = objectName;
-                Converter.Convert(lcd, ref wlcd);
-                
-                Vec3 pos = new Vec3();
-                pos.V1 = lcd.Position.Altitude;
-                pos.V2 = lcd.Position.Latitude;
-                pos.V3 = lcd.Position.Longitude;
-                parent.Position = pos;
+                wlcd.ExternalId = objectName;
+                parent.Position = new Vec3(p.Altitude, p.Latitude, p.Longitude);
                 WISE_RESULT result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
                 wlcd.Parent = parent.Object;
@@ -125,11 +116,19 @@ namespace Saab.CBRN.Wcf
             return lcd;
         }
 
-        public void UpdateLCD(string id, LCD lcd)
+        
+        // Only updating of position is handled
+        public void UpdateLCD(string id, Position p)
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
-            Converter.Convert(lcd, ref wlcd);
+            ObjectHandle hParentObject = wlcd.Parent;
+            EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
+            Vec3 pos = parent.Position;
+            pos.V1 = p.Altitude;
+            pos.V2 = p.Latitude;
+            pos.V3 = p.Longitude;
+            parent.Position = pos;
         }
 
         public void DeleteLCD(string id)
@@ -141,23 +140,12 @@ namespace Saab.CBRN.Wcf
 
         #region AP2Ce
 
-        // TODO: handle incomplete JSON input better (currently throwing)
-        public void CreateAP2Ce(AP2Ce ap2ce)
+        public void CreateAP2Ce(Position p)
         {
-            ap2ce = new AP2Ce();
-            ap2ce.State = new AP2CeState();
-            ap2ce.Data = new List<AP2CeData>();
-            ap2ce.Position = new Position();
             Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, EntityGroundVehicle parent, string objectName)
             {
-                ap2ce.Id = objectName;
-                Converter.Convert(ap2ce, ref wap2ce);
-                
-                Vec3 pos = new Vec3();
-                pos.V1 = ap2ce.Position.Altitude;
-                pos.V2 = ap2ce.Position.Latitude;
-                pos.V3 = ap2ce.Position.Longitude;
-                parent.Position = pos;
+                wap2ce.ExternalId = objectName;
+                parent.Position = new Vec3(p.Altitude, p.Latitude, p.Longitude);
                 WISE_RESULT result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
                 wap2ce.Parent = parent.Object;
@@ -181,11 +169,17 @@ namespace Saab.CBRN.Wcf
             return ap2ce;
         }
 
-        public void UpdateAP2Ce(string id, AP2Ce ap2ce)
+        public void UpdateAP2Ce(string id, Position p)
         {
             ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNAP2Ce wlcd = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
-            Converter.Convert(ap2ce, ref wlcd);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+            ObjectHandle hParentObject = wap2ce.Parent;
+            EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
+            Vec3 pos = parent.Position;
+            pos.V1 = p.Altitude;
+            pos.V2 = p.Latitude;
+            pos.V3 = p.Longitude;
+            parent.Position = pos;
         }
 
         public void DeleteAP2Ce(string id)

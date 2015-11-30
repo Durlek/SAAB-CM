@@ -12,7 +12,7 @@ namespace Saab.CBRN.Wcf.ServiceContracts
     {
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "sensors/lcd", ResponseFormat = WebMessageFormat.Json)]
-        void CreateLCD(LCD lcd);
+        void CreateLCD(Position p);
 
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]
@@ -20,7 +20,7 @@ namespace Saab.CBRN.Wcf.ServiceContracts
 
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]
-        void UpdateLCD(string id, LCD lcd);
+        void UpdateLCD(string id, Position p);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "sensors/lcd/{id}", ResponseFormat = WebMessageFormat.Json)]

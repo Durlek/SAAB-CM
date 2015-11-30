@@ -4,18 +4,18 @@ var http    = require('http');
 
 const EXAMPLE_LCD = {
     Data: [
-        {
-            BarCount: 5
-        ,   VolumeConcentration: 20
-        ,   SubstanceIndex: 0
-        }
+    //    {
+    //        BarCount: 5
+    //    ,   VolumeConcentration: 20
+    //    ,   SubstanceIndex: 0
+    //    }
     ]
-,   Description: "foobar"
+,   Description: ""
 ,   DetectionMode: 0
 ,   Name: ""
 ,   Position: {Altitude: 0, Latitude: 1, Longitude: 2}
 ,   State: {
-        AudioFault:             true
+        AudioFault:             false
     ,   CRAboveLimit:           false
     ,   ChangeBattery:          false
     ,   ChangeSievePack:        false
@@ -42,13 +42,8 @@ const EXAMPLE_LCD = {
 }
 
 const EXAMPLE_AP2CE = {
-    Data: [
-        {
-            BarCount: 5
-        ,   VolumeConcentration: 20
-        }
-    ]
-,   Description: "foobar"
+    Data: []
+,   Description: ""
 ,   Name: ""
 ,   Position: {Altitude: 3, Latitude: 4, Longitude: 5}
 ,   State: {
@@ -56,7 +51,7 @@ const EXAMPLE_AP2CE = {
     ,   DetectorReady: false
     ,   DeviceFault: false
     ,   HydrogenTankEmpty: false
-    ,   Purge: true
+    ,   Purge: false
     }
 }
 
@@ -82,7 +77,7 @@ SENSORS.forEach(function (sensor) {
                 request({
                     url: 'sensors/' + sensor
                 ,   method: 'POST'
-                ,   body: EXAMPLES[sensor]
+                ,   body: EXAMPLES[sensor].Position
                 ,   json: true
                 }, function(err, res, body) {
 
@@ -99,7 +94,7 @@ SENSORS.forEach(function (sensor) {
                 request({
                     url: 'sensors/' + sensor
                 ,   method: 'POST'
-                ,   body: EXAMPLES[sensor]
+                ,   body: EXAMPLES[sensor].Position
                 ,   json: true
                 }, function (err, res, body) {
                 
@@ -127,7 +122,7 @@ SENSORS.forEach(function (sensor) {
                 request({
                     url: 'sensors/' + sensor
                 ,   method: 'POST'
-                ,   body: EXAMPLES[sensor]
+                ,   body: EXAMPLES[sensor].Position
                 ,   json: true
                 }, function (err, res, body) {
 
@@ -136,13 +131,12 @@ SENSORS.forEach(function (sensor) {
                 // dirty copy, 
                 // works since we only are working with json object anyway
                 var sensorObject = JSON.parse(JSON.stringify(EXAMPLES[sensor]));
-                sensorObject.Description = "foobaz";
-                sensorObject.Data[0].BarCount = 1;
+                sensorObject.Position.Altitude++;
 
                 request({
                     url: 'sensors/' + sensor + '/' + id
                 ,   method: 'PUT'
-                ,   body: sensorObject
+                ,   body: sensorObject.Position
                 ,   json: true
                 }, function (err, res, body) {
 
@@ -155,8 +149,7 @@ SENSORS.forEach(function (sensor) {
                 ,   json: true
                 }, function (err, res, body) {
 
-                eq(body.Description, sensorObject.Description);
-                eq(sensorObject.Data[0].BarCount, 1);
+                deepEq(body.Position, sensorObject.Position);
                 done();
 
                 });
@@ -170,7 +163,7 @@ SENSORS.forEach(function (sensor) {
                 request({
                     url: 'sensors/' + sensor
                 ,   method: 'POST'
-                ,   body: EXAMPLES[sensor]
+                ,   body: EXAMPLES[sensor].Position
                 ,   json: true
                 }, function(err, res, body) {
                 
