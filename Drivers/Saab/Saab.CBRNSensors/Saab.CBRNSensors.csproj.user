@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartProgram>$(WISECore42)Bin\CoRE2.exe</StartProgram>
-    <StartArguments>/settings:"C:\Users\GULPF\Desktop\Utdelad_kod_mm_2015-11-11-2015-11-12\Utdelad kod mm 2015-11-11\Drivers\Saab\Saab.CBRNSensors\CoREdebug.options" /file:"C:\Users\GULPF\Desktop\Utdelad_kod_mm_2015-11-11-2015-11-12\Utdelad kod mm 2015-11-11\Storage\CBRNSensorsDriver.connectivity" /autostart</StartArguments>
+    <StartProgram>C:\Program Files %28x86%29\Saab\WISE Connectivity 4.2\Bin\CoRE2.exe</StartProgram>
+    <StartArguments>/settings:"C:\Users\Mai Linh\Documents\GitHub\SAAB-CM\Drivers\Saab\Saab.CBRNSensors\debug.txt" /file:"C:\Users\Mai Linh\Documents\GitHub\SAAB-CM\Storage\CBRNSensorsDriver.connectivity" /autostart</StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
