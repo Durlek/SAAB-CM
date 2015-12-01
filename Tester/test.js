@@ -56,8 +56,8 @@ const EXAMPLE_AP2CE = {
         },
         {
             BarCount: 0
-        , VolumeConcentration: 0
-        , SubstanceCategory: 'H'
+        ,   VolumeConcentration: 0
+        ,   SubstanceCategory: 'H'
         }]
 ,   Description: ""
 ,   Name: ""

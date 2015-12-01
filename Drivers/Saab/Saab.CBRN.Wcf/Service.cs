@@ -48,7 +48,7 @@ namespace Saab.CBRN.Wcf
         {
             switch (ewent.Sensor)
             {
-                case "LCD":
+                case "lcd":
                     CBRNLCDControl wewent = new CBRNLCDControl();
                     wewent.CreateInstance(_sink, _hDatabase);
 
@@ -60,17 +60,11 @@ namespace Saab.CBRN.Wcf
                     // NOTE: Probably doesn't work. Perhaps the command-bit is a toggle?
                     switch (ewent.Command)
                     {
-                        case "NVG enable":
+                        case "nvg enable":
                             wewent.Command = 2048;
                             break;
-                        case "NVG disable":
-                            wewent.Command = 0;
-                            break;
-                        case "Audible alarm disable":
+                        case "audible alarm disable":
                             wewent.Command = 512;
-                            break;
-                        case "Audible alarm enable":
-                            wewent.Command = 0;
                             break;
                         //default:
                         // TODO: return a good status code, 405 maybe?
@@ -105,8 +99,8 @@ namespace Saab.CBRN.Wcf
                 gp.Add(hData.Data);
 
                 wlcd.SensorData = gp;
-                
-                parent.Position = new Vec3(p.Altitude, p.Latitude, p.Longitude);
+
+                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
                 WISE_RESULT result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
                 wlcd.Parent = parent.Object;
@@ -124,9 +118,9 @@ namespace Saab.CBRN.Wcf
             EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
             Position pos = new Position();
             // FIXME: what order?
-            pos.Altitude  = parent.Position.V1;
+            pos.Longitude = parent.Position.V1;
             pos.Latitude  = parent.Position.V2;
-            pos.Longitude = parent.Position.V3;
+            pos.Altitude  = parent.Position.V3;
             lcd.Position = pos;
             return lcd;
         }
@@ -140,9 +134,9 @@ namespace Saab.CBRN.Wcf
             ObjectHandle hParentObject = wlcd.Parent;
             EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
             Vec3 pos = parent.Position;
-            pos.V1 = p.Altitude;
+            pos.V1 = p.Longitude;
             pos.V2 = p.Latitude;
-            pos.V3 = p.Longitude;
+            pos.V3 = p.Altitude;
             parent.Position = pos;
         }
 
@@ -189,7 +183,7 @@ namespace Saab.CBRN.Wcf
 
                 wap2ce.SensorData = gp;
 
-                parent.Position = new Vec3(p.Altitude, p.Latitude, p.Longitude);
+                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
                 WISE_RESULT result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
                 wap2ce.Parent = parent.Object;
@@ -205,10 +199,10 @@ namespace Saab.CBRN.Wcf
             ObjectHandle hParentObject = wap2ce.Parent;
             EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
             Position pos = new Position();
-            // FIXME: what order?
-            pos.Altitude = parent.Position.V1;
-            pos.Latitude = parent.Position.V2;
-            pos.Longitude = parent.Position.V3;
+            pos.Longitude = parent.Position.V1;
+            pos.Latitude  = parent.Position.V2;
+            pos.Altitude  = parent.Position.V3;
+            
             ap2ce.Position = pos;
             return ap2ce;
         }
@@ -220,9 +214,9 @@ namespace Saab.CBRN.Wcf
             ObjectHandle hParentObject = wap2ce.Parent;
             EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
             Vec3 pos = parent.Position;
-            pos.V1 = p.Altitude;
+            pos.V1 = p.Longitude;
             pos.V2 = p.Latitude;
-            pos.V3 = p.Longitude;
+            pos.V3 = p.Altitude;
             parent.Position = pos;
         }
 
