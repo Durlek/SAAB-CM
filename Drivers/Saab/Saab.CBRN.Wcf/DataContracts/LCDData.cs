@@ -11,6 +11,7 @@ namespace Saab.CBRN.Wcf.DataContracts
         private byte _barCount;
         private int _substanceIndex;
         private double _volumeConcentration;
+        private string _substanceCategory;
 
         /// <summary>
         /// 0-6 bars.
@@ -38,6 +39,13 @@ namespace Saab.CBRN.Wcf.DataContracts
         {
             get { return _volumeConcentration; }
             set { _volumeConcentration = value; }
+        }
+
+        [DataMember]
+        public string SubstanceCategory
+        {
+            get { return _substanceCategory; }
+            set { _substanceCategory = value; }
         }
     }
 }

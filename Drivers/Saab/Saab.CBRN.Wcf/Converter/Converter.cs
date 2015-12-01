@@ -116,6 +116,7 @@ namespace Saab.CBRN.Wcf
                 LCDData data = new LCDData();
                 data.BarCount = wdata.BarCountValue;
                 data.VolumeConcentration = wdata.VolumeConcentrationValue;
+                data.SubstanceCategory = wdata.SubstanceCategoryValue;
                 return data;
             });
         }
