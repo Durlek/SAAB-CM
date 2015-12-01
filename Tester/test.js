@@ -87,6 +87,21 @@ SENSORS.forEach(function (sensor) {
                 done();
                 });
             });
+
+            it('should return id in header when created without position', function (done) {
+                request({
+                    url: 'sensors/' + sensor
+                ,   method: 'POST'
+                ,   body: null
+                ,   json: true
+                }, function (err, res, body) {
+
+                if (err) throw err;
+                ok(res.headers.location, 'Location header should exist');
+                ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
+                done();
+                });
+            });
         });
 
         describe('#Read', function() {

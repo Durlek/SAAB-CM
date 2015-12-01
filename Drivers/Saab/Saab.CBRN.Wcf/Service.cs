@@ -54,8 +54,7 @@ namespace Saab.CBRN.Wcf
                     if (hObject == ObjectHandle.Invalid)  throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
                     wewent.ExternalId = hObject;
 
-                    // NOTE: I'm 90% sure this doesn't work. I think we need to keep track
-                    // ..... of the enable/disable values, so we can construct a correct binary value.
+                    // NOTE: Probably doesn't work. Perhaps the command-bit is a toggle?
                     switch (ewent.Command)
                     {
                         case "NVG enable":
@@ -71,7 +70,7 @@ namespace Saab.CBRN.Wcf
                             wewent.Command = 0;
                             break;
                         //default:
-                        // TODO: return a good response code, 405 maybe?
+                        // TODO: return a good status code, 405 maybe?
                     }
 
                     wewent.SendEventToDatabase(_hDatabase);
@@ -87,7 +86,7 @@ namespace Saab.CBRN.Wcf
 
         public void CreateLCD(Position p)
         {
-            
+            if (p == null) p = new Position();
             Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, EntityGroundVehicle parent, string objectName)
             {
                 wlcd.ExternalId = objectName;
@@ -142,6 +141,7 @@ namespace Saab.CBRN.Wcf
 
         public void CreateAP2Ce(Position p)
         {
+            if (p == null) p = new Position();
             Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, EntityGroundVehicle parent, string objectName)
             {
                 wap2ce.ExternalId = objectName;
