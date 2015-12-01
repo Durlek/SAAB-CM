@@ -150,9 +150,9 @@ namespace Saab.CBRN.Wcf
 
             try
             {
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
-                WISEError.CheckCallFailedEx(result);
                 result = _sink.RemoveObjectFromDatabase(_hDatabase, wlcd.Parent);
+                WISEError.CheckCallFailedEx(result);
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
                 WISEError.CheckCallFailedEx(result);
             }
             catch (WISEException ex)
@@ -231,10 +231,11 @@ namespace Saab.CBRN.Wcf
 
             try
             {
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
-                WISEError.CheckCallFailedEx(result);
                 result = _sink.RemoveObjectFromDatabase(_hDatabase, wlcd.Parent);
                 WISEError.CheckCallFailedEx(result);
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
+                WISEError.CheckCallFailedEx(result);
+                
             }
             catch (WISEException ex)
             {
