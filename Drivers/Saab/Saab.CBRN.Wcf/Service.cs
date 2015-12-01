@@ -148,7 +148,22 @@ namespace Saab.CBRN.Wcf
 
         public void DeleteLCD(string id)
         {
-            Delete(id);
+            WISE_RESULT result = WISEError.WISE_OK;
+
+            ObjectHandle hObject = GetHandleFromId(id);
+            EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
+
+            try
+            {
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
+                WISEError.CheckCallFailedEx(result);
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
+                WISEError.CheckCallFailedEx(result);
+            }
+            catch (WISEException ex)
+            {
+                throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
+            }
         }
 
         #endregion
@@ -213,7 +228,22 @@ namespace Saab.CBRN.Wcf
 
         public void DeleteAP2Ce(string id)
         {
-            Delete(id);
+            WISE_RESULT result = WISEError.WISE_OK;
+
+            ObjectHandle hObject = GetHandleFromId(id);
+            EntityEquipmentSensorCBRNAP2Ce wlcd = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+
+            try
+            {
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
+                WISEError.CheckCallFailedEx(result);
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
+                WISEError.CheckCallFailedEx(result);
+            }
+            catch (WISEException ex)
+            {
+                throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
+            }
         }
 
         #endregion
@@ -280,6 +310,8 @@ namespace Saab.CBRN.Wcf
                 // Remove from db
                 result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
                 WISEError.CheckCallFailedEx(result);
+
+                
             }
             catch (WISEException ex)
             {
