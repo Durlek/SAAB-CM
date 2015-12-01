@@ -36,6 +36,7 @@ namespace Saab.CBRN.Wcf
             output.Description = input.Description;
             output.SensorData  = ConvertLCDData(input.Data, output.WISE);
             output.SensorState = Convert(input.State, output.SensorState);
+            output.DetectionMode = (byte)((LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString()));
         }
 
         private static LCDState Convert(CBRNSensorLCDState wstate)
