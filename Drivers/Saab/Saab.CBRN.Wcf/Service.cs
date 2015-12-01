@@ -60,10 +60,10 @@ namespace Saab.CBRN.Wcf
                     // NOTE: Probably doesn't work. Perhaps the command-bit is a toggle?
                     switch (ewent.Command)
                     {
-                        case "nvg enable":
+                        case "nvg toggle":
                             wewent.Command = 2048;
                             break;
-                        case "audible alarm disable":
+                        case "audible alarm toggle":
                             wewent.Command = 512;
                             break;
                         //default:
