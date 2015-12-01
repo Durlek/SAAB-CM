@@ -127,16 +127,17 @@ namespace Saab.CBRN.Wcf
 
         
         // Only updating of position is handled
-        public void UpdateLCD(string id, Position p)
+        public void UpdateLCD(string id, LCD lcd)
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
+            Converter.Convert(lcd, ref wlcd);
             ObjectHandle hParentObject = wlcd.Parent;
             EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
             Vec3 pos = parent.Position;
-            pos.V1 = p.Longitude;
-            pos.V2 = p.Latitude;
-            pos.V3 = p.Altitude;
+            pos.V1 = lcd.Position.Longitude;
+            pos.V2 = lcd.Position.Latitude;
+            pos.V3 = lcd.Position.Altitude;
             parent.Position = pos;
         }
 
@@ -207,16 +208,17 @@ namespace Saab.CBRN.Wcf
             return ap2ce;
         }
 
-        public void UpdateAP2Ce(string id, Position p)
+        public void UpdateAP2Ce(string id, AP2Ce ap2ce)
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+            Converter.Convert(ap2ce, ref wap2ce);
             ObjectHandle hParentObject = wap2ce.Parent;
             EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
             Vec3 pos = parent.Position;
-            pos.V1 = p.Longitude;
-            pos.V2 = p.Latitude;
-            pos.V3 = p.Altitude;
+            pos.V1 = ap2ce.Position.Longitude;
+            pos.V2 = ap2ce.Position.Latitude;
+            pos.V3 = ap2ce.Position.Altitude;
             parent.Position = pos;
         }
 

@@ -20,7 +20,7 @@ namespace Saab.CBRN.Wcf.ServiceContracts
 
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "sensors/ap2ce/{id}", ResponseFormat = WebMessageFormat.Json)]
-        void UpdateAP2Ce(string id, Position p);
+        void UpdateAP2Ce(string id, AP2Ce ap2ce);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "sensors/ap2ce/{id}", ResponseFormat = WebMessageFormat.Json)]

@@ -167,7 +167,7 @@ SENSORS.forEach(function (sensor) {
                 request({
                     url: 'sensors/' + sensor + '/' + id
                 ,   method: 'PUT'
-                ,   body: sensorObject.Position
+                ,   body: sensorObject
                 ,   json: true
                 }, function (err, res, body) {
 
