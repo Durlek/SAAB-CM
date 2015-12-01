@@ -4,11 +4,18 @@ var http    = require('http');
 
 const EXAMPLE_LCD = {
     Data: [
-    //    {
-    //        BarCount: 5
-    //    ,   VolumeConcentration: 20
-    //    ,   SubstanceIndex: 0
-    //    }
+        {
+            BarCount: 0
+        ,   VolumeConcentration: 0
+        ,   SubstanceIndex: 0
+        ,   SubstanceCategory: 'G'
+        },
+        {
+            BarCount: 0
+        ,   VolumeConcentration: 0
+        ,   SubstanceIndex: 0
+        ,   SubstanceCategory: 'H'
+        }
     ]
 ,   Description: ""
 ,   DetectionMode: 0
@@ -42,7 +49,16 @@ const EXAMPLE_LCD = {
 }
 
 const EXAMPLE_AP2CE = {
-    Data: []
+    Data: [{
+        BarCount: 0
+        , VolumeConcentration: 0
+        , SubstanceCategory: 'G'
+        },
+        {
+            BarCount: 0
+        , VolumeConcentration: 0
+        , SubstanceCategory: 'H'
+        }]
 ,   Description: ""
 ,   Name: ""
 ,   Position: {Altitude: 3, Latitude: 4, Longitude: 5}
@@ -133,7 +149,7 @@ SENSORS.forEach(function (sensor) {
         });
 
         describe('#Update', function() {
-            it('should update attribute', function(done) {
+            it('should update position', function(done) {
                 request({
                     url: 'sensors/' + sensor
                 ,   method: 'POST'

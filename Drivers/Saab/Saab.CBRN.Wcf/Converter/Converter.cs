@@ -189,6 +189,7 @@ namespace Saab.CBRN.Wcf
                 AP2CeData data = new AP2CeData();
                 data.BarCount = wdata.BarCountValue;
                 data.VolumeConcentration = wdata.VolumeConcentrationValue;
+                data.SubstanceCategory = wdata.SubstanceCategoryValue;
                 return data;
             });
         }

@@ -13,6 +13,9 @@ using WISE_RESULT = System.UInt32;
 using System.Net;
 
 // TODO: Lots of duplicated code in this class
+// TODO: if the codegenerator is updated so that all objects inherit from
+// ..... an abstract class wich implements the 3 constructors,
+// ..... this class becomes a lot easier to write.
 
 namespace Saab.CBRN.Wcf
 {
@@ -90,6 +93,19 @@ namespace Saab.CBRN.Wcf
             Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, EntityGroundVehicle parent, string objectName)
             {
                 wlcd.ExternalId = objectName;
+
+                GroupList gp = new GroupList();
+
+                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                gData.SubstanceCategoryValue = "G";
+                gp.Add(gData.Data);
+
+                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                hData.SubstanceCategoryValue = "H";
+                gp.Add(hData.Data);
+
+                wlcd.SensorData = gp;
+                
                 parent.Position = new Vec3(p.Altitude, p.Latitude, p.Longitude);
                 WISE_RESULT result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
@@ -145,6 +161,19 @@ namespace Saab.CBRN.Wcf
             Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, EntityGroundVehicle parent, string objectName)
             {
                 wap2ce.ExternalId = objectName;
+
+                GroupList gp = new GroupList();
+
+                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                gData.SubstanceCategoryValue = "G";
+                gp.Add(gData.Data);
+
+                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                hData.SubstanceCategoryValue = "H";
+                gp.Add(hData.Data);
+
+                wap2ce.SensorData = gp;
+
                 parent.Position = new Vec3(p.Altitude, p.Latitude, p.Longitude);
                 WISE_RESULT result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
