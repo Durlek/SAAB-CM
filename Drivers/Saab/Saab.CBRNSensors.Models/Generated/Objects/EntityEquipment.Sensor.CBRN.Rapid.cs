@@ -68,46 +68,17 @@ namespace Saab.CBRNSensors.Models
             get { return CBRNSensorsEntityTypes.EntityEquipmentSensorCBRNRapid; }
         }
 
-        public INETWISEDriverSink2 WISE { get; private set; }
-
-        public INETWISEStringCache StringCache
-        {
-            get { return (this.WISE as INETWISEStringCache); }
-        }
-
-        public DatabaseHandle Database { get; private set; }
-
-        public ObjectHandle Object { get; private set; }
-
-        public TransactionHandle Transaction { get; private set; }
-
         #endregion
 
         #region Constructors
 
-        public EntityEquipmentSensorCBRNRapid()
-        {
-            this.WISE = null;
-            this.Database = WISEConstants.WISE_TRANSITION_CACHE_DATABASE;
-            this.Object = WISEConstants.WISE_INVALID_HANDLE;
-            this.Transaction = TransactionHandle.None;            
-        }
+        public EntityEquipmentSensorCBRNRapid() : base() {}
 
         public EntityEquipmentSensorCBRNRapid(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, ObjectHandle objectHandle)
-        {
-            this.WISE = WISE;
-            this.Database = databaseHandle;
-            this.Object = objectHandle;
-            this.Transaction = TransactionHandle.None;
-        }
+            : base(WISE, databaseHandle, objectHandle) {}
 
         public EntityEquipmentSensorCBRNRapid(INETWISEDriverSink2 WISE, DatabaseHandle databaseHandle, ObjectHandle objectHandle, TransactionHandle transactionHandle)
-        {
-            this.WISE = WISE;
-            this.Database = databaseHandle;
-            this.Object = objectHandle;
-            this.Transaction = transactionHandle;
-        }
+            : base(WISE, databaseHandle, objectHandle, transactionHandle) {}
 
         #endregion
 
@@ -290,12 +261,12 @@ namespace Saab.CBRNSensors.Models
 
         #region Object creation methods
 
-        public uint CreateInstance(INETWISEDriverSink2 WISE, DatabaseHandle hDatabase)
+        public override uint CreateInstance(INETWISEDriverSink2 WISE, DatabaseHandle hDatabase)
         {
             return CreateInstance(WISE, hDatabase, "");
         }
 
-        public uint CreateInstance(INETWISEDriverSink2 WISE, DatabaseHandle hDatabase, string objectName)
+        public override uint CreateInstance(INETWISEDriverSink2 WISE, DatabaseHandle hDatabase, string objectName)
         {
             uint result = WISEError.WISE_ERROR;
             ObjectHandle objectHandle = this.Object;
@@ -323,7 +294,7 @@ namespace Saab.CBRNSensors.Models
             return result;
         }
 
-        public uint AddToDatabase(DatabaseHandle databaseHandle)
+        public override uint AddToDatabase(DatabaseHandle databaseHandle)
         {
             uint result = WISEError.WISE_ERROR;
             ObjectHandle hObjectTemp = this.Object;
