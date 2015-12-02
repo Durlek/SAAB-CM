@@ -84,6 +84,7 @@ namespace Saab.CBRN.Wcf
         public void CreateLCD(Position p)
         {
             if (p == null) p = new Position();
+
             Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, EntityGroundVehicle parent, string objectName)
             {
                 wlcd.ExternalId = objectName;
@@ -113,52 +114,20 @@ namespace Saab.CBRN.Wcf
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
-            LCD lcd = Converter.Convert(wlcd);
-            ObjectHandle hParentObject = wlcd.Parent;
-            EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
-            Position pos = new Position();
-            // FIXME: what order?
-            pos.Longitude = parent.Position.V1;
-            pos.Latitude  = parent.Position.V2;
-            pos.Altitude  = parent.Position.V3;
-            lcd.Position = pos;
-            return lcd;
+            return Converter.Convert(wlcd);
         }
 
-        
-        // Only updating of position is handled
         public void UpdateLCD(string id, LCD lcd)
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
             Converter.Convert(lcd, ref wlcd);
-            ObjectHandle hParentObject = wlcd.Parent;
-            EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
-            Vec3 pos = parent.Position;
-            pos.V1 = lcd.Position.Longitude;
-            pos.V2 = lcd.Position.Latitude;
-            pos.V3 = lcd.Position.Altitude;
-            parent.Position = pos;
         }
 
         public void DeleteLCD(string id)
         {
-            WISE_RESULT result = WISEError.WISE_OK;
-
             ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
-
-            try
-            {
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, wlcd.Parent);
-                WISEError.CheckCallFailedEx(result);
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
-                WISEError.CheckCallFailedEx(result);
-            }
-            catch (WISEException ex)
-            {
-                throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
-            }
+            Delete(hObject, (new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject)).Parent);
         }
 
         #endregion
@@ -196,16 +165,7 @@ namespace Saab.CBRN.Wcf
         {
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
-            AP2Ce ap2ce = Converter.Convert(wap2ce);
-            ObjectHandle hParentObject = wap2ce.Parent;
-            EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
-            Position pos = new Position();
-            pos.Longitude = parent.Position.V1;
-            pos.Latitude  = parent.Position.V2;
-            pos.Altitude  = parent.Position.V3;
-            
-            ap2ce.Position = pos;
-            return ap2ce;
+            return Converter.Convert(wap2ce);
         }
 
         public void UpdateAP2Ce(string id, AP2Ce ap2ce)
@@ -213,34 +173,12 @@ namespace Saab.CBRN.Wcf
             ObjectHandle hObject = GetHandleFromId(id);
             EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
             Converter.Convert(ap2ce, ref wap2ce);
-            ObjectHandle hParentObject = wap2ce.Parent;
-            EntityGroundVehicle parent = new EntityGroundVehicle(_sink, _hDatabase, hParentObject);
-            Vec3 pos = parent.Position;
-            pos.V1 = ap2ce.Position.Longitude;
-            pos.V2 = ap2ce.Position.Latitude;
-            pos.V3 = ap2ce.Position.Altitude;
-            parent.Position = pos;
         }
 
         public void DeleteAP2Ce(string id)
         {
-            WISE_RESULT result = WISEError.WISE_OK;
-
             ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNAP2Ce wlcd = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
-
-            try
-            {
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, wlcd.Parent);
-                WISEError.CheckCallFailedEx(result);
-                result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
-                WISEError.CheckCallFailedEx(result);
-                
-            }
-            catch (WISEException ex)
-            {
-                throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
-            }
+            Delete(hObject, (new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject)).Parent);
         }
 
         #endregion
@@ -292,27 +230,21 @@ namespace Saab.CBRN.Wcf
             }
         }
 
-        public void Delete(string id)
+        public void Delete(ObjectHandle hObject, ObjectHandle hParent)
         {
             WISE_RESULT result = WISEError.WISE_OK;
 
             try
             {
-                ObjectHandle hObject = WISEConstants.WISE_INVALID_HANDLE;
-
-                // Convert from external id => internal handle
-                result = _sink.GetObjectHandle(_hDatabase, id, ref hObject);
-                WISEError.CheckCallFailedEx(result); // Converts WISE error code => exception
-
-                // Remove from db
+                result = _sink.RemoveObjectFromDatabase(_hDatabase, hParent);
+                WISEError.CheckCallFailedEx(result);
                 result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
                 WISEError.CheckCallFailedEx(result);
 
-                
             }
             catch (WISEException ex)
             {
-                throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
+                throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
             }
         }
 

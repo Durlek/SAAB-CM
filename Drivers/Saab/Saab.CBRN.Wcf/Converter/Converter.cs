@@ -7,6 +7,7 @@ using System.Text;
 using STS.WISE;
 
 // TODO: lots of duplicated code
+// TODO: better error handling (look in sdk for info)
 
 namespace Saab.CBRN.Wcf
 {
@@ -21,11 +22,10 @@ namespace Saab.CBRN.Wcf
             output.Id = input.ExternalId;
             output.Name = input.Name;
             output.Description = input.Description;
-            output.Position = null; // TODO: Get from parent (input.Parent)
-            output.Data = ConvertLCDData(input.SensorData, input.WISE);
+            output.Data = ConvertLCDData(input.SensorData, input.StringCache);
             output.State = Convert(input.SensorState);
             output.DetectionMode = (LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString());
-
+            output.Position = getPosition(input.WISE, input.Database, input.Parent);
             return output;
         }
 
@@ -34,9 +34,10 @@ namespace Saab.CBRN.Wcf
             output.ExternalId  = input.Id;
             output.Name        = input.Name;
             output.Description = input.Description;
-            output.SensorData  = ConvertLCDData(input.Data, output.WISE);
+            output.SensorData  = ConvertLCDData(input.Data, output.StringCache);
             output.SensorState = Convert(input.State, output.SensorState);
             output.DetectionMode = (byte)((LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString()));
+            setPosition(output.WISE, output.Database, output.Parent, input.Position);
         }
 
         private static LCDState Convert(CBRNSensorLCDState wstate)
@@ -109,11 +110,11 @@ namespace Saab.CBRN.Wcf
             return wstate;
         }
 
-        private static IEnumerable<LCDData> ConvertLCDData(GroupList wDataList, INETWISEDriverSink2 sink)
+        private static IEnumerable<LCDData> ConvertLCDData(GroupList wDataList, INETWISEStringCache stringCache)
         {
             return Convert<LCDData>(wDataList, delegate(AttributeGroup attrGroup)
             {
-                CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", sink as INETWISEStringCache, attrGroup);
+                CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", stringCache, attrGroup);
                 LCDData data = new LCDData();
                 data.BarCount = wdata.BarCountValue;
                 data.VolumeConcentration = wdata.VolumeConcentrationValue;
@@ -122,11 +123,11 @@ namespace Saab.CBRN.Wcf
             });
         }
 
-        private static GroupList ConvertLCDData(IEnumerable<LCDData> dataList, INETWISEDriverSink2 sink)
+        private static GroupList ConvertLCDData(IEnumerable<LCDData> dataList, INETWISEStringCache stringCache)
         {
             return Convert<LCDData>(dataList, delegate(LCDData data)
             {
-                CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", sink as INETWISEStringCache, new AttributeGroup());
+                CBRNSensorLCDData wdata = new CBRNSensorLCDData("SensorData", stringCache, new AttributeGroup());
                 wdata.BarCountValue = data.BarCount;
                 wdata.VolumeConcentrationValue = data.VolumeConcentration;
                 return wdata.Data;
@@ -143,8 +144,8 @@ namespace Saab.CBRN.Wcf
             output.Id          = input.ExternalId;
             output.Name        = input.Name;
             output.Description = input.Description;
-            output.Position    = null; // TODO: Get from parent (input.Parent)
-            output.Data        = ConvertAP2CeData(input.SensorData, input.WISE);
+            output.Position    = getPosition(input.WISE, input.Database, input.Parent);
+            output.Data        = ConvertAP2CeData(input.SensorData, input.StringCache);
             output.State       = Convert(input.SensorState);
 
             return output;
@@ -156,7 +157,8 @@ namespace Saab.CBRN.Wcf
             output.Name        = input.Name;
             output.Description = input.Description;
             output.SensorState = Convert(input.State, output.SensorState);
-            output.SensorData  = ConvertAP2CeData(input.Data, output.WISE);
+            output.SensorData  = ConvertAP2CeData(input.Data, output.StringCache);
+            setPosition(output.WISE, output.Database, output.Parent, input.Position);
         }
 
         internal static AP2CeState Convert(CBRNSensorAP2CeState wstate)
@@ -182,11 +184,11 @@ namespace Saab.CBRN.Wcf
             return wstate;
         }
 
-        private static IEnumerable<AP2CeData> ConvertAP2CeData(GroupList wDataList, INETWISEDriverSink2 sink)
+        private static IEnumerable<AP2CeData> ConvertAP2CeData(GroupList wDataList, INETWISEStringCache stringCache)
         {
             return Convert<AP2CeData>(wDataList, delegate(AttributeGroup attrGroup)
             {
-                CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", sink as INETWISEStringCache, attrGroup);
+                CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", stringCache, attrGroup);
                 AP2CeData data = new AP2CeData();
                 data.BarCount = wdata.BarCountValue;
                 data.VolumeConcentration = wdata.VolumeConcentrationValue;
@@ -195,11 +197,11 @@ namespace Saab.CBRN.Wcf
             });
         }
 
-        private static GroupList ConvertAP2CeData(IEnumerable<AP2CeData> dataList, INETWISEDriverSink2 sink)
+        private static GroupList ConvertAP2CeData(IEnumerable<AP2CeData> dataList, INETWISEStringCache stringCache)
         {
             return Convert<AP2CeData>(dataList, delegate(AP2CeData data)
             {
-                CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", sink as INETWISEStringCache, new AttributeGroup());
+                CBRNSensorAP2CeData wdata = new CBRNSensorAP2CeData("SensorData", stringCache, new AttributeGroup());
                 wdata.BarCountValue = data.BarCount;
                 wdata.VolumeConcentrationValue = data.VolumeConcentration;
                 return wdata.Data;
@@ -222,6 +224,22 @@ namespace Saab.CBRN.Wcf
             List<DataContract> dataList = new List<DataContract>();
             foreach (AttributeGroup attrGroup in wDataList) dataList.Add(loadDataInto(attrGroup));
             return dataList;
+        }
+
+        private static Position getPosition(INETWISEDriverSink2 sink, DatabaseHandle hDatabase, ObjectHandle hParent)
+        {
+            EntityGroundVehicle parent = new EntityGroundVehicle(sink, hDatabase, hParent);
+            Position pos = new Position();
+            pos.Longitude = parent.Position.V1;
+            pos.Latitude = parent.Position.V2;
+            pos.Altitude = parent.Position.V3;
+            return pos;
+        }
+
+        private static void setPosition(INETWISEDriverSink2 sink, DatabaseHandle hDatabase, ObjectHandle hParent, Position pos)
+        {
+            EntityGroundVehicle parent = new EntityGroundVehicle(sink, hDatabase, hParent);
+            parent.Position = new Vec3(pos.Longitude, pos.Latitude, pos.Altitude);
         }
 
         #endregion
