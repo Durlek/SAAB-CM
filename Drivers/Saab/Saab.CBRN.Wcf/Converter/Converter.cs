@@ -67,6 +67,7 @@ namespace Saab.CBRN.Wcf
             state.CodeChecksumError      = wstate.CodeChecksumErrorValue      == 1;
             state.EEPROMChecksumError    = wstate.EEPROMChecksumErrorValue    == 1;
             state.HTOutSideLimits        = wstate.HTOutSideLimitsValue        == 1;
+            state.AudibleAlarm           = wstate.AudibleAlarmValue           == 1;
 
             return state;
         }
@@ -106,6 +107,7 @@ namespace Saab.CBRN.Wcf
             wstate.CodeChecksumErrorValue      = (byte)(state.CodeChecksumError      ? 1 : 0);
             wstate.EEPROMChecksumErrorValue    = (byte)(state.EEPROMChecksumError    ? 1 : 0);
             wstate.HTOutSideLimitsValue        = (byte)(state.HTOutSideLimits        ? 1 : 0);
+            wstate.AudibleAlarmValue           = (byte)(state.AudibleAlarm           ? 1 : 0);
 
             return wstate;
         }
