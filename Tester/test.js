@@ -45,6 +45,7 @@ const EXAMPLE_LCD = {
     ,   PTOutOfRange:           false
     ,   TICAlert:               false
     ,   TICMode:                false
+    ,   AudibleAlarm:           false
     }
 }
 
@@ -95,12 +96,12 @@ SENSORS.forEach(function (sensor) {
                 ,   method: 'POST'
                 ,   body: EXAMPLES[sensor].Position
                 ,   json: true
-                }, function(err, res, body) {
+                }, function (err, res, body) {
 
-                if (err) throw err;
-                ok(res.headers.location, 'Location header should exist');
-                ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
-                done();
+                    if (err) throw err;
+                    ok(res.headers.location, 'Location header should exist');
+                    ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
+                    done();
                 });
             });
 
@@ -112,10 +113,10 @@ SENSORS.forEach(function (sensor) {
                 ,   json: true
                 }, function (err, res, body) {
 
-                if (err) throw err;
-                ok(res.headers.location, 'Location header should exist');
-                ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
-                done();
+                    if (err) throw err;
+                    ok(res.headers.location, 'Location header should exist');
+                    ok(/^[0-9a-z\-_]+$/.test(res.headers.location), 'Wrong id format');
+                    done();
                 });
             });
         });
@@ -129,21 +130,20 @@ SENSORS.forEach(function (sensor) {
                 ,   json: true
                 }, function (err, res, body) {
                 
-                if (err) throw err;
-                request({
-                    url: 'sensors/' + sensor + '/' + res.headers.location
-                ,   method: 'GET'
-                ,   json: true
-                }, function (err, res, body) {
-               
-                if (err) throw err;
-                ok(/^[0-9a-z\-_]+$/.test(body.Id), 'Wrong id format');
-                delete body.Id; // Can't test exact id
-                delete body.Parent; // Can't test parent id either
-                deepEq(body, EXAMPLES[sensor]);
-                done();
-               
-                });
+                    if (err) throw err;
+                    request({
+                        url: 'sensors/' + sensor + '/' + res.headers.location
+                    ,   method: 'GET'
+                    ,   json: true
+                    }, function (err, res, body) {
+
+                        if (err) throw err;
+                        ok(/^[0-9a-z\-_]+$/.test(body.Id), 'Wrong id format');
+                        delete body.Id; // Can't test exact id
+                        delete body.Parent; // Can't test parent id either
+                        deepEq(body, EXAMPLES[sensor]);
+                        done();
+                    });
                 });
             })
         });
@@ -157,36 +157,126 @@ SENSORS.forEach(function (sensor) {
                 ,   json: true
                 }, function (err, res, body) {
 
-                if (err) throw err;
-                var id = res.headers.location;
-                // dirty copy, 
-                // works since we only are working with json object anyway
-                var sensorObject = JSON.parse(JSON.stringify(EXAMPLES[sensor]));
-                sensorObject.Position.Altitude++;
+                    if (err) throw err;
+                    var id = res.headers.location;
 
-                request({
-                    url: 'sensors/' + sensor + '/' + id
-                ,   method: 'PUT'
-                ,   body: sensorObject
-                ,   json: true
-                }, function (err, res, body) {
+                    // dirty copy, 
+                    // works since we only are working with json object anyway
+                    var sensorObject = JSON.parse(JSON.stringify(EXAMPLES[sensor]));
 
-                eq(res.statusCode, 200);
+                    sensorObject.Position.Altitude++;
+                    sensorObject.Description = null;
+                    sensorObject.Data = null;
+                    sensorObject.Name = null;
+                    sensorObject.State = null;
 
-                if (err) throw err;
-                request({
-                    url: 'sensors/' + sensor + '/' + id
-                ,   method: 'GET'
-                ,   json: true
-                }, function (err, res, body) {
+                    if (sensor === 'lcd') {
+                        sensorObject.DetectionMode = 3;
+                    }
 
-                deepEq(body.Position, sensorObject.Position);
-                done();
+                    request({
+                        url: 'sensors/' + sensor + '/' + id
+                    ,   method: 'PUT'
+                    ,   body: /*sensorObject*/ {Position: sensorObject.Position}
+                    ,   json: true
+                    }, function (err, res, body) {
 
-                });
-                });
+                        if (err) throw err;
+                        eq(res.statusCode, 200);
+                        request({
+                            url: 'sensors/' + sensor + '/' + id
+                        ,   method: 'GET'
+                        ,   json: true
+                        }, function (err, res, body) {
+
+                            deepEq(body.Position, sensorObject.Position);
+                            if (sensor === 'lcd') {
+                                eq(body.DetectionMode, EXAMPLE_LCD.DetectionMode)
+                            }
+                            done();
+                        });
+                    });
                 });
             });
+
+            // Welcome to callback hell
+            if (sensor === 'lcd') {
+                const NEW_DETECTION_MODE = 2;
+
+                it('should update detectionmode', function (done) {
+                    request({
+                        url: 'sensors/' + sensor
+                    ,   method: 'POST'
+                    ,   body: EXAMPLES[sensor].Position
+                    ,   json: true
+                    }, function (err, res, body) {
+
+                        if (err) throw err;
+                        var id = res.headers.location;
+
+                        request({
+                            url: 'sensors/' + sensor + '/' + id
+                        ,   method: 'PUT'
+                        ,   body: { DetectionMode: NEW_DETECTION_MODE }
+                        ,   json: true
+                        }, function (err, res, body) {
+
+                            if (err) throw err;
+                            eq(res.statusCode, 200);
+                            request({
+                                url: 'sensors/' + sensor + '/' + id
+                            ,   method: 'GET'
+                            ,   json: true
+                            }, function (err, res, body) {
+
+                                deepEq(body.DetectionMode, NEW_DETECTION_MODE);
+                                done();
+                            });
+                        });
+                    });
+                });
+
+                it('should not overwrite detectionmode when updating position', function (done) {
+                    request({
+                        url: 'sensors/' + sensor
+                    ,   method: 'POST'
+                    ,   body: EXAMPLES[sensor].Position
+                    ,   json: true
+                    }, function (err, res, body) {
+
+                        if (err) throw err;
+                        var id = res.headers.location;
+
+                        request({
+                            url: 'sensors/' + sensor + '/' + id
+                        ,   method: 'PUT'
+                        ,   body: { DetectionMode: NEW_DETECTION_MODE }
+                        ,   json: true
+                        }, function (err, res, body) {
+
+                            request({
+                                url: 'sensors/' + sensor + '/' + id
+                            ,   method: 'PUT'
+                            ,   body: { Position: EXAMPLE_LCD.Position, DetectionMode: 3 /* the 'ignore-value' */ }
+                            ,   json: true
+                            }, function (err, res, body) {
+                                if (err) throw err;
+                                eq(res.statusCode, 200);
+                                request({
+                                    url: 'sensors/' + sensor + '/' + id
+                                , method: 'GET'
+                                , json: true
+                                }, function (err, res, body) {
+                                    if (err) throw err;
+                                    deepEq(body.DetectionMode, NEW_DETECTION_MODE, "should not overwrite detection mode when updating position");
+                                    done();
+                                });
+                            });
+                        });
+                    });
+                });
+
+            }
         });
 
         describe('#Delete', function() {

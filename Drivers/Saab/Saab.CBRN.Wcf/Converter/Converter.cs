@@ -31,13 +31,21 @@ namespace Saab.CBRN.Wcf
 
         internal static void Convert(LCD input, ref EntityEquipmentSensorCBRNLCD output)
         {
-            output.ExternalId  = input.Id;
-            output.Name        = input.Name;
-            output.Description = input.Description;
-            output.SensorData  = ConvertLCDData(input.Data, output.StringCache);
-            output.SensorState = Convert(input.State, output.SensorState);
-            output.DetectionMode = (byte)((LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString()));
-            setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            // output.ExternalId  = input.Id;
+            // output.Name        = input.Name;
+            // output.Description = input.Description;
+
+            // output.SensorData  = ConvertLCDData(input.Data, output.StringCache);
+            // output.SensorState = Convert(input.State, output.SensorState);
+            if (input.DetectionMode != LCDDetectionMode.Ignore)
+            {
+                output.DetectionMode = (byte)((LCDDetectionMode)Enum.Parse(typeof(LCDDetectionMode), input.DetectionMode.ToString()));
+            }
+
+            if (input.Position != null)
+            {
+                setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            }
         }
 
         private static LCDState Convert(CBRNSensorLCDState wstate)
@@ -155,12 +163,16 @@ namespace Saab.CBRN.Wcf
 
         internal static void Convert(AP2Ce input, ref EntityEquipmentSensorCBRNAP2Ce output)
         {
-            output.ExternalId  = input.Id;
-            output.Name        = input.Name;
-            output.Description = input.Description;
-            output.SensorState = Convert(input.State, output.SensorState);
-            output.SensorData  = ConvertAP2CeData(input.Data, output.StringCache);
-            setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            //output.ExternalId  = input.Id;
+            //output.Name        = input.Name;
+            //output.Description = input.Description;
+            //output.SensorState = Convert(input.State, output.SensorState);
+            //output.SensorData  = ConvertAP2CeData(input.Data, output.StringCache);
+
+            if (input.Position != null)
+            {
+                setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            }
         }
 
         internal static AP2CeState Convert(CBRNSensorAP2CeState wstate)

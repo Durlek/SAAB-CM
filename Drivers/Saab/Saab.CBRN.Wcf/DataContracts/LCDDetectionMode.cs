@@ -18,6 +18,8 @@ namespace Saab.CBRN.Wcf.DataContracts
         /// <summary>
         /// Chemical Warfare Agent (Survery mode)
         /// </summary>
-        Survey = 2
+        Survey = 2,
+
+        Ignore = 3 // Ignored by server (used in update logic)
     }
 }
