@@ -91,11 +91,11 @@ namespace Saab.CBRN.Wcf
 
                 GroupList gp = new GroupList();
 
-                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", wlcd.StringCache, new AttributeGroup());
                 gData.SubstanceCategoryValue = "G";
                 gp.Add(gData.Data);
 
-                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", wlcd.StringCache, new AttributeGroup());
                 hData.SubstanceCategoryValue = "H";
                 gp.Add(hData.Data);
 
@@ -143,11 +143,11 @@ namespace Saab.CBRN.Wcf
 
                 GroupList gp = new GroupList();
 
-                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", wap2ce.StringCache, new AttributeGroup());
                 gData.SubstanceCategoryValue = "G";
                 gp.Add(gData.Data);
 
-                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", _sink as INETWISEStringCache, new AttributeGroup());
+                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", wap2ce.StringCache, new AttributeGroup());
                 hData.SubstanceCategoryValue = "H";
                 gp.Add(hData.Data);
 
