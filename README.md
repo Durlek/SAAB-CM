@@ -33,18 +33,29 @@ Statuskod: 200, 404 (om sensorn inte finns)
 
 #### Uppdatera sensordata
 PUT /sensors/[sensornamn]/[id]  
-Request body: sensors JSON-objekt (endast de som skall uppdateras)  
+Request body: sensors JSON-objekt (endast de attribut som skall uppdateras)  
 Statuskod: 200, 404 (om sensorn inte finns)  
+Övrigt: För LCD finns ett attribut som heter DetectionMode. Detta värde kan EJ utelämnas från request body, då kommer det tidigare värdet på servern skrivas över till 0. Istället för att utelämna attributet skall värdet 3 användas för att indikera att DetectionMode inte skall uppdateras.
 
 #### Avsluta sensorsimulering
 DELETE /sensors/[sensornamn]/[id]  
 Statuskod: 200, 404 (om sensorn inte finns)  
 
 #### Events
-Inte hanterade i nuläget, skall fixas i veckan.
+POST /sensors/event  
+Request body: eventdata i JSON  
+Statuskod: ?  
+Övrigt: JSON-datan är formaterad enligt följande:
+	
+	{
+		Command: kommando  // ???
+	,	Sensor: sensornamn // t ex lcd, ap2ce etc (OBS! lowercase)
+	,	Id: sensorid       // samma id som används i alla andra metoders URL
+	}
+
 
 #### Test av uppkoppling
 GET /check  
-Respons body: 123 (lite overkill kanske, men men)
+Respons body: 123
 
 **OBS! Pga WCF krävs att adresserna är *exakta*. Så om man lägger till ett extra '/' på slutet funkar det ej.**
