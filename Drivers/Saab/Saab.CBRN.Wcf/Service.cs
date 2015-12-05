@@ -47,34 +47,70 @@ namespace Saab.CBRN.Wcf
         // TODO: break out code to generic function, might have to modify code generator
         public void CreateEvent(Event ewent)
         {
+            ObjectHandle hObject = ObjectHandle.Invalid;
+            _sink.GetObjectHandle(_hDatabase, ewent.Id, ref hObject);
+            if (hObject == ObjectHandle.Invalid) throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
+
             switch (ewent.Sensor)
             {
-                case "lcd":
-                    CBRNLCDControl wewent = new CBRNLCDControl();
-                    wewent.CreateInstance(_sink, _hDatabase);
+                case "lcd":  LCDEvent(ewent, hObject);  break;
+                case "raid": RAIDEvent(ewent, hObject); break;
+                default: throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
+            }
+        }
 
-                    ObjectHandle hObject = ObjectHandle.Invalid;
-                    _sink.GetObjectHandle(_hDatabase, ewent.Id, ref hObject);
-                    if (hObject == ObjectHandle.Invalid)  throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
-                    wewent.ExternalId = hObject;
+        public void LCDEvent(Event ewent, ObjectHandle hObject)
+        {
+            CBRNLCDControl wewent = new CBRNLCDControl();
+            wewent.CreateInstance(_sink, _hDatabase);
+            wewent.ExternalId = hObject;
 
-                    // NOTE: Probably doesn't work. Perhaps the command-bit is a toggle?
-                    switch (ewent.Command)
-                    {
-                        case "nvg toggle":
-                            wewent.Command = 2048;
-                            break;
-                        case "audible alarm toggle":
-                            wewent.Command = 512;
-                            break;
-                        //default:
-                        // TODO: return a good status code, 405 maybe?
-                    }
-
-                    wewent.SendEventToDatabase(_hDatabase);
+            switch (ewent.Command)
+            {
+                case "silent current alarm":
+                    wewent.Command = 256;
+                    break;
+                case "audible alarm toggle":
+                    wewent.Command = 512;
+                    break;
+                case "reset sieve pack timer":
+                    wewent.Command = 1024;
+                    break;
+                case "nvg toggle":
+                    wewent.Command = 2048;
+                    break;
+                case "restart":
+                    wewent.Command = 4096;
                     break;
                 default:
-                    throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
+                    throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
+            }
+
+            wewent.SendEventToDatabase(_hDatabase);
+        }
+
+        public void RAIDEvent(Event ewent, ObjectHandle hObject)
+        {
+            CBRNRAIDControl wewent = new CBRNRAIDControl();
+            wewent.CreateInstance(_sink, _hDatabase);
+            wewent.ExternalId = hObject;
+
+            switch (ewent.Command)
+            {
+                case "toggle lib":
+                    wewent.Command = "|q";
+                    break;
+                case "stop/start":
+                    wewent.Command = "|o";
+                    break;
+                case "cleaning on":
+                    wewent.Command = "1,M_HEAT,1";
+                    break;
+                case "cleaning off":
+                    wewent.Command = "1,_RESET_";
+                    break;
+                default:
+                    throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
             }
         }
 
