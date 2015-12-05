@@ -24,7 +24,8 @@ Information REST-interface
 POST /sensors/[sensornamn]  
 Request body: sensors JSON-objekt  
 Statuskod: 201  
-Övrigt: Sensors id ges av locationheader i responsen  
+  
+Sensors id ges av locationheader i responsen  
 
 #### Hämta sensordata
 GET /sensors/[sensornamn]/[id]  
@@ -35,7 +36,8 @@ Statuskod: 200, 404 (om sensorn inte finns)
 PUT /sensors/[sensornamn]/[id]  
 Request body: sensors JSON-objekt (endast de attribut som skall uppdateras)  
 Statuskod: 200, 404 (om sensorn inte finns)  
-Övrigt: För LCD finns ett attribut som heter DetectionMode. Detta värde kan EJ utelämnas från request body, då kommer det tidigare värdet på servern skrivas över till 0. Istället för att utelämna attributet skall värdet 3 användas för att indikera att DetectionMode inte skall uppdateras.
+  
+För LCD finns ett attribut som heter DetectionMode. Detta värde kan EJ utelämnas från request body, då kommer det tidigare värdet på servern skrivas över till 0. Istället för att utelämna attributet skall värdet 3 användas för att indikera att DetectionMode inte skall uppdateras.
 
 #### Avsluta sensorsimulering
 DELETE /sensors/[sensornamn]/[id]  
@@ -44,14 +46,32 @@ Statuskod: 200, 404 (om sensorn inte finns)
 #### Events
 POST /sensors/event  
 Request body: eventdata i JSON  
-Statuskod: ?  
-Övrigt: JSON-datan är formaterad enligt följande:
+Statuskod: 200, 501 (om en sensortyp eller kommando inte stöds), 404 (om sensorn inte finns)  
+
+JSON-datan är formaterad enligt följande:
 	
 	{
-		Command: kommando  // ???
+		Command: kommando  // se nedan
 	,	Sensor: sensornamn // t ex lcd, ap2ce etc (OBS! lowercase)
 	,	Id: sensorid       // samma id som används i alla andra metoders URL
 	}
+  
+Följande events stöds (i skrivande stöds ej alla av simulatorn):  
+
+**LCD**  
+
+- silent current alarm
+- audible alarm toggle
+- reset sieve pack timer
+- nvg toggle
+- restart
+
+**RAID**  
+
+- toggle lib
+- stop/start
+- cleaning on
+- cleaning off
 
 
 #### Test av uppkoppling
