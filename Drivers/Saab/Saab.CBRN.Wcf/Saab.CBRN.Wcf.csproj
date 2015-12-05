@@ -71,6 +71,10 @@
     <Compile Include="DataContracts\LCDDetectionMode.cs" />
     <Compile Include="DataContracts\LCDState.cs" />
     <Compile Include="DataContracts\Position.cs" />
+    <Compile Include="DataContracts\RAID.cs" />
+    <Compile Include="DataContracts\RAIDData.cs" />
+    <Compile Include="DataContracts\RAIDInternalState.cs" />
+    <Compile Include="DataContracts\RAIDState.cs" />
     <Compile Include="DataContracts\SensorBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
