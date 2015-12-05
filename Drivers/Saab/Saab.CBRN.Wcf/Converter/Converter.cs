@@ -162,6 +162,14 @@ namespace Saab.CBRN.Wcf
             {
                 setPosition(output.WISE, output.Database, output.Parent, input.Position);
             }
+
+            if (input.State.InternalState != RAIDInternalState.ignore)
+            {
+                // Can't assign InternalState directly because getters.
+                CBRNSensorRAIDState wstate = output.SensorState;
+                wstate.InternalStateValue = (byte)((RAIDInternalState)Enum.Parse(typeof(RAIDInternalState), input.State.InternalState.ToString()));
+                output.SensorState = wstate;
+            }
         }
 
         private static RAIDState Convert(CBRNSensorRAIDState wstate)
@@ -194,13 +202,6 @@ namespace Saab.CBRN.Wcf
         #endregion
 
         #region generic helpers
-
-        private static GroupList Convert<DataContract>(IEnumerable<DataContract> dataList, Func<DataContract, AttributeGroup> loadDataInto)
-        {
-            GroupList wDataList = new GroupList();
-            foreach (DataContract data in dataList) wDataList.Add(loadDataInto(data));
-            return wDataList;
-        }
 
         private static IEnumerable<DataContract> Convert<DataContract>(GroupList wDataList, Func<AttributeGroup, DataContract> loadDataInto)
         {

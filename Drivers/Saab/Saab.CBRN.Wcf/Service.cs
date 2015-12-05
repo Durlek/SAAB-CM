@@ -87,9 +87,9 @@ namespace Saab.CBRN.Wcf
         {
             if (p == null) p = new Position();
 
-            Create<EntityEquipmentSensorCBRNLCD>(delegate(EntityEquipmentSensorCBRNLCD wlcd, EntityGroundVehicle parent, string objectName)
+            Create<EntityEquipmentSensorCBRNLCD>(p, delegate(EntityEquipmentSensorCBRNLCD wlcd, ObjectHandle hParent, string id)
             {
-                wlcd.ExternalId = objectName;
+                wlcd.ExternalId = id;
 
                 GroupList gp = new GroupList();
 
@@ -102,30 +102,26 @@ namespace Saab.CBRN.Wcf
                 gp.Add(hData.Data);
 
                 wlcd.SensorData = gp;
-
-                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
-                WISE_RESULT result = parent.AddToDatabase(_hDatabase);
-                WISEError.CheckCallFailedEx(result);
-                wlcd.Parent = parent.Object;
+                wlcd.Parent = hParent;
                 return wlcd;
             });
         }
 
         public LCD GetLCDById(string id)
         {
-            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetHandleFromId(SensorTypes.lcd, id);
+            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetObjectFromId(SensorTypes.lcd, id);
             return Converter.Convert(wlcd);
         }
 
         public void UpdateLCD(string id, LCD lcd)
         {
-            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetHandleFromId(SensorTypes.lcd, id);
+            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetObjectFromId(SensorTypes.lcd, id);
             Converter.Convert(lcd, ref wlcd);
         }
 
         public void DeleteLCD(string id)
         {
-            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetHandleFromId(SensorTypes.lcd, id);
+            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetObjectFromId(SensorTypes.lcd, id);
             Delete(wlcd.Object, wlcd.Parent);
         }
 
@@ -136,9 +132,9 @@ namespace Saab.CBRN.Wcf
         public void CreateAP2Ce(Position p)
         {
             if (p == null) p = new Position();
-            Create<EntityEquipmentSensorCBRNAP2Ce>(delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, EntityGroundVehicle parent, string objectName)
+            Create<EntityEquipmentSensorCBRNAP2Ce>(p, delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, ObjectHandle hParent, string id)
             {
-                wap2ce.ExternalId = objectName;
+                wap2ce.ExternalId = id;
 
                 GroupList gp = new GroupList();
 
@@ -151,30 +147,26 @@ namespace Saab.CBRN.Wcf
                 gp.Add(hData.Data);
 
                 wap2ce.SensorData = gp;
-
-                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
-                WISE_RESULT result = parent.AddToDatabase(_hDatabase);
-                WISEError.CheckCallFailedEx(result);
-                wap2ce.Parent = parent.Object;
+                wap2ce.Parent = hParent;
                 return wap2ce;
             });
         }
 
         public AP2Ce GetAP2CeById(string id)
         {
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetHandleFromId(SensorTypes.ap2ce, id);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetObjectFromId(SensorTypes.ap2ce, id);
             return Converter.Convert(wap2ce);
         }
 
         public void UpdateAP2Ce(string id, AP2Ce ap2ce)
         {
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetHandleFromId(SensorTypes.ap2ce, id);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetObjectFromId(SensorTypes.ap2ce, id);
             Converter.Convert(ap2ce, ref wap2ce);
         }
 
         public void DeleteAP2Ce(string id)
         {
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetHandleFromId(SensorTypes.ap2ce, id);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetObjectFromId(SensorTypes.ap2ce, id);
             Delete(wap2ce.Object, wap2ce.Parent);
         }
 
@@ -186,36 +178,31 @@ namespace Saab.CBRN.Wcf
         {
             if (p == null) p = new Position();
 
-            Create<EntityEquipmentSensorCBRNRAID>(delegate(EntityEquipmentSensorCBRNRAID wraid, EntityGroundVehicle parent, string objectName)
+            Create<EntityEquipmentSensorCBRNRAID>(p, delegate(EntityEquipmentSensorCBRNRAID wraid, ObjectHandle hParent, string id)
             {
-                wraid.ExternalId = objectName;
-
+                wraid.ExternalId = id;
                 GroupList gp = new GroupList();
                 wraid.SensorData = gp;
-
-                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
-                WISE_RESULT result = parent.AddToDatabase(_hDatabase);
-                WISEError.CheckCallFailedEx(result);
-                wraid.Parent = parent.Object;
+                wraid.Parent = hParent;
                 return wraid;
             });
         }
 
         public RAID GetRAIDById(string id)
         {
-            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetHandleFromId(SensorTypes.raid, id);
+            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetObjectFromId(SensorTypes.raid, id);
             return Converter.Convert(wraid);
         }
 
         public void UpdateRAID(string id, RAID raid)
         {
-            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetHandleFromId(SensorTypes.raid, id);
+            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetObjectFromId(SensorTypes.raid, id);
             Converter.Convert(raid, ref wraid);
         }
 
         public void DeleteRAID(string id)
         {
-            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetHandleFromId(SensorTypes.raid, id);
+            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetObjectFromId(SensorTypes.raid, id);
             Delete(wraid.Object, wraid.Parent);
         }
 
@@ -223,7 +210,7 @@ namespace Saab.CBRN.Wcf
         
         #region generic methods
 
-        private WISEObject GetHandleFromId(SensorTypes sensorType, string id)
+        private WISEObject GetObjectFromId(SensorTypes sensorType, string id)
         {
             ObjectHandle hObject = ObjectHandle.Invalid;
 
@@ -239,27 +226,31 @@ namespace Saab.CBRN.Wcf
             return _factory.CreateObject(sensorType, hObject);
         }
         
-        private void Create<T>(Func<T, EntityGroundVehicle, string, T> loadDataInto) where T : WISEObject, new() {
+        private void Create<T>(Position p, Func<T, ObjectHandle, string, T> initializeObject) where T : WISEObject, new() {
 
             WISE_RESULT result = WISEError.WISE_OK;
             try
             {
-                string objectName = Guid.NewGuid().ToString();
+                string id = Guid.NewGuid().ToString();
                 T wiseObj = new T();
                 EntityGroundVehicle parent = new EntityGroundVehicle();
 
-                result = wiseObj.CreateInstance(_sink, _hDatabase, objectName);
+                result = wiseObj.CreateInstance(_sink, _hDatabase, id);
                 WISEError.CheckCallFailedEx(result);
                 result = parent.CreateInstance(_sink, _hDatabase, Guid.NewGuid().ToString());
                 WISEError.CheckCallFailedEx(result);
 
-                wiseObj = loadDataInto(wiseObj, parent, objectName);
+                wiseObj = initializeObject(wiseObj, parent.Object, id);
 
+                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
+                
+                result = parent.AddToDatabase(_hDatabase);
+                WISEError.CheckCallFailedEx(result);
                 result = wiseObj.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);
 
                 // Notify creator of object id.
-                WebOperationContext.Current.OutgoingResponse.Headers.Add(HttpResponseHeader.Location, objectName);
+                WebOperationContext.Current.OutgoingResponse.Headers.Add(HttpResponseHeader.Location, id);
                 WebOperationContext.Current.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.Created;
             }
             catch (WISEException)
@@ -278,7 +269,6 @@ namespace Saab.CBRN.Wcf
                 WISEError.CheckCallFailedEx(result);
                 result = _sink.RemoveObjectFromDatabase(_hDatabase, hObject);
                 WISEError.CheckCallFailedEx(result);
-
             }
             catch (WISEException)
             {
