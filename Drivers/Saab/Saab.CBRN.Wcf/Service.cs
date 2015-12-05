@@ -24,13 +24,15 @@ namespace Saab.CBRN.Wcf
     {
         private INETWISEDriverSink2 _sink;
         private DatabaseHandle _hDatabase;
+        private WISEObjectFactory _factory;
 
         #region Constructors
 
         public Service(INETWISEDriverSink2 sink, DatabaseHandle databaseHandle)
         {
-            this._sink = sink;
-            this._hDatabase = databaseHandle;
+            _sink = sink;
+            _hDatabase = databaseHandle;
+            _factory = new WISEObjectFactory(_sink, _hDatabase);
         }
 
         #endregion // Constructors
@@ -109,25 +111,22 @@ namespace Saab.CBRN.Wcf
             });
         }
 
-        // TODO: break out code to generic function
         public LCD GetLCDById(string id)
         {
-            ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
+            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetHandleFromId(SensorTypes.lcd, id);
             return Converter.Convert(wlcd);
         }
 
         public void UpdateLCD(string id, LCD lcd)
         {
-            ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNLCD wlcd = new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
+            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetHandleFromId(SensorTypes.lcd, id);
             Converter.Convert(lcd, ref wlcd);
         }
 
         public void DeleteLCD(string id)
         {
-            ObjectHandle hObject = GetHandleFromId(id);
-            Delete(hObject, (new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject)).Parent);
+            EntityEquipmentSensorCBRNLCD wlcd = (EntityEquipmentSensorCBRNLCD)GetHandleFromId(SensorTypes.lcd, id);
+            Delete(wlcd.Object, wlcd.Parent);
         }
 
         #endregion
@@ -163,29 +162,68 @@ namespace Saab.CBRN.Wcf
 
         public AP2Ce GetAP2CeById(string id)
         {
-            ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetHandleFromId(SensorTypes.ap2ce, id);
             return Converter.Convert(wap2ce);
         }
 
         public void UpdateAP2Ce(string id, AP2Ce ap2ce)
         {
-            ObjectHandle hObject = GetHandleFromId(id);
-            EntityEquipmentSensorCBRNAP2Ce wap2ce = new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetHandleFromId(SensorTypes.ap2ce, id);
             Converter.Convert(ap2ce, ref wap2ce);
         }
 
         public void DeleteAP2Ce(string id)
         {
-            ObjectHandle hObject = GetHandleFromId(id);
-            Delete(hObject, (new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject)).Parent);
+            EntityEquipmentSensorCBRNAP2Ce wap2ce = (EntityEquipmentSensorCBRNAP2Ce)GetHandleFromId(SensorTypes.ap2ce, id);
+            Delete(wap2ce.Object, wap2ce.Parent);
         }
 
         #endregion
 
-        #region generic methods
+        #region RAID
+
+        public void CreateRAID(Position p)
+        {
+            if (p == null) p = new Position();
+
+            Create<EntityEquipmentSensorCBRNRAID>(delegate(EntityEquipmentSensorCBRNRAID wraid, EntityGroundVehicle parent, string objectName)
+            {
+                wraid.ExternalId = objectName;
+
+                GroupList gp = new GroupList();
+                wraid.SensorData = gp;
+
+                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
+                WISE_RESULT result = parent.AddToDatabase(_hDatabase);
+                WISEError.CheckCallFailedEx(result);
+                wraid.Parent = parent.Object;
+                return wraid;
+            });
+        }
+
+        public RAID GetRAIDById(string id)
+        {
+            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetHandleFromId(SensorTypes.raid, id);
+            return Converter.Convert(wraid);
+        }
+
+        public void UpdateRAID(string id, RAID raid)
+        {
+            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetHandleFromId(SensorTypes.raid, id);
+            Converter.Convert(raid, ref wraid);
+        }
+
+        public void DeleteRAID(string id)
+        {
+            EntityEquipmentSensorCBRNRAID wraid = (EntityEquipmentSensorCBRNRAID)GetHandleFromId(SensorTypes.raid, id);
+            Delete(wraid.Object, wraid.Parent);
+        }
+
+        #endregion
         
-        private ObjectHandle GetHandleFromId(string id)
+        #region generic methods
+
+        private WISEObject GetHandleFromId(SensorTypes sensorType, string id)
         {
             ObjectHandle hObject = ObjectHandle.Invalid;
 
@@ -198,7 +236,7 @@ namespace Saab.CBRN.Wcf
                 throw new WebFaultException(System.Net.HttpStatusCode.NotFound);
             }
 
-            return hObject;
+            return _factory.CreateObject(sensorType, hObject);
         }
         
         private void Create<T>(Func<T, EntityGroundVehicle, string, T> loadDataInto) where T : WISEObject, new() {

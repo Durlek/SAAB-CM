@@ -77,10 +77,13 @@
     <Compile Include="DataContracts\RAIDState.cs" />
     <Compile Include="DataContracts\SensorBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorTypes.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="ServiceContracts\IService.AP2Ce.cs" />
     <Compile Include="ServiceContracts\IService.cs" />
     <Compile Include="ServiceContracts\IService.LCD.cs" />
+    <Compile Include="ServiceContracts\IService.RAID.cs" />
+    <Compile Include="WISEObjectFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

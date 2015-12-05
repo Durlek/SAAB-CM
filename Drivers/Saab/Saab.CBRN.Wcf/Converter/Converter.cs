@@ -140,6 +140,59 @@ namespace Saab.CBRN.Wcf
 
         #endregion
 
+        #region RAID
+
+        internal static RAID Convert(EntityEquipmentSensorCBRNRAID input)
+        {
+            RAID output = new RAID();
+
+            output.Id = input.ExternalId;
+            output.Name = input.Name;
+            output.Description = input.Description;
+            output.Data = ConvertRAIDData(input.SensorData, input.StringCache);
+            output.State = Convert(input.SensorState);
+            output.Position = getPosition(input.WISE, input.Database, input.Parent);
+            
+            return output;
+        }
+
+        internal static void Convert(RAID input, ref EntityEquipmentSensorCBRNRAID output)
+        {
+            if (input.Position != null)
+            {
+                setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            }
+        }
+
+        private static RAIDState Convert(CBRNSensorRAIDState wstate)
+        {
+            RAIDState state = new RAIDState();
+
+            state.DeviceError      = wstate.DeviceErrorValue;
+            state.DeviceState      = wstate.DeviceStateValue;
+            state.SubstanceLibrary = wstate.SubstanceLibraryValue;
+            state.InternalState    = (RAIDInternalState)Enum.Parse(typeof(RAIDInternalState), wstate.InternalStateValue.ToString());
+
+            return state;
+        }
+
+        private static IEnumerable<RAIDData> ConvertRAIDData(GroupList wDataList, INETWISEStringCache stringCache)
+        {
+            return Convert<RAIDData>(wDataList, delegate(AttributeGroup attrGroup)
+            {
+                CBRNSensorRAIDData wdata = new CBRNSensorRAIDData("SensorData", stringCache, attrGroup);
+                RAIDData data = new RAIDData();
+                data.BarCount          = wdata.BarCountValue;
+                data.Concentration     = wdata.ConcentrationValue;
+                data.ConcentrationUnit = wdata.ConcentrationUnitValue;
+                data.Substance         = wdata.SubstanceValue;
+                data.SubstanceClass    = wdata.SubstanceClassValue;
+                return data;
+            });
+        }
+
+        #endregion
+
         #region generic helpers
 
         private static GroupList Convert<DataContract>(IEnumerable<DataContract> dataList, Func<DataContract, AttributeGroup> loadDataInto)

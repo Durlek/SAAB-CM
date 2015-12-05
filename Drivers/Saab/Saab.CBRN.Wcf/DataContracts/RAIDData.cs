@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Saab.CBRN.Wcf.DataContracts
 {
-    class RAIDData
+    public class RAIDData
     {
         private string _substance;
         private int _barCount;

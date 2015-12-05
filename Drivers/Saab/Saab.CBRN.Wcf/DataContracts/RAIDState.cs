@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Saab.CBRN.Wcf.DataContracts
 {
-    class RAIDState
+    public class RAIDState
     {
         private int _substanceLibrary;
         private int _deviceState;

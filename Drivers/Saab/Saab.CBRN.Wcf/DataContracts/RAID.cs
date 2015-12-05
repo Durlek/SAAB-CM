@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Saab.CBRN.Wcf.DataContracts
 {
-    class RAID : SensorBase
+    public class RAID : SensorBase
     {
         private IEnumerable<RAIDData> _data;
         private RAIDState _state;
