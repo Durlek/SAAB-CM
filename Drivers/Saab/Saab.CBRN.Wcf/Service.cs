@@ -224,7 +224,7 @@ namespace Saab.CBRN.Wcf
                 WebOperationContext.Current.OutgoingResponse.Headers.Add(HttpResponseHeader.Location, objectName);
                 WebOperationContext.Current.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.Created;
             }
-            catch (WISEException ex)
+            catch (WISEException)
             {
                 throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
             }
@@ -242,7 +242,7 @@ namespace Saab.CBRN.Wcf
                 WISEError.CheckCallFailedEx(result);
 
             }
-            catch (WISEException ex)
+            catch (WISEException)
             {
                 throw new WebFaultException(System.Net.HttpStatusCode.ServiceUnavailable);
             }
