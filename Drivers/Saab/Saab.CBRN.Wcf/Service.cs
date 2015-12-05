@@ -12,10 +12,9 @@ using System.Text;
 using WISE_RESULT = System.UInt32;
 using System.Net;
 
-// TODO: Lots of duplicated code in this class
-// TODO: if the codegenerator is updated so that all objects inherit from
-// ..... an abstract class wich implements the 3 constructors,
-// ..... this class becomes a lot easier to write.
+// Implements all the sensors webb interface.
+// Most of the code that interacts with WISE is placed in generic methods,
+// declared at the end of this file.
 
 namespace Saab.CBRN.Wcf
 {

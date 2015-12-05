@@ -7,6 +7,11 @@ using STS.WISE;
 
 namespace Saab.CBRN.Wcf
 {
+    // A basic factory for creating WISE objects,
+    // existing only to make writing generic code a bit easier in Service.cs.
+
+    public enum SensorTypes { lcd, ap2ce, raid };
+
     class WISEObjectFactory
     {
         private INETWISEDriverSink2 _sink;

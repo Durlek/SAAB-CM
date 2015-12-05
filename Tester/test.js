@@ -72,8 +72,21 @@ const EXAMPLE_AP2CE = {
     }
 }
 
-const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE};
-const SENSORS  = ['lcd', 'ap2ce'];
+const EXAMPLE_RAID = {
+    Data: []
+,   Description: ""
+,   Name: "" 
+,   Position: { Altitude: 6, Latitude: 7, Longitude: 8 }
+,   State: {
+        DeviceError: 0
+    ,   DeviceState: 0
+    ,   InternalState: 0
+    ,   SubstanceLibrary: 0
+    }
+}
+
+const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE, raid: EXAMPLE_RAID};
+const SENSORS  = ['lcd', 'ap2ce', 'raid'];
 
 function eq(v1, v2, msg) {
     assert.strictEqual(v1, v2, msg + ' (' + v1 + ' != ' + v2 + ')');
@@ -275,7 +288,6 @@ SENSORS.forEach(function (sensor) {
                         });
                     });
                 });
-
             }
         });
 

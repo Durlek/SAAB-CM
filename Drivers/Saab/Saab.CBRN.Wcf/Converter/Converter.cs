@@ -6,8 +6,15 @@ using System.Linq;
 using System.Text;
 using STS.WISE;
 
-// TODO: lots of duplicated code
-// TODO: better error handling (look in sdk for info)
+// Converter class for converting between the WISE representation (WISEObject) of the sensors
+// and the WCF representation (data contracts).
+//
+// Conversion WISE -> WCF  is used for sending out objects on the webb interface.
+// Conversion WCF  -> WISE is used for object updates sent in on the webb interface.
+// NOTE: Object creation only supports initializing the position, hence a conversion method is not needed.
+//
+// The conversion from WCF to WISE does not convert all values,
+// because only some values are meaningful to update.
 
 namespace Saab.CBRN.Wcf
 {
@@ -163,7 +170,7 @@ namespace Saab.CBRN.Wcf
                 setPosition(output.WISE, output.Database, output.Parent, input.Position);
             }
 
-            if (input.State.InternalState != RAIDInternalState.ignore)
+            if (input.State != null && input.State.InternalState != RAIDInternalState.ignore)
             {
                 // Can't assign InternalState directly because getters.
                 CBRNSensorRAIDState wstate = output.SensorState;
