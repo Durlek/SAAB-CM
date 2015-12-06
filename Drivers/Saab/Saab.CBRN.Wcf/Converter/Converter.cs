@@ -208,6 +208,48 @@ namespace Saab.CBRN.Wcf
 
         #endregion
 
+        #region I28
+
+        internal static I28 Convert(EntityEquipmentSensorCBRNI28 input)
+        {
+            I28 output = new I28();
+
+            output.Id = input.ExternalId;
+            output.Name = input.Name;
+            output.Description = input.Description;
+            output.Data = ConvertI28Data(input.SensorData, input.StringCache);
+            output.State = Convert(input.SensorState);
+            output.Position = getPosition(input.WISE, input.Database, input.Parent);
+
+            return output;
+        }
+
+        internal static void Convert(I28 input, ref EntityEquipmentSensorCBRNI28 output)
+        {
+            if (input.Position != null)
+            {
+                setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            }
+        }
+
+        private static I28State Convert(CBRNSensorI28State wstate)
+        {
+            I28State state = new I28State();
+            state.ErrorCode = wstate.ErrorcodeValue;
+            return state;
+        }
+
+        private static I28Data ConvertI28Data(CBRNSensorI28Data wdata, INETWISEStringCache stringCache)
+        {
+            I28Data data = new I28Data();
+            data.CurrentDoseRate = wdata.CurrentDoseRateValue;
+            data.AccumulatedDoseRate = wdata.AccumulatedDoseRateValue;
+            data.PeakDoseRate = wdata.PeakDoseRateValue;
+            return data;
+        }
+
+        #endregion
+
         #region generic helpers
 
         private static IEnumerable<DataContract> Convert<DataContract>(GroupList wDataList, Func<AttributeGroup, DataContract> loadDataInto)

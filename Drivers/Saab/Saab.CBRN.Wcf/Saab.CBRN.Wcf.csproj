@@ -66,6 +66,9 @@
     <Compile Include="DataContracts\AP2CeData.cs" />
     <Compile Include="DataContracts\AP2CeState.cs" />
     <Compile Include="DataContracts\Event.cs" />
+    <Compile Include="DataContracts\I28.cs" />
+    <Compile Include="DataContracts\I28Data.cs" />
+    <Compile Include="DataContracts\I28State.cs" />
     <Compile Include="DataContracts\LCD.cs" />
     <Compile Include="DataContracts\LCDData.cs" />
     <Compile Include="DataContracts\LCDDetectionMode.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Service.cs" />
     <Compile Include="ServiceContracts\IService.AP2Ce.cs" />
     <Compile Include="ServiceContracts\IService.cs" />
+    <Compile Include="ServiceContracts\IService.I28.cs" />
     <Compile Include="ServiceContracts\IService.LCD.cs" />
     <Compile Include="ServiceContracts\IService.RAID.cs" />
     <Compile Include="WISEObjectFactory.cs" />

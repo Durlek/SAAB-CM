@@ -10,7 +10,9 @@ namespace Saab.CBRN.Wcf
     // A basic factory for creating WISE objects,
     // existing only to make writing generic code a bit easier in Service.cs.
 
-    public enum SensorTypes { lcd, ap2ce, raid };
+    public enum SensorTypes { lcd, ap2ce, raid, i28 };
+
+    public class NotImplementedException : Exception { }
 
     class WISEObjectFactory
     {
@@ -30,8 +32,9 @@ namespace Saab.CBRN.Wcf
                 case SensorTypes.lcd:   return new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject);
                 case SensorTypes.ap2ce: return new EntityEquipmentSensorCBRNAP2Ce(_sink, _hDatabase, hObject);
                 case SensorTypes.raid:  return new EntityEquipmentSensorCBRNRAID(_sink, _hDatabase, hObject);
+                case SensorTypes.i28:   return new EntityEquipmentSensorCBRNI28(_sink, _hDatabase, hObject);
             }
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

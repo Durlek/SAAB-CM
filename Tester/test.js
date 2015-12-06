@@ -1,3 +1,8 @@
+// Mocha tests for testing the webb api. 
+// These are NOT unit tests, the tests might fail even if the
+// the functionality they are supposed to test works. But if they don't fail, 
+// you can at least feel a bit safer.
+
 var assert  = require('assert');
 var request = require('request').defaults({baseUrl: 'http://localhost:8732/'});
 var http    = require('http');
@@ -85,8 +90,26 @@ const EXAMPLE_RAID = {
     }
 }
 
-const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE, raid: EXAMPLE_RAID};
-const SENSORS  = ['lcd', 'ap2ce', 'raid'];
+const EXAMPLE_I28 = {
+    Data: {
+        AccumulatedDoseRate: 0
+    ,   CurrentDoseRate: 0
+    ,   PeakDoseRate: 0
+    }
+,   Description: ""
+,   Name: ""
+,   Position: {
+        Altitude: 0
+    ,   Latitude: 0
+    ,   Longitude: 0
+    }
+,   State: {
+        ErrorCode: 0
+    }
+}
+
+const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE, raid: EXAMPLE_RAID, i28: EXAMPLE_I28};
+const SENSORS  = ['lcd', 'ap2ce', 'raid', 'i28'];
 
 function eq(v1, v2, msg) {
     assert.strictEqual(v1, v2, msg + ' (' + v1 + ' != ' + v2 + ')');
