@@ -36,7 +36,7 @@ namespace Saab.CBRN.Wcf
 
         #endregion // Constructors
 
-        #region checker & events
+        #region Checker & events
 
         // This is used to verify that the user has given a correct url.
         public int MagicNumber()
@@ -44,7 +44,6 @@ namespace Saab.CBRN.Wcf
             return 123;
         }
 
-        // TODO: break out code to generic function, might have to modify code generator
         public void CreateEvent(Event ewent)
         {
             ObjectHandle hObject = ObjectHandle.Invalid;
@@ -55,6 +54,7 @@ namespace Saab.CBRN.Wcf
             {
                 case "lcd":  LCDEvent(ewent, hObject);  break;
                 case "raid": RAIDEvent(ewent, hObject); break;
+                case "i28": I28Event(ewent, hObject); break;
                 default: throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
             }
         }
@@ -112,6 +112,29 @@ namespace Saab.CBRN.Wcf
                 default:
                     throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
             }
+
+            wewent.SendEventToDatabase(_hDatabase);
+        }
+
+        public void I28Event(Event ewent, ObjectHandle hObject)
+        {
+            CBRNRAIDControl wewent = new CBRNRAIDControl();
+            wewent.CreateInstance(_sink, _hDatabase);
+            wewent.ExternalId = hObject;
+
+            switch (ewent.Command)
+            {
+                case "reset accumulated dose rate":
+                    wewent.Command = "CD";
+                    break;
+                case "reset peak dose rate":
+                    wewent.Command = "E000E0000";
+                    break;
+                default:
+                    throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
+            }
+
+            wewent.SendEventToDatabase(_hDatabase);
         }
 
         #endregion
@@ -277,7 +300,7 @@ namespace Saab.CBRN.Wcf
 
         #endregion
 
-        #region generic methods
+        #region Generic methods
 
         private WISEObject GetObjectFromId(SensorTypes sensorType, string id)
         {
