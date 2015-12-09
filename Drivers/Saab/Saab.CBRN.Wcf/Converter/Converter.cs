@@ -250,6 +250,51 @@ namespace Saab.CBRN.Wcf
 
         #endregion
 
+        #region I27
+
+        internal static I27 Convert(EntityEquipmentSensorCBRNI27 input)
+        {
+            I27 output = new I27();
+
+            output.Id = input.ExternalId;
+            output.Name = input.Name;
+            output.Description = input.Description;
+            output.Data = ConvertI27Data(input.SensorData, input.StringCache);
+            output.State = Convert(input.SensorState);
+            output.Position = getPosition(input.WISE, input.Database, input.Parent);
+
+            return output;
+        }
+
+        internal static void Convert(I27 input, ref EntityEquipmentSensorCBRNI27 output)
+        {
+            if (input.Position != null)
+            {
+                setPosition(output.WISE, output.Database, output.Parent, input.Position);
+            }
+        }
+
+        private static I27State Convert(CBRNSensorI27State wstate)
+        {
+            I27State state = new I27State();
+            state.BatteryLow = wstate.BatteryLowValue == 1;
+            state.TemperatureError = wstate.TemperatureErrorValue == 1;
+            return state;
+        }
+
+        private static I27Data ConvertI27Data(CBRNSensorI27Data wdata, INETWISEStringCache stringCache)
+        {
+            I27Data data = new I27Data();
+            data.RightProbeDoseRate = wdata.RightProbeDoseRateValue;
+            data.LeftProbeDoseRate = wdata.LeftProbeDoseRateValue;
+            data.TimeOfLastReset = wdata.TimeOfLastResetValue;
+            data.InteralDoseRate = wdata.InternalDoseRateValue;
+            data.AccumulatedDose = wdata.AccumulatedDoseValue;
+            return data;
+        }
+
+        #endregion
+
         #region generic helpers
 
         private static IEnumerable<DataContract> Convert<DataContract>(GroupList wDataList, Func<AttributeGroup, DataContract> loadDataInto)

@@ -300,6 +300,41 @@ namespace Saab.CBRN.Wcf
 
         #endregion
 
+        #region I27
+
+        public void CreateI27(Position p)
+        {
+            if (p == null) p = new Position();
+
+            Create<EntityEquipmentSensorCBRNI28>(p, delegate(EntityEquipmentSensorCBRNI28 wi27, ObjectHandle hParent, string id)
+            {
+                wi27.ExternalId = id;
+                wi27.Parent = hParent;
+                return wi27;
+            });
+        }
+
+        public I27 GetI27ById(string id)
+        {
+            EntityEquipmentSensorCBRNI27 wi27 = (EntityEquipmentSensorCBRNI27)GetObjectFromId(SensorTypes.i27, id);
+            return Converter.Convert(wi27);
+        }
+
+        public void UpdateI27(string id, I27 raid)
+        {
+            EntityEquipmentSensorCBRNI27 wi27 = (EntityEquipmentSensorCBRNI27)GetObjectFromId(SensorTypes.i27, id);
+            Converter.Convert(raid, ref wi27);
+        }
+
+        public void DeleteI27(string id)
+        {
+            EntityEquipmentSensorCBRNI27 wi27 = (EntityEquipmentSensorCBRNI27)GetObjectFromId(SensorTypes.i27, id);
+            Delete(wi27.Object, wi27.Parent);
+        }
+
+        #endregion
+
+
         #region Generic methods
 
         private WISEObject GetObjectFromId(SensorTypes sensorType, string id)

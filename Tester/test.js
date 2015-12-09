@@ -108,8 +108,29 @@ const EXAMPLE_I28 = {
     }
 }
 
-const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE, raid: EXAMPLE_RAID, i28: EXAMPLE_I28};
-const SENSORS  = ['lcd', 'ap2ce', 'raid', 'i28'];
+const EXAMPLE_I27 = {
+    Description: ""
+,   Name: ""
+,   Position: {
+        Altitude: 0
+    ,   Latitude: 0
+    ,   Longitude: 0
+    }
+,   State: {
+        BatteryLow: false
+    ,   TemperatureError: false
+    }
+,   Data: {
+        AccumulatedDose: 0
+    ,   InteralDoseRate: 0
+    ,   LeftProbeDoseRate: 0
+    ,   RightProbeDoseRate: 0
+    ,   TimeOfLastReset: ""
+    }
+}
+
+const EXAMPLES = {lcd: EXAMPLE_LCD, ap2ce: EXAMPLE_AP2CE, raid: EXAMPLE_RAID, i28: EXAMPLE_I28, i27: EXAMPLE_I27};
+const SENSORS  = ['lcd', 'ap2ce', 'raid', 'i28', 'i27'];
 
 function eq(v1, v2, msg) {
     assert.strictEqual(v1, v2, msg + ' (' + v1 + ' != ' + v2 + ')');
