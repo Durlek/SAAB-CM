@@ -66,7 +66,8 @@ namespace Saab.CBRN.Wcf
             {
                 case "lcd":  LCDEvent(ewent, hObject);  break;
                 case "raid": RAIDEvent(ewent, hObject); break;
-                case "i28": I28Event(ewent, hObject); break;
+                case "i28":  I28Event(ewent, hObject);  break;
+                case "i27":  I27Event(ewent, hObject); break;
                 default: throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
             }
         }
@@ -139,7 +140,7 @@ namespace Saab.CBRN.Wcf
 
         public void I28Event(Event ewent, ObjectHandle hObject)
         {
-            CBRNRAIDControl wewent = new CBRNRAIDControl();
+            CBRNI28Control wewent = new CBRNI28Control();
             wewent.CreateInstance(_sink, _hDatabase);
             wewent.ExternalId = hObject;
 
@@ -150,6 +151,24 @@ namespace Saab.CBRN.Wcf
                     break;
                 case "reset peak dose rate":
                     wewent.Command = "E000E0000";
+                    break;
+                default:
+                    throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
+            }
+
+            wewent.SendEventToDatabase(_hDatabase);
+        }
+
+        public void I27Event(Event ewent, ObjectHandle hObject)
+        {
+            CBRNI27Control wewent = new CBRNI27Control();
+            wewent.CreateInstance(_sink, _hDatabase);
+            wewent.ExternalId = hObject;
+
+            switch (ewent.Command)
+            {
+                case "reset accumulated dose rate":
+                    wewent.Command = "CD";
                     break;
                 default:
                     throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
