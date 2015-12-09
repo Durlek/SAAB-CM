@@ -38,6 +38,7 @@ const EXAMPLE_LCD = {
     ,   TICAlert:               false
     ,   TICMode:                false
     ,   AudibleAlarm:           false
+    ,   NVG:                    false
     }
 }
 

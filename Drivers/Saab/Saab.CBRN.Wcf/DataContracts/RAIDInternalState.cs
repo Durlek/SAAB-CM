@@ -13,7 +13,6 @@ namespace Saab.CBRN.Wcf.DataContracts
         startingwarmup = 3,
         startingselftest = 4,
         analytictest = 5,
-        off = 6,
-        ignore = 7
+        off = 6
     }
 }

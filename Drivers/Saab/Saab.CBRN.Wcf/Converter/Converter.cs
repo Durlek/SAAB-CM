@@ -170,14 +170,6 @@ namespace Saab.CBRN.Wcf
             {
                 setPosition(output.WISE, output.Database, output.Parent, input.Position);
             }
-
-            if (input.State != null && input.State.InternalState != RAIDInternalState.ignore)
-            {
-                // Can't assign InternalState directly because getters.
-                CBRNSensorRAIDState wstate = output.SensorState;
-                wstate.InternalStateValue = (byte)((RAIDInternalState)Enum.Parse(typeof(RAIDInternalState), input.State.InternalState.ToString()));
-                output.SensorState = wstate;
-            }
         }
 
         private static RAIDState Convert(CBRNSensorRAIDState wstate)
