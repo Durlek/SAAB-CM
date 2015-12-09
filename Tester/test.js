@@ -8,20 +8,7 @@ var request = require('request').defaults({baseUrl: 'http://localhost:8732/'});
 var http    = require('http');
 
 const EXAMPLE_LCD = {
-    Data: [
-        {
-            BarCount: 0
-        ,   VolumeConcentration: 0
-        ,   SubstanceIndex: 0
-        ,   SubstanceCategory: 'G'
-        },
-        {
-            BarCount: 0
-        ,   VolumeConcentration: 0
-        ,   SubstanceIndex: 0
-        ,   SubstanceCategory: 'H'
-        }
-    ]
+    Data: []
 ,   Description: ""
 ,   DetectionMode: 0
 ,   Name: ""
@@ -55,16 +42,7 @@ const EXAMPLE_LCD = {
 }
 
 const EXAMPLE_AP2CE = {
-    Data: [{
-        BarCount: 0
-        , VolumeConcentration: 0
-        , SubstanceCategory: 'G'
-        },
-        {
-            BarCount: 0
-        ,   VolumeConcentration: 0
-        ,   SubstanceCategory: 'H'
-        }]
+    Data: []
 ,   Description: ""
 ,   Name: ""
 ,   Position: {Altitude: 3, Latitude: 4, Longitude: 5}

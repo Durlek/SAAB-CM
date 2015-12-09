@@ -148,18 +148,6 @@ namespace Saab.CBRN.Wcf
             Create<EntityEquipmentSensorCBRNLCD>(p, delegate(EntityEquipmentSensorCBRNLCD wlcd, ObjectHandle hParent, string id)
             {
                 wlcd.ExternalId = id;
-
-                GroupList gp = new GroupList();
-
-                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", wlcd.StringCache, new AttributeGroup());
-                gData.SubstanceCategoryValue = "G";
-                gp.Add(gData.Data);
-
-                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", wlcd.StringCache, new AttributeGroup());
-                hData.SubstanceCategoryValue = "H";
-                gp.Add(hData.Data);
-
-                wlcd.SensorData = gp;
                 wlcd.Parent = hParent;
                 return wlcd;
             });
@@ -193,18 +181,6 @@ namespace Saab.CBRN.Wcf
             Create<EntityEquipmentSensorCBRNAP2Ce>(p, delegate (EntityEquipmentSensorCBRNAP2Ce wap2ce, ObjectHandle hParent, string id)
             {
                 wap2ce.ExternalId = id;
-
-                GroupList gp = new GroupList();
-
-                CBRNSensorLCDData gData = new CBRNSensorLCDData("SensorData", wap2ce.StringCache, new AttributeGroup());
-                gData.SubstanceCategoryValue = "G";
-                gp.Add(gData.Data);
-
-                CBRNSensorLCDData hData = new CBRNSensorLCDData("SensorData", wap2ce.StringCache, new AttributeGroup());
-                hData.SubstanceCategoryValue = "H";
-                gp.Add(hData.Data);
-
-                wap2ce.SensorData = gp;
                 wap2ce.Parent = hParent;
                 return wap2ce;
             });
