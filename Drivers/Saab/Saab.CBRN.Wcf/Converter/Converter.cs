@@ -77,6 +77,7 @@ namespace Saab.CBRN.Wcf
             state.EEPROMChecksumError    = wstate.EEPROMChecksumErrorValue    == 1;
             state.HTOutSideLimits        = wstate.HTOutSideLimitsValue        == 1;
             state.AudibleAlarm           = wstate.AudibleAlarmValue           == 1;
+            state.NVG                    = wstate.NVGValue                    == 1;
 
             return state;
         }

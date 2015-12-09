@@ -32,6 +32,7 @@ namespace Saab.CBRN.Wcf.DataContracts
         private bool _eEPROMChecksumError;
         private bool _hTOutSideLimits;
         private bool _audibleAlarm;
+        private bool _nVG;
 
         [DataMember]
         public bool GAlert
@@ -199,6 +200,13 @@ namespace Saab.CBRN.Wcf.DataContracts
         {
             get { return _audibleAlarm; }
             set { _audibleAlarm = value; }
+        }
+
+        [DataMember]
+        public bool NVG
+        {
+            get { return _nVG; }
+            set { _nVG = value; }
         }
     }
 }
