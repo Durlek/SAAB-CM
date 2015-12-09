@@ -21,9 +21,21 @@ namespace Saab.CBRN.Wcf
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
+        #region Private properties
+
         private INETWISEDriverSink2 _sink;
         private DatabaseHandle _hDatabase;
         private WISEObjectFactory _factory;
+
+        private enum LCDEvents {
+            SILENT_CURRENT_ALARM       = 8
+        ,   AUDIBLE_ALARM_TOGGLE       = 9
+        ,   RESET_SIEVE_PACK_TIMER     = 10
+        ,   NVG_TOGGLE                 = 11
+        ,   RESTART                    = 12
+        }
+
+        #endregion
 
         #region Constructors
 
@@ -65,27 +77,36 @@ namespace Saab.CBRN.Wcf
             wewent.CreateInstance(_sink, _hDatabase);
             wewent.ExternalId = hObject;
 
+            CBRNSensorLCDState wstate = (new EntityEquipmentSensorCBRNLCD(_sink, _hDatabase, hObject)).SensorState;
+            int audibleAlarm = wstate.AudibleAlarmValue;
+            int nvg          = wstate.NVGValue;
+            
+            int bitmask = 
+                wstate.AudibleAlarmValue * (1 << (int)LCDEvents.AUDIBLE_ALARM_TOGGLE)
+            |   wstate.NVGValue          * (1 << (int)LCDEvents.NVG_TOGGLE);
+
             switch (ewent.Command)
             {
                 case "silent current alarm":
-                    wewent.Command = 256;
+                    bitmask |= (int)LCDEvents.SILENT_CURRENT_ALARM;
                     break;
                 case "audible alarm toggle":
-                    wewent.Command = 512;
+                    bitmask ^= (1 << (int)LCDEvents.AUDIBLE_ALARM_TOGGLE);
                     break;
                 case "reset sieve pack timer":
-                    wewent.Command = 1024;
+                    bitmask |= (int)LCDEvents.RESET_SIEVE_PACK_TIMER;
                     break;
                 case "nvg toggle":
-                    wewent.Command = 2048;
+                    bitmask ^= (1 << (int)LCDEvents.NVG_TOGGLE);
                     break;
                 case "restart":
-                    wewent.Command = 4096;
+                    bitmask |= (int)LCDEvents.RESTART;
                     break;
                 default:
                     throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
             }
 
+            wewent.Command = bitmask;
             wewent.SendEventToDatabase(_hDatabase);
         }
 
