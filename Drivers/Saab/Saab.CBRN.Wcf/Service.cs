@@ -89,19 +89,19 @@ namespace Saab.CBRN.Wcf
             switch (ewent.Command)
             {
                 case "silent current alarm":
-                    bitmask |= (int)LCDEvents.SILENT_CURRENT_ALARM;
+                    bitmask |= (1 << (int)LCDEvents.SILENT_CURRENT_ALARM);
                     break;
                 case "audible alarm toggle":
                     bitmask ^= (1 << (int)LCDEvents.AUDIBLE_ALARM_TOGGLE);
                     break;
                 case "reset sieve pack timer":
-                    bitmask |= (int)LCDEvents.RESET_SIEVE_PACK_TIMER;
+                    bitmask |= (1 << (int)LCDEvents.RESET_SIEVE_PACK_TIMER);
                     break;
                 case "nvg toggle":
                     bitmask ^= (1 << (int)LCDEvents.NVG_TOGGLE);
                     break;
                 case "restart":
-                    bitmask |= (int)LCDEvents.RESTART;
+                    bitmask |= (1 << (int)LCDEvents.RESTART);
                     break;
                 default:
                     throw new WebFaultException(System.Net.HttpStatusCode.NotImplemented);
