@@ -281,7 +281,7 @@ namespace Saab.CBRN.Wcf
             data.RightProbeDoseRate = wdata.RightProbeDoseRateValue;
             data.LeftProbeDoseRate = wdata.LeftProbeDoseRateValue;
             data.TimeOfLastReset = wdata.TimeOfLastResetValue;
-            data.InteralDoseRate = wdata.InternalDoseRateValue;
+            data.InternalDoseRate = wdata.InternalDoseRateValue;
             data.AccumulatedDose = wdata.AccumulatedDoseValue;
             return data;
         }

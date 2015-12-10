@@ -22,7 +22,7 @@ namespace Saab.CBRN.Wcf.DataContracts
         }
 
         [DataMember]
-        public int InteralDoseRate
+        public int InternalDoseRate
         {
             get { return _internalDoseRate; }
             set { _internalDoseRate = value; }
