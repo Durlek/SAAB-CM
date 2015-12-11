@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<connection>
+
+  <info author="" copyright="" description="" modified="2015-12-11T09:50:33.111Z" version="1.0.0.0"/>
+
+  <variables/>
+
+  <databases>
+    <database id="LVCOMA" url="LVCOM.templatedb"/>
+    <database id="LVCOMB" url="LVCOM.templatedb"/>
+  </databases>
+
+  <services/>
+
+  <triggers/>
+
+  <actions/>
+
+  <couplingsets/>
+
+  <notes/>
+
+</connection>

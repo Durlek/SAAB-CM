@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<connectivity>
+
+  <info author="" copyright="" description="" modified="2015-12-11T09:50:47.906Z" version="1.0.0.0"/>
+
+  <variables/>
+
+  <drivers>
+    <driver description="" id="Driver000" name="STS.NULL"/>
+    <driver description="" id="Driver001" name="STS.NULL"/>
+  </drivers>
+
+  <policies>
+    <ownership/>
+  </policies>
+
+  <connections>
+    <connection destADBName="ApplicationDB000" destDriver="Driver001" destTDB="LVCOMB" destTDBName="TemplateDB000" direction="inout" id="Connection000" srcADBName="BackboneDatabase" srcDriver="Driver000" srcTDB="LVCOMA" srcTDBName="BackboneModel" url="LVCOM_LVCOM.connection"/>
+  </connections>
+
+  <notes/>
+
+</connectivity>

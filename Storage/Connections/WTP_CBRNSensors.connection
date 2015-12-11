@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <connection>
 
-  <info author="" copyright="" description="" modified="2015-12-10T20:40:54.476Z" version="1.0.0.0"/>
+  <info author="" copyright="" description="" modified="2015-12-11T10:11:09.730Z" version="1.0.0.0"/>
 
   <variables/>
 
@@ -926,6 +926,162 @@
         <parameter name="Reset" value="Automatic"/>
       </parameters>
     </trigger>
+    <trigger id="Trigger157" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger158" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger159" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger160" source="Parent" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger161" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger162" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger163" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger164" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I28" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger165" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger166" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger167" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger168" source="SensorData" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger169" source="Parent" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger170" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger171" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger172" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger173" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger174" source="SensorData" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger175" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger176" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger177" source="Parent" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger178" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger179" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger180" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger181" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
+    <trigger id="Trigger182" source="SensorState" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce" type="Attribute">
+      <parameters>
+        <parameter name="Evaluation" value="Always"/>
+        <parameter name="Reset" value="Automatic"/>
+      </parameters>
+    </trigger>
   </triggers>
 
   <actions>
@@ -1107,8 +1263,18 @@
       </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="CBRNSensors" destinationtype="EntityEquipment.Sensor.CBRN.AP2Ce" id="CouplingSet005" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.AP2Ce">
-      <transforms/>
-      <couplings/>
+      <transforms>
+        <transform id="Transform026" url="HandleToHandle.transform"/>
+      </transforms>
+      <couplings>
+        <coupling destination="in" destinationtype="Transform026" id="Coupling175" source="Parent" trigger="Trigger177"/>
+        <coupling destination="Parent" id="Coupling176" source="out" sourcetype="Transform026"/>
+        <coupling destination="SensorState.BatteryLow" id="Coupling177" source="SensorState.BatteryLow" trigger="Trigger178"/>
+        <coupling destination="SensorState.DetectorReady" id="Coupling178" source="SensorState.DetectorReady" trigger="Trigger179"/>
+        <coupling destination="SensorState.DeviceFault" id="Coupling179" source="SensorState.DeviceFault" trigger="Trigger180"/>
+        <coupling destination="SensorState.HydrogenTankEmpty" id="Coupling180" source="SensorState.HydrogenTankEmpty" trigger="Trigger181"/>
+        <coupling destination="SensorState.Purge" id="Coupling181" source="SensorState.Purge" trigger="Trigger182"/>
+      </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="CBRNSensors" destinationtype="EntityEquipment.Sensor.CBRN.LCD" id="CouplingSet006" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.LCD">
       <transforms>
@@ -1170,6 +1336,10 @@
     <couplingset active="true" debug="false" destinationdb="WTP" destinationtype="EntityEquipment.Sensor.CBRN.I27" id="CouplingSet009" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I27">
       <transforms>
         <transform id="Transform009" url="HandleToHandle.transform"/>
+        <transform id="Transform017" url="LongToDouble.transform"/>
+        <transform id="Transform018" url="LongToDouble.transform"/>
+        <transform id="Transform019" url="LongToDouble.transform"/>
+        <transform id="Transform020" url="LongToDouble.transform"/>
       </transforms>
       <couplings>
         <coupling destination="SensorState.TemperatureError" id="Coupling129" source="SensorState.TemperatureError" trigger="Trigger141"/>
@@ -1177,10 +1347,6 @@
         <coupling destination="SensorState" id="Coupling131" source="SensorState" trigger="Trigger143"/>
         <coupling destination="SensorRawData" id="Coupling132" source="SensorRawData" trigger="Trigger144"/>
         <coupling destination="SensorData.TimeOfLastReset" id="Coupling133" source="SensorData.TimeOfLastReset" trigger="Trigger145"/>
-        <coupling destination="SensorData.RightProbeDoseRate" id="Coupling134" source="SensorData.RightProbeDoseRate" trigger="Trigger146"/>
-        <coupling destination="SensorData.LeftProbeDoseRate" id="Coupling135" source="SensorData.LeftProbeDoseRate" trigger="Trigger147"/>
-        <coupling destination="SensorData.InternalDoseRate" id="Coupling136" source="SensorData.InternalDoseRate" trigger="Trigger148"/>
-        <coupling destination="SensorData.AccumulatedDose" id="Coupling137" source="SensorData.AccumulatedDose" trigger="Trigger149"/>
         <coupling destination="SensorData" id="Coupling138" source="SensorData" trigger="Trigger150"/>
         <coupling destination="RelativeLocation" id="Coupling139" source="RelativeLocation" trigger="Trigger151"/>
         <coupling destination="in" destinationtype="Transform009" id="Coupling140" source="Parent" trigger="Trigger152"/>
@@ -1189,19 +1355,30 @@
         <coupling destination="ExternalId" id="Coupling143" source="ExternalId" trigger="Trigger154"/>
         <coupling destination="EquipmentType" id="Coupling144" source="EquipmentType" trigger="Trigger155"/>
         <coupling destination="Description" id="Coupling145" source="Description" trigger="Trigger156"/>
+        <coupling destination="in" destinationtype="Transform017" id="Coupling154" source="SensorData.AccumulatedDose" trigger="Trigger165"/>
+        <coupling destination="SensorData.AccumulatedDose" id="Coupling155" source="out" sourcetype="Transform017"/>
+        <coupling destination="in" destinationtype="Transform018" id="Coupling156" source="SensorData.InternalDoseRate" trigger="Trigger166"/>
+        <coupling destination="SensorData.InternalDoseRate" id="Coupling157" source="out" sourcetype="Transform018"/>
+        <coupling destination="in" destinationtype="Transform019" id="Coupling158" source="SensorData.LeftProbeDoseRate" trigger="Trigger167"/>
+        <coupling destination="SensorData.LeftProbeDoseRate" id="Coupling159" source="out" sourcetype="Transform019"/>
+        <coupling destination="in" destinationtype="Transform020" id="Coupling160" source="SensorData.RightProbeDoseRate" trigger="Trigger168"/>
+        <coupling destination="SensorData.RightProbeDoseRate" id="Coupling161" source="out" sourcetype="Transform020"/>
       </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="WTP" destinationtype="EntityEquipment.Sensor.CBRN.I28" id="CouplingSet010" sourcedb="CBRNSensors" sourcetype="EntityEquipment.Sensor.CBRN.I28">
       <transforms>
         <transform id="Transform000" url="HandleToHandle.transform"/>
+        <transform id="Transform010" url="LongToDouble.transform"/>
+        <transform id="Transform011" url="LongToDouble.transform"/>
+        <transform id="Transform012" url="LongToDouble.transform"/>
       </transforms>
       <couplings>
         <coupling destination="SensorState.Errorcode" id="Coupling115" source="SensorState.Errorcode" trigger="Trigger128"/>
         <coupling destination="SensorState" id="Coupling116" source="SensorState" trigger="Trigger129"/>
         <coupling destination="SensorRawData" id="Coupling117" source="SensorRawData" trigger="Trigger130"/>
-        <coupling destination="SensorData.PeakDoseRate" id="Coupling118" source="SensorData.PeakDoseRate" trigger="Trigger131"/>
-        <coupling destination="SensorData.CurrentDoseRate" id="Coupling119" source="SensorData.CurrentDoseRate" trigger="Trigger132"/>
-        <coupling destination="SensorData.AccumulatedDoseRate" id="Coupling120" source="SensorData.AccumulatedDoseRate" trigger="Trigger133"/>
+        <coupling destination="in" destinationtype="Transform010" id="Coupling118" source="SensorData.AccumulatedDoseRate" trigger="Trigger157"/>
+        <coupling destination="SensorData.AccumulatedDoseRate" id="Coupling119" source="out" sourcetype="Transform010"/>
+        <coupling destination="in" destinationtype="Transform011" id="Coupling120" source="SensorData.CurrentDoseRate" trigger="Trigger158"/>
         <coupling destination="SensorData" id="Coupling121" source="SensorData" trigger="Trigger134"/>
         <coupling destination="RelativeLocation" id="Coupling122" source="RelativeLocation" trigger="Trigger135"/>
         <coupling destination="in" destinationtype="Transform000" id="Coupling123" source="Parent" trigger="Trigger136"/>
@@ -1210,6 +1387,9 @@
         <coupling destination="ExternalId" id="Coupling126" source="ExternalId" trigger="Trigger138"/>
         <coupling destination="EquipmentType" id="Coupling127" source="EquipmentType" trigger="Trigger139"/>
         <coupling destination="Description" id="Coupling128" source="Description" trigger="Trigger140"/>
+        <coupling destination="SensorData.FilteredDoseRate" id="Coupling134" source="out" sourcetype="Transform011"/>
+        <coupling destination="in" destinationtype="Transform012" id="Coupling135" source="SensorData.PeakDoseRate" trigger="Trigger159"/>
+        <coupling destination="SensorData.PeakDoseRate" id="Coupling136" source="out" sourcetype="Transform012"/>
       </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="WTP" destinationtype="CBRN.I27Control" id="CouplingSet011" sourcedb="CBRNSensors" sourcetype="CBRN.I27Control">
@@ -1233,12 +1413,47 @@
       </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="CBRNSensors" destinationtype="EntityEquipment.Sensor.CBRN.I27" id="CouplingSet013" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I27">
-      <transforms/>
-      <couplings/>
+      <transforms>
+        <transform id="Transform021" url="HandleToHandle.transform"/>
+        <transform id="Transform022" url="DoubleToLong.transform"/>
+        <transform id="Transform023" url="DoubleToLong.transform"/>
+        <transform id="Transform024" url="DoubleToLong.transform"/>
+        <transform id="Transform025" url="DoubleToLong.transform"/>
+      </transforms>
+      <couplings>
+        <coupling destination="in" destinationtype="Transform021" id="Coupling162" source="Parent" trigger="Trigger169"/>
+        <coupling destination="Parent" id="Coupling163" source="out" sourcetype="Transform021"/>
+        <coupling destination="in" destinationtype="Transform022" id="Coupling164" source="SensorData.AccumulatedDose" trigger="Trigger170"/>
+        <coupling destination="SensorData.AccumulatedDose" id="Coupling165" source="out" sourcetype="Transform022"/>
+        <coupling destination="in" destinationtype="Transform023" id="Coupling166" source="SensorData.InternalDoseRate" trigger="Trigger171"/>
+        <coupling destination="SensorData.InternalDoseRate" id="Coupling167" source="out" sourcetype="Transform023"/>
+        <coupling destination="in" destinationtype="Transform024" id="Coupling168" source="SensorData.LeftProbeDoseRate" trigger="Trigger172"/>
+        <coupling destination="SensorData.LeftProbeDoseRate" id="Coupling169" source="out" sourcetype="Transform024"/>
+        <coupling destination="in" destinationtype="Transform025" id="Coupling170" source="SensorData.RightProbeDoseRate" trigger="Trigger173"/>
+        <coupling destination="SensorData.RightProbeDoseRate" id="Coupling171" source="out" sourcetype="Transform025"/>
+        <coupling destination="SensorData.TimeOfLastReset" id="Coupling172" source="SensorData.TimeOfLastReset" trigger="Trigger174"/>
+        <coupling destination="SensorState.BatteryLow" id="Coupling173" source="SensorState.BatteryLow" trigger="Trigger175"/>
+        <coupling destination="SensorState.TemperatureError" id="Coupling174" source="SensorState.TemperatureError" trigger="Trigger176"/>
+      </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="CBRNSensors" destinationtype="EntityEquipment.Sensor.CBRN.I28" id="CouplingSet014" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.I28">
-      <transforms/>
-      <couplings/>
+      <transforms>
+        <transform id="Transform013" url="HandleToHandle.transform"/>
+        <transform id="Transform014" url="DoubleToLong.transform"/>
+        <transform id="Transform015" url="DoubleToLong.transform"/>
+        <transform id="Transform016" url="DoubleToLong.transform"/>
+      </transforms>
+      <couplings>
+        <coupling destination="in" destinationtype="Transform013" id="Coupling137" source="Parent" trigger="Trigger160"/>
+        <coupling destination="Parent" id="Coupling146" source="out" sourcetype="Transform013"/>
+        <coupling destination="in" destinationtype="Transform014" id="Coupling147" source="SensorData.AccumulatedDoseRate" trigger="Trigger161"/>
+        <coupling destination="SensorData.AccumulatedDoseRate" id="Coupling148" source="out" sourcetype="Transform014"/>
+        <coupling destination="in" destinationtype="Transform015" id="Coupling149" source="SensorData.FilteredDoseRate" trigger="Trigger162"/>
+        <coupling destination="SensorData.CurrentDoseRate" id="Coupling150" source="out" sourcetype="Transform015"/>
+        <coupling destination="in" destinationtype="Transform016" id="Coupling151" source="SensorData.PeakDoseRate" trigger="Trigger163"/>
+        <coupling destination="SensorData.PeakDoseRate" id="Coupling152" source="out" sourcetype="Transform016"/>
+        <coupling destination="SensorState.Errorcode" id="Coupling153" source="SensorState.Errorcode" trigger="Trigger164"/>
+      </couplings>
     </couplingset>
     <couplingset active="true" debug="false" destinationdb="CBRNSensors" destinationtype="EntityEquipment.Sensor.CBRN.RAID" id="CouplingSet015" sourcedb="WTP" sourcetype="EntityEquipment.Sensor.CBRN.RAID">
       <transforms>
