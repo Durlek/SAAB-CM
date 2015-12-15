@@ -1,22 +1,6 @@
-Instruktioner för körning
---------------------------------
-En .options-fil måste skapas i CBRNSensors-mappen, denna kan användas (CoREdebug.options):
-
-	<?xml version="1.0" encoding="utf-8"?>
-	<settings>
-		<setting name="BinarySearchPath" value="<er sökväg här>\Output\Win32\VS100\Debug" />
-		<setting name="DebugInterfaceActiveStartup" value="True" />
-	</settings>
-
-Därefter kanske ni måste ställa in så att visual studio försöker köra rätt projekt. Högerklicka på 'Solution Saab.CBRN' sedan 'Properties'. I dropdown menyn väljer ni 'Saab.CBRNSensors'.
-
-Slutligen måste ni se till att startkommandot som körs använder rätt sökvägar. Högerklicka 'Saab.CBRNSensors' sedan 'Properties' sedan 'Debug'. Ändra sökvägarna i 'Command line arguments' så att de pekar rätt.
-
-Därefter skall det gå att köra allt från Visual Studio i admin-läge :)
-
 Testverktyg
 --------------------------------
-I ./Tester/ finns ett JavaScript verktyg för att snabbt testa REST-interfacet. För att kunna köra testerna måste nodejs och mocha installeras. För att installera nodejs, följ instruktionerna på hemsidan (nodejs.org). För att installera mocha, öppna en terminal och kör (efter att nodejs installerats) "npm install -g mocha". Efter detta har gjorts kan testerna köra genom att köra run.bat (bara på Windows) eller genom att köra "mocha" i terminal från test-mappen.
+I ./Tester/ finns ett JavaScript verktyg för att kunna testa REST-interfacet. För att köra testerna måste nodejs och mocha installeras. För att installera nodejs, följ instruktionerna på hemsidan (nodejs.org). För att installera mocha, öppna en terminal och kör (efter att nodejs installerats) "npm install -g mocha". Efter detta har gjorts kan testerna köra genom att köra run.bat (bara på Windows) eller genom att köra "mocha" i en terminal från test-mappen.
 
 Information REST-interface
 --------------------------------
@@ -37,7 +21,7 @@ PUT /sensors/[sensornamn]/[id]
 Request body: sensors JSON-objekt (endast de attribut som skall uppdateras)  
 Statuskod: 200, 404 (om sensorn inte finns)  
   
-För LCD finns ett attribut som heter DetectionMode. Detta värde kan EJ utelämnas från request body, då kommer det tidigare värdet på servern skrivas över till 0. Istället för att utelämna attributet skall värdet 3 användas för att indikera att DetectionMode inte skall uppdateras.
+För LCD finns ett attribut som heter DetectionMode. Detta värde kan EJ utelämnas från request body, för då kommer det värdet på servern ändras till 0. Istället för att utelämna attributet skall värdet sättas till 3 för att indikera att DetectionMode inte skall uppdateras.
 
 #### Avsluta sensorsimulering
 DELETE /sensors/[sensornamn]/[id]  
@@ -56,7 +40,7 @@ JSON-datan är formaterad enligt följande:
 	,	Id: sensorid       // samma id som används i alla andra metoders URL
 	}
   
-Följande events stöds (i skrivande stöds ej alla av simulatorn):  
+Följande events stöds (dessa strängar anges i `Command` ovan):  
 
 **LCD**  
 
@@ -73,6 +57,14 @@ Följande events stöds (i skrivande stöds ej alla av simulatorn):
 - cleaning on
 - cleaning off
 
+**I28**
+
+- reset accumulated dose rate
+- reset peak dose rate
+
+**I27**
+
+- reset accumulated dose rate
 
 #### Test av uppkoppling
 GET /check  
