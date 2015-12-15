@@ -101,7 +101,7 @@ const EXAMPLE_I27 = {
     }
 ,   Data: {
         AccumulatedDose: 0
-    ,   InteralDoseRate: 0
+    ,   InternalDoseRate: 0
     ,   LeftProbeDoseRate: 0
     ,   RightProbeDoseRate: 0
     ,   TimeOfLastReset: ""
@@ -121,6 +121,12 @@ function deepEq(v1, v2, msg) {
 
 function ok(v, msg) {
     assert.ok(v, msg);
+}
+
+function floor(pos) {
+    pos.Altitude = Math.floor(pos.Altitude);
+    pos.Latitude = Math.floor(pos.Latitude);
+    pos.Longitude = Math.floor(pos.Longitude);
 }
 
 SENSORS.forEach(function (sensor) {
@@ -177,6 +183,7 @@ SENSORS.forEach(function (sensor) {
                         ok(/^[0-9a-z\-_]+$/.test(body.Id), 'Wrong id format');
                         delete body.Id; // Can't test exact id
                         delete body.Parent; // Can't test parent id either
+                        floor(body.Position);
                         deepEq(body, EXAMPLES[sensor]);
                         done();
                     });

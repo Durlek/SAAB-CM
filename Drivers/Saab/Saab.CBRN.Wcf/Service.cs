@@ -369,7 +369,7 @@ namespace Saab.CBRN.Wcf
             return _factory.CreateObject(sensorType, hObject);
         }
         
-        private void Create<T>(Position p, Func<T, ObjectHandle, string, T> initializeObject) where T : WISEObject, new() {
+        private void Create<T>(Position pos, Func<T, ObjectHandle, string, T> initializeObject) where T : WISEObject, new() {
 
             WISE_RESULT result = WISEError.WISE_OK;
             try
@@ -385,7 +385,7 @@ namespace Saab.CBRN.Wcf
 
                 wiseObj = initializeObject(wiseObj, parent.Object, id);
 
-                parent.Position = new Vec3(p.Longitude, p.Latitude, p.Altitude);
+                parent.Position = new Vec3(Converter.deg2rad(pos.Latitude), Converter.deg2rad(pos.Longitude), Converter.deg2rad(pos.Altitude));
                 
                 result = parent.AddToDatabase(_hDatabase);
                 WISEError.CheckCallFailedEx(result);

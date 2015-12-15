@@ -288,7 +288,7 @@ namespace Saab.CBRN.Wcf
 
         #endregion
 
-        #region generic helpers
+        #region Generic helpers
 
         private static IEnumerable<DataContract> Convert<DataContract>(GroupList wDataList, Func<AttributeGroup, DataContract> loadDataInto)
         {
@@ -301,16 +301,29 @@ namespace Saab.CBRN.Wcf
         {
             EntityGroundVehicle parent = new EntityGroundVehicle(sink, hDatabase, hParent);
             Position pos = new Position();
-            pos.Longitude = parent.Position.V1;
-            pos.Latitude = parent.Position.V2;
-            pos.Altitude = parent.Position.V3;
+            pos.Latitude  = rad2deg(parent.Position.V1);
+            pos.Longitude = rad2deg(parent.Position.V2);
+            pos.Altitude  = rad2deg(parent.Position.V3);
             return pos;
         }
 
         private static void setPosition(INETWISEDriverSink2 sink, DatabaseHandle hDatabase, ObjectHandle hParent, Position pos)
         {
             EntityGroundVehicle parent = new EntityGroundVehicle(sink, hDatabase, hParent);
-            parent.Position = new Vec3(pos.Longitude, pos.Latitude, pos.Altitude);
+            parent.Position = new Vec3(deg2rad(pos.Latitude), deg2rad(pos.Longitude), deg2rad(pos.Altitude));
+        }
+
+        // NOTE: Because of floating point precision, these functions are not each others inverse (not perfectly atleast).
+        // ..... This shouldn't really matter in practice, just don't expect the position you get back from the webb api to exactly math what you sent in.
+
+        public static double deg2rad(double deg)
+        {
+            return deg * (Math.PI / 180);
+        }
+
+        public static double rad2deg(double rad)
+        {
+            return rad * (180 / Math.PI);
         }
 
         #endregion
